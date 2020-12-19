@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Category } from '../Categories/Category.model';
+import { CategoriesService } from '../Categories/Categories.service';
 
 @Component({
   selector: 'banner-version1',
@@ -17,9 +19,16 @@ export class BannerComponent implements OnInit {
    /** Background for baner **/
    @Input('bgImageUrl') BgImageUrl: any = 'assets/images/main-search-background-01.jpg';
 
-   constructor(){}
+   categories: Category[];
+   constructor(private categoryService: CategoriesService){}
 
-   ngOnInit(){}
+   ngOnInit(){
+    this.categoryService.getCategoryList()
+      .subscribe(data => {
+        this.categories = data,
+        console.log(this.categories)
+      })
+   }
 
    ngAfterViewInit()
    {

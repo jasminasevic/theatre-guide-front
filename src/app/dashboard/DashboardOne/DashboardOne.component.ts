@@ -8,8 +8,8 @@ import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/co
 })
 export class DashboardOneComponent implements OnInit{
 
-	bannerTitle: string = 'Find Nearby Attractions';
-	bannerDesc : string = 'Expolore top-rated attractions, activities and more';
+	bannerTitle: string = 'Expolore Theatres, Shows and More';
+	bannerDesc : string = 'What are you looking for?';
 	bannerImage: string = 'assets/images/main-search-background-01.jpg';
 
 	popularCategoriesTitle : string = 'Popular Categories';
