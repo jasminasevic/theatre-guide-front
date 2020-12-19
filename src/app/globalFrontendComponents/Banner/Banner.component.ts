@@ -25,8 +25,7 @@ export class BannerComponent implements OnInit {
    ngOnInit(){
     this.categoryService.getCategoryList()
       .subscribe(data => {
-        this.categories = data,
-        console.log(this.categories)
+        this.categories = data
       })
    }
 

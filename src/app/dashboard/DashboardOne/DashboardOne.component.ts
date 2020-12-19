@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { PopularShows } from '../../globalFrontendComponents/PopularShows/PopularShows.model';
+import { PopularShowsService } from '../../globalFrontendComponents/PopularShows/PopularShows.service';
 
 @Component({
   selector: 'dashboard-one',
@@ -8,9 +10,23 @@ import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/co
 })
 export class DashboardOneComponent implements OnInit{
 
+	constructor(private popularShowService: PopularShowsService){}
+
 	bannerTitle: string = 'Expolore Theatres, Shows and More';
 	bannerDesc : string = 'What are you looking for?';
 	bannerImage: string = 'assets/images/main-search-background-01.jpg';
+
+	shows: PopularShows[];
+	popularShowsTitle : string = 'Popular Shows';
+	popularShowsDesc : string = 'Browse the most popular shows';
+	
+	ngOnInit(){
+		this.popularShowService.getPopularShows()
+			.subscribe(data => {
+				this.shows = [...data, ...data]
+			})
+	}
+
 
 	popularCategoriesTitle : string = 'Popular Categories';
 	popularCategoriesDesc  : string = 'Browse the most desirable categories';
@@ -185,9 +201,6 @@ export class DashboardOneComponent implements OnInit{
 							}
 						];
 
-	constructor(){}
-
-	ngOnInit(){}
 
 	ngAfterViewInit()
 	{

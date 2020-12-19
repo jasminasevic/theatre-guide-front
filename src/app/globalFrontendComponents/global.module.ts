@@ -21,6 +21,8 @@ import { PricingComponent } from './Pricing/Pricing.component';
 import { ParallaxComponent } from './ParallaxSection/Parallax.component';
 import { ServicesComponent } from './Services/Services.component';
 
+import { PopularShowsComponent } from './PopularShows/PopularShows.component';
+
 @NgModule({
    imports : [
    CommonModule,
@@ -43,7 +45,8 @@ import { ServicesComponent } from './Services/Services.component';
      FeatureGridSectionComponent,
      PricingComponent,
      ParallaxComponent,
-     ServicesComponent
+     ServicesComponent,
+     PopularShowsComponent
   ],
   exports: [ 
      MapBannerComponent,
@@ -60,7 +63,8 @@ import { ServicesComponent } from './Services/Services.component';
      FeatureGridSectionComponent,
      PricingComponent,
      ParallaxComponent,
-     ServicesComponent
+     ServicesComponent,
+     PopularShowsComponent
    ]
 })
 
