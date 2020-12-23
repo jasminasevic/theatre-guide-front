@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { IMG_BASE_URL } from 'src/app/app.constants';
 declare var $ : any;
 
 @Component({
@@ -9,6 +10,9 @@ declare var $ : any;
 })
 export class GallerySliderComponent implements OnInit {
 
+  imgBaseUrl: string = IMG_BASE_URL;
+  readonly IMG_BASE_URL = IMG_BASE_URL;
+  
    /** Title for baner **/
    @Input('title') Title: any = 'Dummy Title';
 

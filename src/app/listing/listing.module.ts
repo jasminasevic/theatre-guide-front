@@ -19,7 +19,7 @@ import { HalfScreenMapGridComponent } from './HalfScreenMapGrid/HalfScreenMapGri
 import { ListingDetailOneComponent } from './ListingDetailOne/ListingDetailOne.component';
 import { ListingDetailTwoComponent } from './ListingDetailTwo/ListingDetailTwo.component';
 
-import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
+//import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
 import { SmallGallerySliderComponent } from '../globalFrontendComponents/SmallGallerySlider/SmallGallerySlider.component';
 
 import { SidebarLayoutOneComponent } from './SidebarLayoutOne/SidebarLayoutOne.component';
@@ -30,6 +30,11 @@ import { ListingRoutes } from './listing.routing';
 
 import { GlobalModule } from '../globalFrontendComponents/global.module';
 
+import { ShowListingComponent } from './Shows/ShowListing/ShowListing.component';
+import { ShowDetailComponent } from './Shows/ShowDetail/ShowDetail.component';
+
+import { ShowsModule } from '../shows/shows.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -39,6 +44,8 @@ import { GlobalModule } from '../globalFrontendComponents/global.module';
     NouisliderModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(ListingRoutes),
+    ShowsModule,
+    SharedModule
   ],
   declarations: [ 
      ListWithSidebarComponent,
@@ -51,11 +58,13 @@ import { GlobalModule } from '../globalFrontendComponents/global.module';
      HalfScreenMapGridComponent,
      ListingDetailOneComponent,
      ListingDetailTwoComponent,
-     GallerySliderComponent,
+    // GallerySliderComponent,
      SmallGallerySliderComponent,
      SidebarLayoutOneComponent,
      SidebarLayoutTwoComponent,
-     SidebarLayoutThreeComponent
+     SidebarLayoutThreeComponent,
+     ShowListingComponent,
+     ShowDetailComponent
    ]
 })
 

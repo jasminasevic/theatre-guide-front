@@ -25,6 +25,8 @@ import { AdminSidebarComponent } from './core/AdminSidebar/AdminSidebar.componen
 import { MenuItems } from './core/Menu/menu-items';
 import { AdminMenuItems } from './core/AdminHeader/admin-menu-items';
 
+import { ShowsModule } from './shows/shows.module';
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
     url: 'https://httpbin.org/post',
@@ -52,7 +54,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       BrowserAnimationsModule,
       DropzoneModule,
       RouterModule.forRoot(AppRoutes, {scrollPositionRestoration: 'enabled'}),
-      HttpClientModule
+      HttpClientModule,
+      ShowsModule
   ],
   providers: [
       MenuItems, 

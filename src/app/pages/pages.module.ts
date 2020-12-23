@@ -15,10 +15,10 @@ import { PricingComponent } from './Pricing/Pricing.component';
 import { InvoiceComponent } from './Invoice/Invoice.component';
 import { ContactComponent } from './Contact/Contact.component';
 import { AboutComponent } from './About/About.component';
-
 import { GlobalModule } from '../globalFrontendComponents/global.module';
 
 import { PagesRoutes } from './pages.routing';
+import { AgmCoreModule } from '@agm/core';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -33,6 +33,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CommonModule,
     GlobalModule,
     DropzoneModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(PagesRoutes),
   ],
   declarations: [ 
@@ -40,11 +41,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    InvoiceComponent,
    ContactComponent,
    AboutComponent,
-    UserProfileComponent,
-    BookingComponent,
-    BlogListingComponent,
-    BlogDetailComponent,
-    AddListingComponent
+   UserProfileComponent,
+   BookingComponent,
+   BlogListingComponent,
+   BlogDetailComponent,
+   AddListingComponent
   ],
   providers: [
    {

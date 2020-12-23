@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sidebar-layout-two',
@@ -6,11 +6,9 @@ import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/co
   styleUrls: ['./SidebarLayoutTwo.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidebarLayoutTwoComponent implements OnInit{
+export class SidebarLayoutTwoComponent {
 
    constructor(){}
-
-   ngOnInit(){}
 
    ngAfterViewInit()
    {

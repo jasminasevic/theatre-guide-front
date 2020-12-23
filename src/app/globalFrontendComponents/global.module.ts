@@ -22,6 +22,7 @@ import { ParallaxComponent } from './ParallaxSection/Parallax.component';
 import { ServicesComponent } from './Services/Services.component';
 
 import { PopularShowsComponent } from './PopularShows/PopularShows.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
    imports : [
@@ -29,6 +30,7 @@ import { PopularShowsComponent } from './PopularShows/PopularShows.component';
    RouterModule,
    // BarRatingModule,
    SlickCarouselModule,
+   SharedModule,
    AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'})],
   declarations: [
     MapBannerComponent,

@@ -23,7 +23,7 @@ export class DashboardOneComponent implements OnInit{
 	ngOnInit(){
 		this.popularShowService.getPopularShows()
 			.subscribe(data => {
-				this.shows = [...data, ...data]
+				this.shows = data
 			})
 	}
 
