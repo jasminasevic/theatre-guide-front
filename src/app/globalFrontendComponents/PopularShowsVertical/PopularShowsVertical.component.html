@@ -1,3 +1,22 @@
-<p>
-  PopularShowsVertical works!
-</p>
+ <!-- Widget -->
+ <div class="widget mb-4">
+  <h3> {{ Title }}</h3>
+  <ul class="widget-tabs">
+     <!-- Post #1 -->
+     <li *ngFor="let popularShow of Data">
+        <div class="widget-content">
+           <div class="widget-thumb" *ngFor="let image of popularShow.showImage">
+              <a [routerLink]="['/shows/about-show', popularShow.id ]">
+                <img src="{{ IMG_BASE_URL + image.path }}" alt="image.alt"></a><br/>
+           </div>
+           <div class="widget-text">
+              <h5><a [routerLink]="['/shows/about-show', popularShow.id ]"> {{ popularShow.title }}</a>
+                <span><i class="fa fa-heart-o"></i> ({{popularShow.followersNumber}})</span>
+              </h5>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+     </li>
+  </ul>
+</div>
+<!-- Widget / End-->

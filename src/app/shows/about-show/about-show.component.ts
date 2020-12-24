@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShowsService } from '../shows.service';
 import { ShowDetails } from '../ShowDetails.model';
+import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
+import { PopularShowsVerticalService } from '../../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'about-show',
@@ -16,15 +18,27 @@ export class AboutShowComponent implements OnInit {
 
    headerGallerySlider: any;
    show: ShowDetails;
+   showId: any;
 
-   constructor(private showService: ShowsService,
-      private activatedRoute: ActivatedRoute){}
+   shows: PopularShows[];
+	popularShowsTitle : string = 'Popular Shows';
+
+   constructor(private activatedRoute: ActivatedRoute,
+      private popularShowVerticalService: PopularShowsVerticalService){}
 
    ngOnInit(){
       this.activatedRoute.data.subscribe((data: {show: ShowDetails}) => {
          this.show = data.show,
          this.headerGallerySlider = this.show.showImageDtos;
-      })
+      });
+
+      this.showId = this.activatedRoute.snapshot.params['id'];
+      console.log('showId', this.showId)
+      this.popularShowVerticalService.getPopularShowsVertical(this.showId)
+			.subscribe(data => {
+            this.shows = data,
+            console.log(this.shows);
+			})
    }
 
 }

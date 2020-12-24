@@ -10,6 +10,7 @@ import { IMG_BASE_URL } from '../../app.constants';
 export class PopularShowsComponent implements OnInit {
 
   imgBaseUrl: string = IMG_BASE_URL;
+  readonly IMG_BASE_URL = IMG_BASE_URL;
   
   /** Title for baner **/
   @Input('title') Title: any = 'Dummy Title';
@@ -19,8 +20,6 @@ export class PopularShowsComponent implements OnInit {
 
   /** Background for baner **/
   @Input('data') Data: any;
-
-  readonly IMG_BASE_URL = IMG_BASE_URL;
 
   slideConfig = {
        centerMode: true,
