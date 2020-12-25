@@ -19,6 +19,7 @@ import { GlobalModule } from '../globalFrontendComponents/global.module';
 
 import { PagesRoutes } from './pages.routing';
 import { AgmCoreModule } from '@agm/core';
+import { SharedModule } from '../shared/shared.module';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -35,6 +36,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(PagesRoutes),
+    SharedModule
   ],
   declarations: [ 
    PricingComponent,

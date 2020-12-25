@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { PopularShowsVerticalComponent } from '../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.component';
+import { TitleBarComponent } from '../globalFrontendComponents/TitleBar/TitleBar.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -13,11 +14,13 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [
     GallerySliderComponent,
-    PopularShowsVerticalComponent
+    PopularShowsVerticalComponent,
+    TitleBarComponent
   ],
   exports: [
     GallerySliderComponent,
-    PopularShowsVerticalComponent
+    PopularShowsVerticalComponent,
+    TitleBarComponent
   ] 
 })
 export class SharedModule { }

@@ -1,0 +1,169 @@
+<div class="main-wrapper">
+    <title-bar title="{{ theatre.name }}" page="Theatres" subtitle="{{ theatre.location }}"></title-bar>
+ <!-- Content -->
+ <div class="container">
+    <div class="content">
+       <div class="row sticky-wrapper">
+          <div class="col-lg-9 col-md-9">
+            <div class="blog-post single-post">
+                <!-- Img -->
+                <img class="post-img img-fluid" src="{{IMG_BASE_URL}}{{theatre.showImageDtos[0].path}}" alt="">
+            </div>
+             <div class="">
+                <div class="detail-tile mb-4">
+                   <h3>{{ theatre.name }} </h3>
+                   <p class="text-muted">{{ theatre.location }}</p>
+                </div>
+                <div class="nav-wrapper">
+                   <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                      <li class="nav-item">
+                         <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab" href="#aboutTheatre" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-info-circle mr-2"></i>About</a>
+                      </li>
+                      <li class="nav-item">
+                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#theatreLocation" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-map-marker mr-2"></i>Location</a>
+                      </li>
+                      <li class="nav-item">
+                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#theatreScenes" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-institution mr-2"></i>Scenes</a>
+                      </li>
+                      <li class="nav-item">
+                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#theatreShows" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-square-o  mr-2"></i>Shows</a>
+                      </li>
+                   </ul>
+                </div>
+                <div class="card shadow">
+                   <div class="card-body">
+                      <div class="tab-content" id="myTabContent">
+                         <div class="tab-pane fade active show" id="aboutTheatre" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                           <h4 class="mb-4">
+                              About
+                           </h4>
+                           <div class="row mb-4">
+                              <div class="col-lg-4">
+                                 <div class="detail-list mb-2">
+                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-phone mr-2"></i>
+                                       <small class="text-uppercase font-weight-bold">Phone</small>
+                                    </div>
+                                    <p class="m-0 text-small text-muted">{{ theatre.telephone }}</p>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4">
+                                 <div class="detail-list mb-2">
+                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-envelope mr-2"></i>
+                                       <small class="text-uppercase font-weight-bold">Email</small>
+                                    </div>
+                                    <p class="m-0 text-small text-muted">{{ theatre.email }}</p>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4">
+                                 <div class="detail-list mb-2">
+                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-hourglass-o mr-2"></i><small class="text-uppercase font-weight-bold">Working hours</small>
+                                    </div>
+                                    <p class="m-0 text-small text-muted">{{ theatre.workingHours }}</p>   
+                                 </div>
+                              </div>
+                           </div> 
+                           <p class="description">{{ theatre.description }}</p>
+                         </div>
+                         <div class="tab-pane fade" id="theatreLocation" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                           <h4 class="mb-4">
+                              Location
+                           </h4> 
+                           <p class="description">{{ theatre.location }}</p>
+                            <div>
+                               <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
+                                   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                               </agm-map>
+                            </div>
+                         </div>
+                         <div class="tab-pane fade" id="theatreScenes" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                           <h4 class="mb-4">
+                              Scenes
+                           </h4>  
+                           <div class="pricing-list-container">
+                               <ul>
+                                  <li *ngFor="let scene of theatre.getSceneWithSectorsDtos">
+                                     <h5>{{ scene.sceneName }}</h5>
+                                     <p class="m-0 text-small text-muted">Sectors:</p>
+                                     <div *ngFor="let sector of scene.addSectorDtos">
+                                     <p>{{ sector.sectorName }} ({{ sector.seatCapacity}} seats)</p>
+                                    </div>
+                                  </li>
+                               </ul>
+                            </div>
+                         </div>
+                         <div class="tab-pane fade" id="theatreShows" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                           <h4 class="mb-4">
+                              Shows
+                           </h4>  
+                           <div class="row mb-4 list-img-wrap" *ngFor="let show of theatre.showBaseInfoDtos">
+                               <div class="col-md-2 list-img">
+                                  <img class="img-fluid rounded-circle shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"> 
+                               </div>
+                               <div class="col-md-10">
+                                  <h5 class="text-primary"><a [routerLink]="['/shows/about-show', show.id ]">{{ show.title }}</a></h5>
+                                  <p class="text-muted">{{ show.categoryName }}</p>
+                                  <a [routerLink]="['/shows/about-show', show.id]">
+                                    <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                                  </a>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          
+           <!-- <sidebar-layout-two></sidebar-layout-two> -->
+             <div class="col-lg-3 col-md-3">
+                <!-- <sidebar-layout-two></sidebar-layout-two> -->
+                 <!-- Widgets -->
+               <!-- <div class="col-lg-3 col-md-4"> -->
+              <div class="sidebar right">
+                 <!-- Widget -->
+                 <div class="widget">
+                    <h3 class="margin-top-0 margin-bottom-25">Search Show</h3>
+                    <div class="form-group">
+                       <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                             <span class="input-group-text"><i class="fa fa-search"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Search" type="text">
+                       </div>
+                    </div>
+                 </div>
+                 <!-- Widget / End -->
+  
+                 <!-- Popular Shows Vertical -->
+                 <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+  
+                 <!-- Widget -->
+                 <div class="widget margin-top-40">
+                    <h3 class="margin-bottom-25">Follow Us</h3>
+                    <div class=" btn-wrapper">
+                       <a target="_blank" href="https://twitter.com" class="btn btn-neutral btn-icon-only btn-twitter btn-round btn-lg" data-toggle="tooltip" data-original-title="Follow us">
+                       <i class="fa fa-twitter"></i>
+                       </a>
+                       <a target="_blank" href="https://www.facebook.com" class="btn btn-neutral btn-icon-only btn-facebook btn-round btn-lg" data-toggle="tooltip" data-original-title="Like us">
+                       <i class="fa fa-facebook-square"></i>
+                       </a>
+                       <a target="_blank" href="https://dribbble.com" class="btn btn-neutral btn-icon-only btn-dribbble btn-lg btn-round" data-toggle="tooltip" data-original-title="Follow us">
+                       <i class="fa fa-dribbble"></i>
+                       </a>
+                       <a target="_blank" href="https://github.com" class="btn btn-neutral btn-icon-only btn-github btn-round btn-lg" data-toggle="tooltip" data-original-title="Star on Github">
+                       <i class="fa fa-github"></i>
+                       </a>
+                    </div>
+                 </div>
+                 <!-- Widget / End-->
+                 <div class="clearfix"></div>
+                 <div class="margin-bottom-40"></div>
+              </div>
+           </div>
+          </div>
+       </div>
+    </div>
+ </div>
+                       
+ 
+ 

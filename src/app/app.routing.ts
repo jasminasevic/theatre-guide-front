@@ -20,6 +20,10 @@ export const AppRoutes: Routes = [{
     loadChildren: () => import('./shows/shows.module').then(m => m.ShowsModule)
   },
   {
+    path: 'theatres',
+    loadChildren: () => import('./theatres/theatres.module').then(m => m.TheatresModule)
+  },
+  {
     path: 'listing',
     loadChildren: () => import('./listing/listing.module').then(m => m.ListingModule)
   },

@@ -11,7 +11,7 @@
                     <h3>
                        {{ show.title }} <span><i class="fa fa-heart-o"></i></span>
                     </h3>
-                    <p class="text-muted">{{ show.theatre }}</p>
+                    <p class="text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{ show.theatre }}</a></p>
                     <span class="badge badge-pill badge-info text-uppercase mr-2">{{ show.category }}</span>
                  </div>
                  <div class="nav-wrapper mb-4">
@@ -99,7 +99,7 @@
                               <div class="col-lg-12">
                                  <div class="detail-list mb-2">
                                     <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Theatre</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.theatre }}</p>
+                                    <p class="m-0 text-small text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{ show.theatre }}</a></p>
                                  </div>
                               </div>
                            </div>

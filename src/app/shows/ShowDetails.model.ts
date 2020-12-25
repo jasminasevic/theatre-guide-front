@@ -1,4 +1,5 @@
 import { IActorShow } from '../shared/interfaces/IActorShow';
+import { IImage } from '../shared/interfaces/IImage';
 
 export class ShowDetails {
     id: number;
@@ -14,7 +15,7 @@ export class ShowDetails {
     duration: number;
     premiereDate: Date;
     writer: String;
-    showImageDtos: File;
+    showImageDtos: IImage;
     actorShowDtos: IActorShow;
     followersNumber: number;
     directorFirstName: string;

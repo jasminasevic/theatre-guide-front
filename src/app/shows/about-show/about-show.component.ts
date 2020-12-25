@@ -33,11 +33,9 @@ export class AboutShowComponent implements OnInit {
       });
 
       this.showId = this.activatedRoute.snapshot.params['id'];
-      console.log('showId', this.showId)
       this.popularShowVerticalService.getPopularShowsVertical(this.showId)
 			.subscribe(data => {
-            this.shows = data,
-            console.log(this.shows);
+            this.shows = data
 			})
    }
 

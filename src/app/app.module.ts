@@ -26,6 +26,7 @@ import { MenuItems } from './core/Menu/menu-items';
 import { AdminMenuItems } from './core/AdminHeader/admin-menu-items';
 
 import { ShowsModule } from './shows/shows.module';
+import { TheatresModule } from './theatres/theatres.module';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -55,7 +56,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       DropzoneModule,
       RouterModule.forRoot(AppRoutes, {scrollPositionRestoration: 'enabled'}),
       HttpClientModule,
-      ShowsModule
+      ShowsModule,
+      TheatresModule
   ],
   providers: [
       MenuItems, 

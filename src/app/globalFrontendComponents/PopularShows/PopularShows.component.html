@@ -21,7 +21,7 @@
                                 </div>
                                 <a [routerLink]="['/shows/about-show', item.id ]">  <h3>{{item.title}}</h3></a>
                                 <p>
-                                    <a [routerLink]="['/listing/grid/with-sidebar']"><small> {{item.theatreName}} </small></a> 
+                                    <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small> {{item.theatreName}} </small></a> 
                                 </p>
                                 <span *ngIf="item.followersNumber == 1;else followersPlural" >
                                     <small>{{ item.followersNumber}} follower </small>

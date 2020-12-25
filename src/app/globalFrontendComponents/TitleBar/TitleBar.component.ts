@@ -13,6 +13,7 @@ export class TitleBarComponent implements OnInit {
 
    @Input('title') Title: any = 'Dummy Title';
    @Input('subtitle') SubTitle: any = 'Dummy Sub Title';
+   @Input('page') Page: any = 'Dummy Sub Title';
 
    constructor(private router: Router){}
 
