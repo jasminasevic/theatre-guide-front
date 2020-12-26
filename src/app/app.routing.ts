@@ -16,6 +16,10 @@ export const AppRoutes: Routes = [{
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
+    path: 'actors',
+    loadChildren: () => import('./actors/actors.module').then(m => m.ActorsModule)
+  },
+  {
     path: 'shows',
     loadChildren: () => import('./shows/shows.module').then(m => m.ShowsModule)
   },

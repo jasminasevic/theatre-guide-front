@@ -5,7 +5,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { PopularShowsVerticalComponent } from '../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.component';
 import { TitleBarComponent } from '../globalFrontendComponents/TitleBar/TitleBar.component';
 import { RouterModule } from '@angular/router';
-
+import { SocialMediaIconsComponent } from '../globalFrontendComponents/socialMediaIcons/socialMediaIcons.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,12 +15,14 @@ import { RouterModule } from '@angular/router';
   declarations: [
     GallerySliderComponent,
     PopularShowsVerticalComponent,
-    TitleBarComponent
+    TitleBarComponent,
+    SocialMediaIconsComponent
   ],
   exports: [
     GallerySliderComponent,
     PopularShowsVerticalComponent,
-    TitleBarComponent
+    TitleBarComponent,
+    SocialMediaIconsComponent
   ] 
 })
 export class SharedModule { }

@@ -9,7 +9,8 @@ import { TheatresService } from '../theatres.service';
 })
 export class TheatreResolverService implements Resolve<TheatreDetails> {
 
-constructor(private theatreService: TheatresService) { }
+  constructor(private theatreService: TheatresService) { }
+  
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<TheatreDetails> {
     return this.theatreService.getTheatre(route.paramMap.get('id'));
   }
