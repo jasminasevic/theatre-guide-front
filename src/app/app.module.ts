@@ -28,8 +28,7 @@ import { AdminMenuItems } from './core/AdminHeader/admin-menu-items';
 import { ShowsModule } from './shows/shows.module';
 import { TheatresModule } from './theatres/theatres.module';
 import { ActorsModule } from './actors/actors.module';
-import { AboutDirectorComponent } from './directors/about-director/about-director.component';
-import { AllDirectorsComponent } from './directors/all-directors/all-directors.component';
+import { DirectorsModule } from './directors/directors.module';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -51,9 +50,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       SignInComponent,
 
       AdminHeaderComponent,
-      AdminSidebarComponent,
-      AboutDirectorComponent,
-      AllDirectorsComponent
+      AdminSidebarComponent
   ],
   imports: [
       BrowserModule,
@@ -63,7 +60,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       HttpClientModule,
       ShowsModule,
       TheatresModule,
-      ActorsModule
+      ActorsModule,
+      DirectorsModule
   ],
   providers: [
       MenuItems, 
