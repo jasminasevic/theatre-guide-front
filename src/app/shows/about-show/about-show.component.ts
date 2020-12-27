@@ -33,7 +33,7 @@ export class AboutShowComponent implements OnInit {
       });
 
       this.showId = this.activatedRoute.snapshot.params['id'];
-      this.popularShowVerticalService.getPopularShowsVertical(this.showId)
+      this.popularShowVerticalService.getPopularShowsFilteredById(this.showId)
 			.subscribe(data => {
             this.shows = data
 			})

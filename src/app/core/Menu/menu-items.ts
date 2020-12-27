@@ -11,11 +11,7 @@ const MENUITEMS = [
   {
     state: 'home',
     name: 'Home',
-    type: 'sub',
-    children: [
-      {state: 'version1', name: 'Home Version 1', type: 'link'},
-      {state: 'version2', name: 'Home Version 2', type: 'link'}
-    ]
+    type: 'link',
   },
   {
     state: 'listing',

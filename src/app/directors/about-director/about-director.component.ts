@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
-import { PopularShowsService } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.service';
+import { PopularShowsVerticalService } from 'src/app/globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
 import { DirectorDetails } from '../DirectorDetails.model';
-import { DirectorsService } from '../directors.service';
 
 @Component({
   selector: 'app-about-director',
@@ -17,19 +16,20 @@ export class AboutDirectorComponent implements OnInit {
   imgBaseUrl: string = IMG_BASE_URL;
   shows: PopularShows[];
   popularShowsTitle : string = 'Popular Shows';
+  directorId: any;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private popularShowsService: PopularShowsService) { }
+    private popularShowsService: PopularShowsVerticalService) { }
 
     readonly IMG_BASE_URL = IMG_BASE_URL;
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {director: DirectorDetails}) => {
-      this.director = data.director,
-      console.log(this.director)
+      this.director = data.director
     });
 
-    this.popularShowsService.getPopularShows()
+    this.directorId = this.activatedRoute.snapshot.params['id'];
+    this.popularShowsService.getPopularShowsFilteredByDirector(this.directorId)
     .subscribe(data => {
       this.shows = data
     });
