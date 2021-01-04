@@ -12,7 +12,8 @@ import { AboutTheatreComponent } from  './about-theatre/about-theatre.component'
 import { AllTheatresComponent } from './all-theatres/all-theatres.component';
 
 import { SharedModule } from '../shared/shared.module';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+ 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
    url: 'https://httpbin.org/post',
@@ -27,7 +28,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(TheatresRoutes),
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ],
   declarations: [ 
     AboutTheatreComponent,

@@ -1,1 +1,67 @@
-<p>all-theatres works!</p>
+<div class="main-wrapper">
+    <!--Title Bar -->
+    <title-bar title="Theatres" page="Theatres" subtitle="Explore New Theatres"></title-bar>
+     <!-- Content -->
+     <div class="content">
+     <div class="container">
+         <div class="row">
+              <!-- Sidebar -->
+              <div class="col-lg-3 col-md-4">
+                <sidebar-layout-one (searchItem)="onSearchItems($event)" 
+                  (sortItems)="onSortItems($event)"
+                  (resetItems)="onResetItems($event)"></sidebar-layout-one>
+            </div>
+            <!-- Sidebar / End -->
+             <div class="col-lg-9 col-md-8">
+                 <div class="row">
+                     <!-- Listing Item -->
+                     <div class="col-lg-6 col-md-12 grid-layout-list" *ngFor="let theatre of theatres  | paginate: 
+                     {
+                        itemsPerPage: size,
+                        currentPage: p,
+                        totalItems: totalCount 
+                     }; 
+                     let i = index">
+                         <a  class="listing-item-container">
+                             <div class="listing-item mb-4">
+                              <a [routerLink]="['/theatres/about-theatre', theatre.id]">  
+                                <img src="{{IMG_BASE_URL}}{{theatre.showImageDtos[0].path}}" class="img-fluid" alt="{{theatre.showImageDtos[0].alt}}">
+                              </a>
+                                 <div class="listing-item-content">
+                                     <h3>{{theatre.name}}</h3>
+                                     <span> <small> {{theatre.location}}</small></span>
+                                     <p class="mt-2">
+                                        <a [routerLink]="['/theatres/about-theatre', theatre.id]">
+                                            <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                                        </a>
+                                     </p>
+                                 </div>
+                                 <!-- <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span> -->
+                             </div>
+                              
+                         </a>
+                     </div>
+                     <!-- Listing Item / End -->
+                 </div>
+                 <!-- Pagination -->
+                 <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                      <pagination-controls (pageChange)="handlePageChange($event)" 
+                      previousLabel="Prev" nextLabel="Next" responsive="true"
+                      directionLinks="true"></pagination-controls>
+                  </div>
+                 <!-- Pagination / End -->
+                 <div class="col-lg-6 col-md-6 text-right">
+                    Items per Page:
+                    <select (change)="handlePageSizeChange($event)">
+                      <option *ngFor="let size of pageSizes" value="{{ size }}">
+                        {{ size }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+             </div>
+         </div>
+     </div>
+    </div>
+     </div>

@@ -15,7 +15,7 @@ export class AboutDirectorComponent implements OnInit {
   director: DirectorDetails;
   imgBaseUrl: string = IMG_BASE_URL;
   shows: PopularShows[];
-  popularShowsTitle : string = 'Popular Shows';
+  popularShowsTitle : string = 'Related Shows';
   directorId: any;
 
   constructor(private activatedRoute: ActivatedRoute,

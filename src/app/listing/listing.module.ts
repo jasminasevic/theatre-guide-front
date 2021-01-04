@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
 import { AgmCoreModule } from '@agm/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NouisliderModule } from 'ng2-nouislider';
@@ -22,7 +23,7 @@ import { ListingDetailTwoComponent } from './ListingDetailTwo/ListingDetailTwo.c
 //import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
 import { SmallGallerySliderComponent } from '../globalFrontendComponents/SmallGallerySlider/SmallGallerySlider.component';
 
-import { SidebarLayoutOneComponent } from './SidebarLayoutOne/SidebarLayoutOne.component';
+//import { SidebarLayoutOneComponent } from './SidebarLayoutOne/SidebarLayoutOne.component';
 import { SidebarLayoutTwoComponent } from './SidebarLayoutTwo/SidebarLayoutTwo.component';
 import { SidebarLayoutThreeComponent } from './SidebarLayoutThree/SidebarLayoutThree.component';
 
@@ -41,6 +42,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     GlobalModule,
     SlickCarouselModule,
+    FormsModule,
     NouisliderModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(ListingRoutes),
@@ -60,7 +62,7 @@ import { SharedModule } from '../shared/shared.module';
      ListingDetailTwoComponent,
     // GallerySliderComponent,
      SmallGallerySliderComponent,
-     SidebarLayoutOneComponent,
+    // SidebarLayoutOneComponent,
      SidebarLayoutTwoComponent,
      SidebarLayoutThreeComponent,
      ShowListingComponent,

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { MapBannerComponent } from '../globalFrontendComponents/MapBanner/MapBanner.component';
-import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { RatingComponent } from '../globalFrontendComponents/Rating/Rating.component';
 import { TeamComponent } from './Team/Team.component';
 import { BannerComponent } from './Banner/Banner.component';
@@ -33,7 +32,6 @@ import { SharedModule } from '../shared/shared.module';
    AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'})],
   declarations: [
     MapBannerComponent,
-    PaginationComponent,
     RatingComponent,
     TeamComponent,
     BannerComponent ,
@@ -50,7 +48,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [ 
      MapBannerComponent,
-     PaginationComponent,
      RatingComponent,
      TeamComponent,
      BannerComponent ,

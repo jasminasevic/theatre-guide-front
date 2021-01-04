@@ -6,13 +6,21 @@
                <h2>{{Title}}</h2>
                <span>{{SubTitle}}</span>
                <!-- Breadcrumbs -->
-               <nav id="breadcrumbs">
+               <nav id="breadcrumbs" *ngIf="Page != Title else noTitle">
                   <ul>
-                     <li><a >Home</a></li>
-                     <li>{{Page}}</li>
+                     <li><a>Home</a></li>
+                     <li><a [routerLink]="['/theatres/all-theatres']">{{Page}}</a></li>
                      <li>{{Title}}</li>
                   </ul>
                </nav>
+               <ng-template #noTitle>
+                  <nav id="breadcrumbs" >
+                     <ul>
+                        <li><a>Home</a></li>
+                        <li>{{Page}}</li>
+                     </ul>
+                  </nav>
+               </ng-template>
             </div>
          </div>
       </div>

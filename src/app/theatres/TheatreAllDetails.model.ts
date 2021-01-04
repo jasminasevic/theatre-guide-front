@@ -2,7 +2,7 @@ import { IImage } from '../shared/interfaces/IImage';
 import { ISceneWithSectors } from '../shared/interfaces/ISceneWithSectors';
 import { IShowBaseInfo } from '../shared/interfaces/IShowBaseInfo';
 
-export class TheatreDetails {
+export class TheatreAllDetails {
   id: number;
   name: string;
   description: string;

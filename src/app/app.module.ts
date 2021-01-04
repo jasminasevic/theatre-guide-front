@@ -30,6 +30,8 @@ import { TheatresModule } from './theatres/theatres.module';
 import { ActorsModule } from './actors/actors.module';
 import { DirectorsModule } from './directors/directors.module';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
     url: 'https://httpbin.org/post',
@@ -54,14 +56,16 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ],
   imports: [
       BrowserModule,
+      FormsModule,
       BrowserAnimationsModule,
       DropzoneModule,
       RouterModule.forRoot(AppRoutes, {scrollPositionRestoration: 'enabled'}),
       HttpClientModule,
+      NgxPaginationModule,
       ShowsModule,
       TheatresModule,
       ActorsModule,
-      DirectorsModule
+      DirectorsModule,
   ],
   providers: [
       MenuItems, 

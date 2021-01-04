@@ -16,7 +16,7 @@ export class AboutActorComponent implements OnInit {
   actor: ActorDetails;
   imgBaseUrl: string = IMG_BASE_URL;
   shows: PopularShows[];
-  popularShowsTitle : string = 'Popular Shows';
+  popularShowsTitle : string = 'Related Shows';
   actorId: any;
   
   constructor(private activatedRoute: ActivatedRoute,
