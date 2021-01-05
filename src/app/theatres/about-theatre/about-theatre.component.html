@@ -95,6 +95,7 @@
                            <h4 class="mb-4">
                               Shows
                            </h4>  
+                           <div *ngIf="theatre.showBaseInfoDtos.length; else noShows">
                            <div class="row mb-4 list-img-wrap" *ngFor="let show of theatre.showBaseInfoDtos">
                                <div class="col-md-2 list-img">
                                   <img class="img-fluid rounded-circle shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"> 
@@ -106,8 +107,16 @@
                                     <button class="btn btn-sm btn-primary" type="button">Find out more</button>
                                   </a>
                                </div>
-                            </div>
-                         </div>
+                              </div>
+                           </div>
+                              <ng-template #noShows>
+                                 <div class="row mb-4 list-img-wrap">
+                                    <div class="col-md-10">
+                                       <p>No show has been added yet.</p>
+                                    </div>
+                                 </div>
+                              </ng-template>
+                           </div>
                       </div>
                    </div>
                 </div>
@@ -125,7 +134,11 @@
                  <!-- Newsletter Widget / End -->
   
                  <!-- Popular Shows Vertical Widget -->
-                 <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+                 <div *ngIf="shows">
+                  <div *ngIf="shows.length > 0">
+                     <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+                  </div>
+                 </div>
                  <!-- Popular Shows Vertical Widget / End -->
 
                  <!-- Social Media Icons Widget -->

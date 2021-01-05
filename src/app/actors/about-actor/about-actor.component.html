@@ -51,18 +51,27 @@
                            <h4 class="mb-4">
                               Shows
                            </h4>  
-                           <div class="row mb-4 list-img-wrap" *ngFor="let show of actor.actorInShow">
-                               <div class="col-md-2 list-img">
-                                  <img class="img-fluid rounded-circle shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"> 
-                               </div>
-                               <div class="col-md-10">
-                                  <h5 class="text-primary"><a [routerLink]="['/shows/about-show', show.id ]">{{ show.title }}</a></h5>
-                                  <p class="text-muted">{{ show.categoryName }}</p>
-                                  <a [routerLink]="['/shows/about-show', show.id]">
-                                    <button class="btn btn-sm btn-primary" type="button">Find out more</button>
-                                  </a>
-                               </div>
-                            </div>
+                           <div *ngIf="actor.actorInShow.length; else noShows">
+                              <div class="row mb-4 list-img-wrap" *ngFor="let show of actor.actorInShow">
+                                 <div class="col-md-2 list-img">
+                                    <img class="img-fluid rounded-circle shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"> 
+                                 </div>
+                                 <div class="col-md-10">
+                                    <h5 class="text-primary"><a [routerLink]="['/shows/about-show', show.id ]">{{ show.title }}</a></h5>
+                                    <p class="text-muted">{{ show.categoryName }}</p>
+                                    <a [routerLink]="['/shows/about-show', show.id]">
+                                       <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                           <ng-template #noShows>
+                              <div class="row mb-4 list-img-wrap">
+                                 <div class="col-md-10">
+                                    <p>No show has been added yet.</p>
+                                 </div>
+                              </div>
+                           </ng-template>
                          </div>
                       </div>
                    </div>
@@ -77,7 +86,11 @@
                   <!-- Newsletter Widget / End -->
   
                   <!-- Popular Shows Vertical Widget -->
-                 <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+                  <div *ngIf="shows">
+                     <div *ngIf="shows.length > 0">
+                        <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+                     </div>
+                  </div>
                   <!-- Popular Shows Vertical Widget / End -->
 
                   <!-- Social Media Icons Widget -->
