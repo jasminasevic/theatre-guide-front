@@ -1,10 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TheatresService } from '../theatres.service';
 import { TheatreBaseDetails } from '../TheatreBaseDetails.model';
 import { IMG_BASE_URL } from '../../app.constants';
-import { PaginatePipe, PaginationControlsDirective } from 'ngx-pagination';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { SidebarLayoutOneComponent } from 'src/app/listing/SidebarLayoutOne/SidebarLayoutOne.component';
 import { ViewChild } from '@angular/core';
 
@@ -26,7 +23,6 @@ export class AllTheatresComponent implements OnInit {
 
   @ViewChild(SidebarLayoutOneComponent) searchItem;
   @ViewChild(SidebarLayoutOneComponent) sortItems;
-  @ViewChild('searchedItem') searchedTheatre: ElementRef;
 
   searchTheatre: string; 
   sortTheatres: string;
@@ -39,6 +35,13 @@ export class AllTheatresComponent implements OnInit {
   
     this.theatreService.getAllTheatres(this.size, this.p, this.searchTheatre, this.sortTheatres)
     .subscribe(data => {
+      if(data.data.length == 0){
+        this.theatreService.getAllTheatres(this.size, 1, this.searchTheatre, this.sortTheatres)
+          .subscribe(data => {
+            this.theatres = data.data,
+            this.totalCount = data.totalCount
+          })
+      }
       this.theatres = data.data,
       this.totalCount = data.totalCount
     })
@@ -65,7 +68,7 @@ export class AllTheatresComponent implements OnInit {
 
   onSearchItems(searchTerm: string) : void {
     this.searchTheatre = searchTerm;
-    
+
     this.theatreService.getAllTheatres(this.size, this.p = 1, this.searchTheatre, this.sortTheatres)
     .subscribe(data => {
       this.theatres = data.data,

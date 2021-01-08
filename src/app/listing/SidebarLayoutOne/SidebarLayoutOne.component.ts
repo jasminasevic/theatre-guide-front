@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, ElementRef, ViewChild, Input } from '@angular/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'sidebar-layout-one',
@@ -10,13 +12,11 @@ import { NouisliderModule } from 'ng2-nouislider';
 export class SidebarLayoutOneComponent implements OnInit{
 
    constructor(){}
-  // searchItemsField: string;
-  // searchedItem: string;
 
   orderValues = [
   {
     value : "",
-    name: "Order by" 
+    name: "Order" 
   },
   {
     value : "name_asc",
@@ -30,16 +30,11 @@ export class SidebarLayoutOneComponent implements OnInit{
    @Output() searchItem: EventEmitter<string> = new EventEmitter<string>();
    @Output() sortItems: EventEmitter<string> = new EventEmitter<string>();
    @Output() resetItems: EventEmitter<boolean> = new EventEmitter<boolean>();
-   @ViewChild('searchedItem') searchedItem: ElementRef;
+   @ViewChild('searchedItem', { static: true }) searchedItem: ElementRef;
    @ViewChild('orderData') orderData: ElementRef;
-
-   searchField(searchedTerms){
-    this.searchItem.emit(searchedTerms.target.value);
-   }
 
    changeSortOrder(sortOrder){
      this.sortItems.emit(sortOrder.target.value);
-     console.log(sortOrder.target.value);
    }
 
    resetValues(){
@@ -50,10 +45,21 @@ export class SidebarLayoutOneComponent implements OnInit{
     this.resetItems.emit(true);
    }
 
-   ngOnInit(){}
-
-   ngAfterViewInit()
-   {
-
+   ngOnInit(){
+     fromEvent(this.searchedItem.nativeElement, 'keyup')
+      .pipe(
+        // get value
+        map((event: any) => {
+          return event.target.value;
+        })
+        // Time in milliseconds between key events
+        , debounceTime(500)
+        // If previous query is diffent from current   
+        , distinctUntilChanged()
+        // subscription for response
+      ).subscribe(() => 
+        this.searchItem.emit(this.searchedItem.nativeElement.value)
+      )
    }
+
 }
