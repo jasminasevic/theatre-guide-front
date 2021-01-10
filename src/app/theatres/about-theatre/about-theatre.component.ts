@@ -34,8 +34,7 @@ export class AboutTheatreComponent implements OnInit {
     this.theatreId = this.activatedRoute.snapshot.params['id'];
     this.popularShowsService.getPopularShowsFilteredByTheatre(this.theatreId)
       .subscribe(data => {
-        this.shows = data,
-        console.log(this.shows)
+        this.shows = data
       });
    }
 

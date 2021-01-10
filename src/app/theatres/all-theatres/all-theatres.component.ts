@@ -4,6 +4,8 @@ import { TheatreBaseDetails } from '../TheatreBaseDetails.model';
 import { IMG_BASE_URL } from '../../app.constants';
 import { SidebarLayoutOneComponent } from 'src/app/listing/SidebarLayoutOne/SidebarLayoutOne.component';
 import { ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ITheatreData } from 'src/app/shared/interfaces/ITheatreData';
 
 @Component({
   selector: 'all-theatres',
@@ -30,13 +32,13 @@ export class AllTheatresComponent implements OnInit {
   size = 4;
   pageSizes = [4, 8, 12];
 
-  constructor(private theatreService: TheatresService) { }
+  constructor(private theatreService: TheatresService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.theatreService.getAllTheatres(this.itemsPerPage, this.p)
-      .subscribe(data => {
-        this.theatres = data.data,
-        this.totalCount = data.totalCount
+    this.activatedRoute.data.subscribe((data: { theatreList: ITheatreData}) => {
+        this.theatres = data.theatreList.data,
+        this.totalCount = data.theatreList.totalCount
       })
   }
 

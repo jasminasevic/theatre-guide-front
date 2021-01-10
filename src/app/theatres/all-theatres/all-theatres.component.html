@@ -12,7 +12,7 @@
                   (resetItems)="onResetItems($event)"></sidebar-layout-one>
             </div>
             <!-- Sidebar / End -->
-             <div class="col-lg-9 col-md-8">
+             <div class="col-lg-9 col-md-8" *ngIf="theatres.length > 0; else noResults">
                  <div class="row">
                      <!-- Listing Item -->
                      <div class="col-lg-6 col-md-12 grid-layout-list" *ngFor="let theatre of theatres  | paginate: 
@@ -60,6 +60,15 @@
                   </div>
                 </div>
              </div>
+             <ng-template #noResults>
+              <div class="col-lg-9 col-md-8">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 grid-layout-list" >
+                      No results found.
+                    </div>
+                  </div>
+              </div>
+             </ng-template>
          </div>
      </div>
   </div>
