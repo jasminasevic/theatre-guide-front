@@ -22,7 +22,7 @@
                         totalItems: totalCount 
                      }; 
                      let i = index">
-                         <a  class="listing-item-container">
+                         <div  class="listing-item-container">
                              <div class="listing-item mb-4">
                               <a [routerLink]="['/theatres/about-theatre', theatre.id]">  
                                 <img src="{{IMG_BASE_URL}}{{theatre.showImageDtos[0].path}}" class="img-fluid" alt="{{theatre.showImageDtos[0].alt}}">
@@ -37,9 +37,8 @@
                                      </p>
                                  </div>
                                  <!-- <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span> -->
-                             </div>
-                              
-                         </a>
+                             </div>   
+                         </div>
                      </div>
                      <!-- Listing Item / End -->
                  </div>

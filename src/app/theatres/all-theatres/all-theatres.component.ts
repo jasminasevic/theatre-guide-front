@@ -6,7 +6,7 @@ import { SidebarLayoutOneComponent } from 'src/app/listing/SidebarLayoutOne/Side
 import { ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-all-theatres',
+  selector: 'all-theatres',
   templateUrl: './all-theatres.component.html',
   styleUrls: ['./all-theatres.component.scss']
 })
@@ -29,6 +29,16 @@ export class AllTheatresComponent implements OnInit {
 
   size = 4;
   pageSizes = [4, 8, 12];
+
+  constructor(private theatreService: TheatresService) { }
+
+  ngOnInit() {
+    this.theatreService.getAllTheatres(this.itemsPerPage, this.p)
+      .subscribe(data => {
+        this.theatres = data.data,
+        this.totalCount = data.totalCount
+      })
+  }
 
   handlePageSizeChange(event) {
     this.size = event.target.value;
@@ -54,16 +64,6 @@ export class AllTheatresComponent implements OnInit {
       this.theatres = data.data,
       this.totalCount = data.totalCount
     })
-  }
-
-  constructor(private theatreService: TheatresService) { }
-
-  ngOnInit() {
-    this.theatreService.getAllTheatres(this.itemsPerPage, this.p)
-      .subscribe(data => {
-        this.theatres = data.data,
-        this.totalCount = data.totalCount
-      })
   }
 
   onSearchItems(searchTerm: string) : void {

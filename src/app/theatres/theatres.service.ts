@@ -23,7 +23,8 @@ export class TheatresService {
       )
   }
 
-  getAllTheatres(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") : Observable<ITheatreData> {
+  getAllTheatres(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
+  : Observable<ITheatreData> {
     let params = new HttpParams();
 
     params = params.append('perPage', String(perPage));

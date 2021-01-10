@@ -1,4 +1,4 @@
-import { TheatreBaseDetails } from '../../theatres/TheatreBaseDetails.model';
+import { TheatreBaseDetails } from "src/app/theatres/TheatreBaseDetails.model";
 
 export interface ITheatreData {
   data: TheatreBaseDetails[],

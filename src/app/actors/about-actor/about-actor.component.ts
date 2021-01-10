@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
-import { PopularShowsService } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.service';
 import { PopularShowsVerticalService } from 'src/app/globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
-import { ActorDetails } from '../ActorDetails.model';
+import { ActorAllDetails } from '../ActorAllDetails.model';
 
 @Component({
   selector: 'app-about-actor',
@@ -13,7 +12,7 @@ import { ActorDetails } from '../ActorDetails.model';
 })
 export class AboutActorComponent implements OnInit {
 
-  actor: ActorDetails;
+  actor: ActorAllDetails;
   imgBaseUrl: string = IMG_BASE_URL;
   shows: PopularShows[];
   popularShowsTitle : string = 'Related Shows';
@@ -25,7 +24,7 @@ export class AboutActorComponent implements OnInit {
     readonly IMG_BASE_URL = IMG_BASE_URL;
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data: { actor: ActorDetails}) => {
+    this.activatedRoute.data.subscribe((data: { actor: ActorAllDetails}) => {
       this.actor = data.actor
     });
 

@@ -2,7 +2,7 @@ import { IImage } from "../shared/interfaces/IImage";
 import { IShowForActor } from "../shared/interfaces/IShowForActor";
 import { ITheatreBasic } from "../shared/interfaces/ITheatreBasic";
 
-export class ActorDetails {
+export class ActorAllDetails {
   id: number;
   actorFirstName: string;
   actorLastName: string;
