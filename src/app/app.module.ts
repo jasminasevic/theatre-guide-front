@@ -31,6 +31,7 @@ import { ActorsModule } from './actors/actors.module';
 import { DirectorsModule } from './directors/directors.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from './shared/shared.module';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -66,6 +67,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       TheatresModule,
       ActorsModule,
       DirectorsModule,
+      SharedModule
   ],
   providers: [
       MenuItems, 

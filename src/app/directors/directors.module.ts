@@ -12,6 +12,7 @@ import { AboutDirectorComponent } from  './about-director/about-director.compone
 import { AllDirectorsComponent } from './all-directors/all-directors.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -31,7 +32,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(DirectorsRoutes),
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ],
   providers: [
     {

@@ -1,7 +1,7 @@
 import { IShowForDirector } from '../shared/interfaces/IShowForDirector';
 import { ITheatreBasic } from '../shared/interfaces/ITheatreBasic';
 
-export class DirectorDetails {
+export class DirectorAllDetails {
   id: number;
   directorFirstName: string;
   directorLastName: string;
