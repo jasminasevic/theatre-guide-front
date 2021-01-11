@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ShowAllDetails } from '../ShowAllDetails.model';
+import { IShowData } from '../../shared/interfaces/IShowData';
 import { ShowsService } from '../shows.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShowResolverService implements Resolve<ShowAllDetails>{
+export class AllShowsResolverService implements Resolve<IShowData> {
 
 constructor(private showService: ShowsService) { }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ShowAllDetails> {
-    return  this.showService.getShow(route.paramMap.get('id'))
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IShowData> {
+    return this.showService.getAllShows();
   }
 
 }

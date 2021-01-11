@@ -1,7 +1,7 @@
 import { IActorShow } from '../shared/interfaces/IActorShow';
 import { IImage } from '../shared/interfaces/IImage';
 
-export class ShowDetails {
+export class ShowAllDetails {
     id: number;
     title: String;
     category: String;

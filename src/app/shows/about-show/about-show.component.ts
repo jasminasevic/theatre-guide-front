@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShowDetails } from '../ShowDetails.model';
+import { ShowAllDetails } from '../ShowAllDetails.model';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsVerticalService } from '../../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
 import { RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ export class AboutShowComponent implements OnInit {
    lng = 150.644;
 
    headerGallerySlider: any;
-   show: ShowDetails;
+   show: ShowAllDetails;
    showId: any;
 
    shows: PopularShows[];
@@ -27,7 +27,7 @@ export class AboutShowComponent implements OnInit {
       private popularShowVerticalService: PopularShowsVerticalService){}
 
    ngOnInit(){
-      this.activatedRoute.data.subscribe((data: {show: ShowDetails}) => {
+      this.activatedRoute.data.subscribe((data: {show: ShowAllDetails}) => {
          this.show = data.show,
          this.headerGallerySlider = this.show.showImageDtos;
       });

@@ -2,11 +2,13 @@ import { Routes } from '@angular/router';
 import { AllShowsComponent } from './all-shows/all-shows.component';
 import { AboutShowComponent } from './about-show/about-show.component';
 import { ShowResolverService } from './about-show/show-resolver.service';
+import { AllShowsResolverService } from './all-shows/all-shows-resolver.service';
 
 export const ShowsRoutes: Routes = [
   {  
     path: 'all-shows',
-    component: AllShowsComponent
+    component: AllShowsComponent,
+    resolve: { showList: AllShowsResolverService }
   },
   {
     path: 'about-show/:id',
