@@ -14,9 +14,6 @@ import { HalfScreenMapGridComponent } from './HalfScreenMapGrid/HalfScreenMapGri
 import { ListingDetailOneComponent } from './ListingDetailOne/ListingDetailOne.component';
 import { ListingDetailTwoComponent } from './ListingDetailTwo/ListingDetailTwo.component';
 
-import { ShowListingComponent } from './Shows/ShowListing/ShowListing.component';
-import { ShowDetailComponent } from './Shows/ShowDetail/ShowDetail.component';
-
 export const ListingRoutes: Routes = [{
   path: 'list/with-sidebar',
   component: ListWithSidebarComponent
@@ -56,12 +53,4 @@ export const ListingRoutes: Routes = [{
 {
   path: 'detail/version2',
   component: ListingDetailTwoComponent
-},
-{
-  path: 'show/list',
-  component: ShowListingComponent
-},
-{
-  path: 'show/detail',
-  component: ShowDetailComponent
 }];

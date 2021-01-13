@@ -48,7 +48,7 @@ export class AllActorsComponent implements OnInit {
     this.actorService.getAllActors(this.size, this.p, this.searchActor, this.sortActors)
     .subscribe(data => {
       if(data.data.length == 0){
-        this.actorService.getAllActors(this.size, 1, this.searchActor, this.sortActors)
+        this.actorService.getAllActors(this.size, this.p = 1, this.searchActor, this.sortActors)
           .subscribe(data => {
             this.actors = data.data,
             this.totalCount = data.totalCount

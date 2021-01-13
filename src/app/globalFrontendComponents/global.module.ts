@@ -50,7 +50,7 @@ import { SharedModule } from '../shared/shared.module';
      MapBannerComponent,
      RatingComponent,
      TeamComponent,
-     BannerComponent ,
+     BannerComponent,
      PopularCategoriesComponent,
      MostVisitedPlacesComponent,
      RecentBlogComponent,

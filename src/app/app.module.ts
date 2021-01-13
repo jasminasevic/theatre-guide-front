@@ -29,6 +29,7 @@ import { ShowsModule } from './shows/shows.module';
 import { TheatresModule } from './theatres/theatres.module';
 import { ActorsModule } from './actors/actors.module';
 import { DirectorsModule } from './directors/directors.module';
+import { RepertoiresModule } from './repertoires/repertoires.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './shared/shared.module';
@@ -67,6 +68,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       TheatresModule,
       ActorsModule,
       DirectorsModule,
+      RepertoiresModule,
       SharedModule
   ],
   providers: [

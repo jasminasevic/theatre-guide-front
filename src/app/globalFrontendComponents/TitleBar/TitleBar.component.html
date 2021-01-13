@@ -8,15 +8,15 @@
                <!-- Breadcrumbs -->
                <nav id="breadcrumbs" *ngIf="Page != Title else noTitle">
                   <ul>
-                     <li><a>Home</a></li>
-                     <li><a [routerLink]="['/theatres/all-theatres']">{{Page}}</a></li>
+                     <li>Home</li>
+                     <li>{{Page}}</li>
                      <li>{{Title}}</li>
                   </ul>
                </nav>
                <ng-template #noTitle>
                   <nav id="breadcrumbs" >
                      <ul>
-                        <li><a>Home</a></li>
+                        <li>Home</li>
                         <li>{{Page}}</li>
                      </ul>
                   </nav>
