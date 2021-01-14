@@ -33,7 +33,7 @@ import { NewsletterComponent } from '../globalFrontendComponents/newsletter/news
     SocialMediaIconsComponent,
     SidebarLayoutOneComponent,
     PaginationComponent,
-    NewsletterComponent
+    NewsletterComponent,
   ] 
 })
 export class SharedModule { }

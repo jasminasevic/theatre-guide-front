@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { UpcomingShows } from 'src/app/globalFrontendComponents/UpcomingShows/UpcomingShows.model';
 import { PopularShows } from '../../globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsService } from '../../globalFrontendComponents/PopularShows/PopularShows.service';
-
+import { UpcomingShowsService } from '../../globalFrontendComponents/UpcomingShows/UpcomingShows.service';
 @Component({
   selector: 'dashboard-one',
   templateUrl: './DashboardOne.component.html',
@@ -10,7 +11,8 @@ import { PopularShowsService } from '../../globalFrontendComponents/PopularShows
 })
 export class DashboardOneComponent implements OnInit{
 
-	constructor(private popularShowService: PopularShowsService){}
+	constructor(private popularShowService: PopularShowsService,
+		private upcomingShowService: UpcomingShowsService){}
 
 	bannerTitle: string = 'Expolore Theatres, Shows and More';
 	bannerDesc : string = 'What are you looking for?';
@@ -19,8 +21,18 @@ export class DashboardOneComponent implements OnInit{
 	shows: PopularShows[];
 	popularShowsTitle : string = 'Popular Shows';
 	popularShowsDesc : string = 'Browse the most popular shows';
+
+	upcomingShows: UpcomingShows[];
+	upcomingShowsTitle : string = 'Upcoming Shows';
+	upcomingShowsDesc : string = 'Browse the upcoming shows';
 	
 	ngOnInit(){
+		this.upcomingShowService.getUpcomingShows()
+			.subscribe(data => {
+				this.upcomingShows = data,
+				console.log(data)
+			})
+			
 		this.popularShowService.getPopularShows()
 			.subscribe(data => {
 				this.shows = data

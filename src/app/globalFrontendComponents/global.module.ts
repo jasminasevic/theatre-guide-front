@@ -20,6 +20,7 @@ import { ParallaxComponent } from './ParallaxSection/Parallax.component';
 import { ServicesComponent } from './Services/Services.component';
 
 import { PopularShowsComponent } from './PopularShows/PopularShows.component';
+import { UpcomingShowsComponent } from './UpcomingShows/UpcomingShows.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { SharedModule } from '../shared/shared.module';
      PricingComponent,
      ParallaxComponent,
      ServicesComponent,
-     PopularShowsComponent
+     PopularShowsComponent,
+     UpcomingShowsComponent
   ],
   exports: [ 
      MapBannerComponent,
@@ -60,7 +62,8 @@ import { SharedModule } from '../shared/shared.module';
      PricingComponent,
      ParallaxComponent,
      ServicesComponent,
-     PopularShowsComponent
+     PopularShowsComponent,
+     UpcomingShowsComponent
    ]
 })
 
