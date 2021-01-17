@@ -7,10 +7,10 @@ import { ShowsService } from '../shows.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ShowResolverService implements Resolve<ShowAllDetails>{
+export class AboutShowResolverService implements Resolve<ShowAllDetails> {
 
 constructor(private showService: ShowsService) { }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ShowAllDetails> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ShowAllDetails>{
     return  this.showService.getShow(route.paramMap.get('id'))
   }
 

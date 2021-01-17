@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AllShowsComponent } from './all-shows/all-shows.component';
 import { AboutShowComponent } from './about-show/about-show.component';
-import { ShowResolverService } from './about-show/show-resolver.service';
+import { AboutShowResolverService } from './about-show/about-show-resolver.service';
 import { AllShowsResolverService } from './all-shows/all-shows-resolver.service';
 
 export const ShowsRoutes: Routes = [
@@ -13,6 +13,6 @@ export const ShowsRoutes: Routes = [
   {
     path: 'about-show/:id',
     component: AboutShowComponent,
-    resolve: { show: ShowResolverService }
+    resolve: { show: AboutShowResolverService }
   }
 ];
