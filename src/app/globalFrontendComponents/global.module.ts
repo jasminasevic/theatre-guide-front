@@ -12,6 +12,7 @@ import { BannerComponent } from './Banner/Banner.component';
 import { PopularCategoriesComponent } from './PopuplarCategories/PopularCategories.component';
 import { MostVisitedPlacesComponent } from './MostVisitedPlaces/MostVisitedPlaces.component';
 import { RecentBlogComponent } from './RecentBlog/RecentBlog.component';
+import { RecentlyJoinedTheatresComponent } from './RecentlyJoinedTheatres/RecentlyJoinedTheatres.component';
 import { FeatureSectionComponent } from './FeatureSection/FeatureSection.component';
 import { TestimonialComponent } from './Testimonial/Testimonial.component';
 import { FeatureGridSectionComponent } from '../globalFrontendComponents/FeatureGridSection/FeatureGridSection.component';
@@ -24,7 +25,7 @@ import { UpcomingShowsComponent } from './UpcomingShows/UpcomingShows.component'
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-   imports : [
+  imports : [
    CommonModule,
    RouterModule,
    // BarRatingModule,
@@ -32,21 +33,22 @@ import { SharedModule } from '../shared/shared.module';
    SharedModule,
    AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'})],
   declarations: [
-    MapBannerComponent,
-    RatingComponent,
-    TeamComponent,
-    BannerComponent ,
-     PopularCategoriesComponent,
-     MostVisitedPlacesComponent,
-     RecentBlogComponent,
-     FeatureSectionComponent,
-     TestimonialComponent,
-     FeatureGridSectionComponent,
-     PricingComponent,
-     ParallaxComponent,
-     ServicesComponent,
-     PopularShowsComponent,
-     UpcomingShowsComponent
+   MapBannerComponent,
+   RatingComponent,
+   TeamComponent,
+   BannerComponent ,
+   PopularCategoriesComponent,
+   MostVisitedPlacesComponent,
+   RecentBlogComponent,
+   FeatureSectionComponent,
+   TestimonialComponent,
+   FeatureGridSectionComponent,
+   PricingComponent,
+   ParallaxComponent,
+   ServicesComponent,
+   PopularShowsComponent,
+   UpcomingShowsComponent,
+   RecentlyJoinedTheatresComponent
   ],
   exports: [ 
      MapBannerComponent,
@@ -63,7 +65,8 @@ import { SharedModule } from '../shared/shared.module';
      ParallaxComponent,
      ServicesComponent,
      PopularShowsComponent,
-     UpcomingShowsComponent
+     UpcomingShowsComponent,
+     RecentlyJoinedTheatresComponent
    ]
 })
 

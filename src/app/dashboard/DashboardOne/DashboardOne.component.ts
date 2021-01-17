@@ -1,8 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { UpcomingShows } from 'src/app/globalFrontendComponents/UpcomingShows/UpcomingShows.model';
 import { PopularShows } from '../../globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsService } from '../../globalFrontendComponents/PopularShows/PopularShows.service';
+import { UpcomingShows } from 'src/app/globalFrontendComponents/UpcomingShows/UpcomingShows.model';
 import { UpcomingShowsService } from '../../globalFrontendComponents/UpcomingShows/UpcomingShows.service';
+import { RecentlyJoinedTheatres } from '../../globalFrontendComponents/RecentlyJoinedTheatres/RecentlyJoinedTheatres.model';
+import { RecentlyJoinedTheatresService } from '../../globalFrontendComponents/RecentlyJoinedTheatres/RecentlyJoinedTheatres.service';
+
 @Component({
   selector: 'dashboard-one',
   templateUrl: './DashboardOne.component.html',
@@ -12,7 +15,8 @@ import { UpcomingShowsService } from '../../globalFrontendComponents/UpcomingSho
 export class DashboardOneComponent implements OnInit{
 
 	constructor(private popularShowService: PopularShowsService,
-		private upcomingShowService: UpcomingShowsService){}
+		private upcomingShowService: UpcomingShowsService,
+		private recentlyJoinedTheatreService: RecentlyJoinedTheatresService){}
 
 	bannerTitle: string = 'Expolore Theatres, Shows and More';
 	bannerDesc : string = 'What are you looking for?';
@@ -25,61 +29,29 @@ export class DashboardOneComponent implements OnInit{
 	upcomingShows: UpcomingShows[];
 	upcomingShowsTitle : string = 'Upcoming Shows';
 	upcomingShowsDesc : string = 'Browse the upcoming shows';
+
+	recentlyJoinedTheatres: RecentlyJoinedTheatres[];
+	recentlyJoinedTheatresTitle : string = 'Recently Joined Theatres';
+	recentlyJoinedTheatresDesc : string = `Check theatres that recently joined our platform. 
+	Browse their shows, actors, directors and more. Follow shows, check repertoire and 
+	buy ticket for the upcoming plays.`;
 	
 	ngOnInit(){
 		this.upcomingShowService.getUpcomingShows()
 			.subscribe(data => {
-				this.upcomingShows = data,
-				console.log(data)
+				this.upcomingShows = data
 			})
 			
 		this.popularShowService.getPopularShows()
 			.subscribe(data => {
 				this.shows = data
 			})
+
+		this.recentlyJoinedTheatreService.getRecentlyJoinedTheatres()
+			.subscribe(data => {
+				this.recentlyJoinedTheatres = data
+			})
 	}
-
-
-	popularCategoriesTitle : string = 'Popular Categories';
-	popularCategoriesDesc  : string = 'Browse the most desirable categories';
-	categories : any = [
-								{
-									title: 'Hotels',
-									subTitle : '64 listings',
-									image: 'assets/images/cat-img-6.jpg',
-									icon:'fa-2x fa fa-bed'
-								},
-								{
-									title: 'Shops',
-									subTitle : '14 listings',
-									image: 'assets/images/cat-img-5.jpg',
-									icon:'fa-2x fa fa-shopping-bag'
-								},
-								{
-									title: 'Events',
-									subTitle : '67 listings',
-									image: 'assets/images/cat-img-2.jpg',
-									icon:'fa-2x fa fa-calendar'
-								},
-								{
-									title: 'Fitness',
-									subTitle : '27 listings',
-									image: 'assets/images/cat-img-3.jpg',
-									icon:'fa-2x fa fa-glass'
-								},
-								{
-									title: 'Nightlife',
-									subTitle : '22 listings',
-									image: 'assets/images/cat-img-4.jpg',
-									icon:'fa-2x fa fa-glass'
-								},
-								{
-									title: 'Eat & Drink',
-									subTitle : '127 listings',
-									image: 'assets/images/cat-img-1.jpg',
-									icon:'fa-2x fa fa-glass'
-								}
-							];
 
 
 	mostVisitedPlacesTitle : string = 'Most Visited Places';
@@ -142,77 +114,26 @@ export class DashboardOneComponent implements OnInit{
 
 						];
 
-	servicesTitle : string = 'Plan The Vacation of Your Dreams';
-	servicesDesc  : string = 'Explore some of the best tips from around the world from our partners and friends.  Discover some of the most popular listings in Sydney.';
+	servicesTitle : string = 'Plan Your Visit';
+	servicesDesc  : string = `Explore some of the best theatres in the world. 
+	 Discover the most popular shows on their repertoire and buy tickets.`;
 	services   : any = [
-								{
-									icon : 'fa fa-search',
-									title: 'Find Interesting Place',
-									desc : 'Proin dapibus nisl ornare diam varius tempus. Aenean a quam luctus, finibus tellus ut, convallis eros sollicitudin turpis.'
-								},
-								{
-									icon : 'fa fa-phone-square',
-									title: 'Contact a Few Owners',
-									desc : 'Maecenas pulvinar, risus in facilisis dignissim, quam nisi hendrerit nulla, id vestibulum metus nullam viverra porta purus.'
-								},
-								{
-									icon : 'fa fa-user-plus',
-									title: 'Make a Reservation',
-									desc : 'Faucibus ante, in porttitor tellus blandit et. Phasellus tincidunt metus lectus sollicitudin feugiat pharetra consectetur.'
-								}
-							];
-
-	teamSectionTitle : string = 'The Amazing Team';
-	teamSectionDesc  : string = 'According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record maximum.';
-	teamMembers : any = [
-							{
-								name     : 'Ryan Tompson',
-								position : 'Web Developer',
-								image    : 'assets/images/thumb-1.jpg'
-							},
-							{
-								name     : 'Romina Hadid',
-								position : 'Marketing Strategist',
-								image    : 'assets/images/thumb-2.jpg'
-							},
-							{
-								name     : 'Alexander Smith',
-								position : 'UI/UX Designer',
-								image    : 'assets/images/thumb-3.jpg'
-							},
-							{
-								name     : 'Ethan Moore',
-								position : 'Founder and CEO',
-								image    : 'assets/images/thumb-4.jpg'
-							}
-						  
-						];                  
-
-	recentBlogTitle : string = 'Recent Blog';
-	blogs : any = [
-							{
-								tag   : 'Tips',
-								date  : '22 August 2018',
-								title : 'Take a Look at Hotels for All Budgets',
-								desc  : 'Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque', 
-								image : 'assets/images/post-1.jpg'
-							},
-							{
-								tag   : 'Tips',
-								date  : '22 August 2018',
-								title : 'The 50 Greatest Street Arts In London',
-								desc  : 'Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.', 
-								image : 'assets/images/post-2.jpg'
-							},
-							{
-								tag   : 'Tips',
-								date  : '22 August 2018',
-								title : 'The Best Cofee Shops In Sydney Neighborhoods',
-								desc  : 'Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.', 
-								image : 'assets/images/post-3.jpg'
-							}
-						];
-
+		{
+			icon : 'fa fa-search',
+			title: 'Find Interesting Theatres',
+			desc : `Discover some of the world's most spectacular theaters on Theatre Guide platform. `
+		},
+		{
+			icon : 'fa fa-phone-square',
+			title: 'Browse Shows',
+			desc : `Explore amazing dramas, musicals, comedies, tragedies, operas and more.`
+		},
+		{
+			icon : 'fa fa-user-plus',
+			title: 'Buy Tickets',
+			desc : `Check when some show is on the repertoire and buy ticket(s) for it.`
+		}
+	];
 
 	ngAfterViewInit()
 	{
