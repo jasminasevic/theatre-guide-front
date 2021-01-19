@@ -29,6 +29,7 @@
                             </a>
                                <div class="listing-item-content">
                                    <h3>{{repertoire.showName}}</h3>
+                                   <span *ngIf="repertoire.isPremiere" class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
                                    <span>{{repertoire.showDate | date: 'd LLL yyy,  H:mm'}} </span><br>
                                    <span><a [routerLink]="['/theatres/about-theatre', repertoire.theatreId]">{{repertoire.theatreName }}</a></span>
                                     <p class="mt-2">

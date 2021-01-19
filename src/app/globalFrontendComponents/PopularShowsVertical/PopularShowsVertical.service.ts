@@ -67,4 +67,18 @@ export class PopularShowsVerticalService {
       )
   }
 
+  getPopularShowsFilteredByIdAndTheatre(theatreId, showId) : Observable<PopularShows[]>{
+    
+    let params = new HttpParams;
+    params = params.append('Type', 'popularShowsFilteredByIdAndTheatre');
+    params = params.append('TheatreId', theatreId);
+    params = params.append('ShowId', showId);
+
+    return this.httpClient.get<PopularShows[]>(this.API_URL + '/shows', { params })
+      .pipe(
+        map((popularShows: PopularShows[]) => popularShows),
+        catchError(err => throwError(err))
+      )
+  }
+
 }

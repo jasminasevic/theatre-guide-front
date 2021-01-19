@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 
 @Component({
-  selector: 'recentlyJoinedTheatres',
+  selector: 'recently-joined-theatres',
   templateUrl: './RecentlyJoinedTheatres.component.html',
   styleUrls: ['./RecentlyJoinedTheatres.component.scss']
 })

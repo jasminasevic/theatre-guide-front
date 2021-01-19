@@ -14,6 +14,7 @@ export class AboutRepertoireComponent implements OnInit {
    headerGallerySlider: any;
    repertoire: RepertoireAllDetails;
    theatreId: any;
+   showId: any;
 
    shows: PopularShows[];
 	 popularShowsTitle : string = 'Related Shows';
@@ -24,10 +25,12 @@ export class AboutRepertoireComponent implements OnInit {
    ngOnInit(){
       this.activatedRoute.data.subscribe((data: {repertoire: RepertoireAllDetails}) => {
          this.repertoire = data.repertoire,
-         this.theatreId = data.repertoire.theatreId
+         this.theatreId = data.repertoire.theatreId,
+         this.showId = data.repertoire.showId,
+         console.log(this.showId)
       });
 
-      this.popularShowVerticalService.getPopularShowsFilteredByTheatre(this.theatreId)
+      this.popularShowVerticalService.getPopularShowsFilteredByIdAndTheatre(this.theatreId, this.showId)
 			.subscribe(data => {
             this.shows = data
 			})

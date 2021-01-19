@@ -9,7 +9,7 @@ import { MapBannerComponent } from '../globalFrontendComponents/MapBanner/MapBan
 import { RatingComponent } from '../globalFrontendComponents/Rating/Rating.component';
 import { TeamComponent } from './Team/Team.component';
 import { BannerComponent } from './Banner/Banner.component';
-import { PopularCategoriesComponent } from './PopuplarCategories/PopularCategories.component';
+import { PopularCategoriesComponent } from './PopularCategories/PopularCategories.component';
 import { MostVisitedPlacesComponent } from './MostVisitedPlaces/MostVisitedPlaces.component';
 import { RecentBlogComponent } from './RecentBlog/RecentBlog.component';
 import { RecentlyJoinedTheatresComponent } from './RecentlyJoinedTheatres/RecentlyJoinedTheatres.component';
@@ -22,6 +22,7 @@ import { ServicesComponent } from './Services/Services.component';
 
 import { PopularShowsComponent } from './PopularShows/PopularShows.component';
 import { UpcomingShowsComponent } from './UpcomingShows/UpcomingShows.component';
+import { UpcomingPremieresComponent } from './UpcomingPremieres/UpcomingPremieres.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { SharedModule } from '../shared/shared.module';
    ServicesComponent,
    PopularShowsComponent,
    UpcomingShowsComponent,
-   RecentlyJoinedTheatresComponent
+   RecentlyJoinedTheatresComponent,
+   UpcomingPremieresComponent
   ],
   exports: [ 
      MapBannerComponent,
@@ -66,7 +68,8 @@ import { SharedModule } from '../shared/shared.module';
      ServicesComponent,
      PopularShowsComponent,
      UpcomingShowsComponent,
-     RecentlyJoinedTheatresComponent
+     RecentlyJoinedTheatresComponent,
+     UpcomingPremieresComponent
    ]
 })
 

@@ -127,7 +127,12 @@
                                       <h5><a [routerLink]="['/actors/about-actor', actor.actorId]">
                                         {{ actor.actorFirstName }} {{ actor.actorLastName }}</a> 
                                       </h5>
-                                      <p>{{ actor.actorRoleName }} - {{ actor.actorRoleDescription }}</p>
+                                      <p *ngIf="actor.actorRoleDescription; else noActorRoleDescription">
+                                         {{ actor.actorRoleName }} - {{ actor.actorRoleDescription }}
+                                       </p>
+                                       <ng-template #noActorRoleDescription>
+                                          <p>{{ actor.actorRoleName }} </p>
+                                       </ng-template>
                                    </li>
                                 </ul>
                              </div>

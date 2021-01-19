@@ -17,6 +17,7 @@ export class RepertoireAllDetails {
     getPriceDtos: IPricePerSector[];
     getImageDtos: IImage[];
     duration: number;
+    isPremiere: boolean;
   
     constructor(play){
       this.id = play.id;
@@ -34,6 +35,7 @@ export class RepertoireAllDetails {
       this.getPriceDtos = play.getPriceDtos || '';
       this.getImageDtos = play.getImagesDto || '';
       this.duration = play.duration || '';
+      this.isPremiere = play.isPremiere || '';
     }
   
 } 

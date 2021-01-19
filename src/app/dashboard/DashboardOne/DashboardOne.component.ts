@@ -5,7 +5,10 @@ import { UpcomingShows } from 'src/app/globalFrontendComponents/UpcomingShows/Up
 import { UpcomingShowsService } from '../../globalFrontendComponents/UpcomingShows/UpcomingShows.service';
 import { RecentlyJoinedTheatres } from '../../globalFrontendComponents/RecentlyJoinedTheatres/RecentlyJoinedTheatres.model';
 import { RecentlyJoinedTheatresService } from '../../globalFrontendComponents/RecentlyJoinedTheatres/RecentlyJoinedTheatres.service';
-
+import { UpcomingPremieresService } from '../../globalFrontendComponents/UpcomingPremieres/UpcomingPremieres.service';
+import { UpcomingPremieres } from 'src/app/globalFrontendComponents/UpcomingPremieres/UpcomingPremieres.model';
+import { IImage } from 'src/app/shared/interfaces/IImage';
+import { IMG_BASE_URL } from '../../app.constants';
 @Component({
   selector: 'dashboard-one',
   templateUrl: './DashboardOne.component.html',
@@ -14,9 +17,11 @@ import { RecentlyJoinedTheatresService } from '../../globalFrontendComponents/Re
 })
 export class DashboardOneComponent implements OnInit{
 
+	readonly IMG_BASE_URL = IMG_BASE_URL;
 	constructor(private popularShowService: PopularShowsService,
 		private upcomingShowService: UpcomingShowsService,
-		private recentlyJoinedTheatreService: RecentlyJoinedTheatresService){}
+		private recentlyJoinedTheatreService: RecentlyJoinedTheatresService,
+		private upcomingPremiereService: UpcomingPremieresService){}
 
 	bannerTitle: string = 'Expolore Theatres, Shows and More';
 	bannerDesc : string = 'What are you looking for?';
@@ -35,6 +40,11 @@ export class DashboardOneComponent implements OnInit{
 	recentlyJoinedTheatresDesc : string = `Check theatres that recently joined our platform. 
 	Browse their shows, actors, directors and more. Follow shows, check repertoire and 
 	buy ticket for the upcoming plays.`;
+
+	upcomingPremieres: UpcomingPremieres[];
+	upcomingPremieresTitle : string = 'Upcoming Premieres';
+	upcomingPremieresDesc  : string = 'Discover the upcoming show premieres';
+	baseImgUrl: string = this.IMG_BASE_URL;
 	
 	ngOnInit(){
 		this.upcomingShowService.getUpcomingShows()
@@ -51,68 +61,13 @@ export class DashboardOneComponent implements OnInit{
 			.subscribe(data => {
 				this.recentlyJoinedTheatres = data
 			})
+
+		this.upcomingPremiereService.getUpcomingPremieres()
+			.subscribe(data => {
+				this.upcomingPremieres = data,
+				console.log(data)
+			})
 	}
-
-
-	mostVisitedPlacesTitle : string = 'Most Visited Places';
-	mostVisitedPlacesDesc  : string = 'Discover top-rated local businesses';
-	places : any = [
-						{
-						  badge    : 'Open',
-						  category : 'Eat & Drink',
-						  title    : 'Cafe Bar',
-						  address  : 'Wall Street, New York',
-						  image    : 'assets/images/most-img-4.jpg',
-						  logo     : 'assets/images/logo-1.png',
-						  review   : '(12 reviews)'
-						  },
-						  {
-								badge    : 'Coming Soon',
-								category : 'Concert',
-								title    : 'Milky Ducth',
-								address  : 'MayLand Square, LA',
-								image    : 'assets/images/most-img-3.jpg',
-								logo     : 'assets/images/logo-2.png',
-								review   : '(23 reviews)'
-						  },
-						  {
-								badge    : 'Open',
-								category : 'Hotels',
-								title    : 'Maledy Hotels',
-								address  : '672, CreedWay, New York',
-								image    : 'assets/images/most-img-2.jpg',
-								logo     : 'assets/images/logo-3.png',
-								review   : '(17 reviews)'
-						  },
-						  {
-								badge    : 'Open',
-								category : 'Eat & Drink',
-								title    : 'Donuts Hub',
-								address  : '56,Hihu Pora, New York',
-								image    : 'assets/images/most-img-1.jpg',
-								logo     : 'assets/images/logo-4.png',
-								review   : '(31 reviews)'
-						  },
-						  {
-								badge    : 'Now Open',
-								category : 'Airport',
-								title    : 'NYC',
-								address  : 'Mill Dee, New York',
-								image    : 'assets/images/most-img-6.jpg',
-								logo     : 'assets/images/logo-1.png',
-								review   : '(46 reviews)'
-						  },
-						  {
-								badge    : 'Closed',
-								category : 'Eat & Drink',
-								title    : 'Groos Day',
-								address  : '71,Rowling Street, New York',
-								image    : 'assets/images/most-img-7.jpg',
-								logo     : 'assets/images/logo-2.png',
-								review   : '(15 reviews)'
-						  }
-
-						];
 
 	servicesTitle : string = 'Plan Your Visit';
 	servicesDesc  : string = `Explore some of the best theatres in the world. 
