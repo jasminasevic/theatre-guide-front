@@ -26,10 +26,10 @@
                          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#theatreScenes" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-institution mr-2"></i>Scenes</a>
                       </li>
                       <li class="nav-item">
-                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#theatreShows" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-square-o  mr-2"></i>Shows</a>
+                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#theatreShows" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="fa fa-square-o  mr-2"></i>Shows</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#theatreShows" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-star-o  mr-2"></i>Repertoire</a>
+                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-5-tab" data-toggle="tab" href="#repertoire" role="tab" aria-controls="tabs-icons-text-5" aria-selected="false"><i class="fa fa-star-o  mr-2"></i>Repertoire</a>
                      </li>
                    </ul>
                 </div>
@@ -120,6 +120,43 @@
                                  </div>
                               </ng-template>
                            </div>
+                           <div class="tab-pane fade" id="repertoire" role="tabpanel" aria-labelledby="tabs-icons-text-5-tab">
+                              <h4 class="mb-4">
+                                 Repertoire
+                              </h4>
+                              <div class="row mb-4" *ngIf="theatre.getRepertoireForTheatreDtos.length; else noShowOnRepertoire">
+                                 <div class="col-lg-12" *ngFor="let play of theatre.getRepertoireForTheatreDtos">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1">
+                                          <p class="m-3">
+                                             <span *ngIf="play.isPremiere" class="badge badge-pill badge-info text-uppercase mr-2"> Premiere </span>
+                                             <a [routerLink]="['/repertoires/about-play/', play.id]">
+                                              {{ play.showName }}</a> <br>
+                                              {{ play.showDate  | date: 'EEEE, d LLL yyy,  H:mm' }}
+                                             <span>
+                                                <a [routerLink]="['/repertoires/about-play', play.id]">
+                                                    <button class="btn btn-sm btn-primary" type="button">Ticket</button>
+                                                </a>
+                                              </span>
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <ng-template #noShowOnRepertoire>
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1">
+                                          <p class="m-3">
+                                            Repertoire has not been added yet for this month.
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </ng-template>
+                             <div>
+                          </div>
+                       </div>
                       </div>
                    </div>
                 </div>

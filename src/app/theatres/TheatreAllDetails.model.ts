@@ -1,4 +1,5 @@
 import { IImage } from '../shared/interfaces/IImage';
+import { IOnRepertoire } from '../shared/interfaces/IOnRepertoire';
 import { ISceneWithSectors } from '../shared/interfaces/ISceneWithSectors';
 import { IShowBaseInfo } from '../shared/interfaces/IShowBaseInfo';
 
@@ -13,6 +14,7 @@ export class TheatreAllDetails {
   showImageDtos: IImage[];
   getSceneWithSectorsDtos: ISceneWithSectors[];
   showBaseInfoDtos: IShowBaseInfo[];
+  getRepertoireForTheatreDtos: IOnRepertoire[];
 
   constructor(theatre){
     this.id = theatre.id;
@@ -24,5 +26,6 @@ export class TheatreAllDetails {
     this.showImageDtos = theatre.theatreImage || '';
     this.getSceneWithSectorsDtos = theatre.getSceneWithSectorsDtos || '';
     this.showBaseInfoDtos = theatre.showBaseInfoDtos || '';
+    this.getRepertoireForTheatreDtos = theatre || '';
   }
 }

@@ -37,7 +37,6 @@ export class AllRepertoiresComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: { repertoireList: IRepertoireData}) => {
         this.repertoires = data.repertoireList.data,
-        console.log(data.repertoireList.data),
         this.totalCount = data.repertoireList.totalCount
       })
   }
