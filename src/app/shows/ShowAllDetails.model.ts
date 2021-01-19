@@ -1,5 +1,6 @@
 import { IActorShow } from '../shared/interfaces/IActorShow';
 import { IImage } from '../shared/interfaces/IImage';
+import { IOnRepertoire } from '../shared/interfaces/IOnRepertoire';
 
 export class ShowAllDetails {
     id: number;
@@ -21,6 +22,7 @@ export class ShowAllDetails {
     directorFirstName: string;
     directorLastName: string;
     address: string;
+    getRepertoireForShowDtos: IOnRepertoire[];
   
     constructor(show){
       this.id = show.id;
@@ -41,5 +43,6 @@ export class ShowAllDetails {
       this.followersNumber = show.followersNumber || '';
       this.directorFirstName = show.directorFirstName || '';
       this.directorLastName = show.directorLastName || '';
+      this.getRepertoireForShowDtos = show.repertoire || '';
     }
 }

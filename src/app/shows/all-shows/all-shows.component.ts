@@ -37,7 +37,6 @@ export class AllShowsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: { showList: IShowData}) => {
         this.shows = data.showList.data,
-        console.log(data.showList.data),
         this.totalCount = data.showList.totalCount
       })
   }

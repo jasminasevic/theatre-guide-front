@@ -29,7 +29,7 @@ export class AboutShowComponent implements OnInit {
    ngOnInit(){
       this.activatedRoute.data.subscribe((data: {show: ShowAllDetails}) => {
          this.show = data.show,
-         this.headerGallerySlider = this.show.showImageDtos;
+         this.headerGallerySlider = this.show.showImageDtos
       });
 
       this.showId = this.activatedRoute.snapshot.params['id'];
