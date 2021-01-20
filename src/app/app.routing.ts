@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { AdminPanelLayoutComponent } from './layouts/adminPanel/AdminPanelLayout.component';
 import { FrontendPanelLayoutComponent } from './layouts/frontendPanel/FrontendPanel.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -16,8 +18,16 @@ export const AppRoutes: Routes = [{
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
     path: 'actors',
     loadChildren: () => import('./actors/actors.module').then(m => m.ActorsModule)
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   },
   {
     path: 'directors',

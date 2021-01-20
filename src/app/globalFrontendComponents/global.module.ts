@@ -7,7 +7,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { MapBannerComponent } from '../globalFrontendComponents/MapBanner/MapBanner.component';
 import { RatingComponent } from '../globalFrontendComponents/Rating/Rating.component';
-import { TeamComponent } from './Team/Team.component';
 import { BannerComponent } from './Banner/Banner.component';
 import { PopularCategoriesComponent } from './PopularCategories/PopularCategories.component';
 import { MostVisitedPlacesComponent } from './MostVisitedPlaces/MostVisitedPlaces.component';
@@ -36,7 +35,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
    MapBannerComponent,
    RatingComponent,
-   TeamComponent,
    BannerComponent ,
    PopularCategoriesComponent,
    MostVisitedPlacesComponent,
@@ -55,7 +53,6 @@ import { SharedModule } from '../shared/shared.module';
   exports: [ 
      MapBannerComponent,
      RatingComponent,
-     TeamComponent,
      BannerComponent,
      PopularCategoriesComponent,
      MostVisitedPlacesComponent,

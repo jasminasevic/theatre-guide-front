@@ -33,6 +33,7 @@ import { RepertoiresModule } from './repertoires/repertoires.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './shared/shared.module';
+import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -43,7 +44,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   };
 
 @NgModule({
-  declarations: [	
+  declarations: [			
       AppComponent,
       AdminPanelLayoutComponent,
       FrontendPanelLayoutComponent,
@@ -56,6 +57,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
       AdminHeaderComponent,
       AdminSidebarComponent,
+      ContactComponent,
       AboutComponent
    ],
   imports: [

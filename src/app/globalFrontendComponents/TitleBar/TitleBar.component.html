@@ -2,10 +2,12 @@
    <div class="title-bar-inner">
       <div class="container">
          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                <h2>{{Title}}</h2>
                <span>{{SubTitle}}</span>
+            </div>
                <!-- Breadcrumbs -->
+            <div class="col-md-6">
                <nav id="breadcrumbs" *ngIf="Page != Title else noTitle">
                   <ul>
                      <li>Home</li>

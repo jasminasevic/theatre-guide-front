@@ -10,6 +10,7 @@ import { SocialMediaIconsComponent } from '../globalFrontendComponents/socialMed
 import { SidebarLayoutOneComponent } from '../listing/SidebarLayoutOne/SidebarLayoutOne.component';
 import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
+import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { NewsletterComponent } from '../globalFrontendComponents/newsletter/news
     SocialMediaIconsComponent,
     SidebarLayoutOneComponent,
     PaginationComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    TeamComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -34,6 +36,7 @@ import { NewsletterComponent } from '../globalFrontendComponents/newsletter/news
     SidebarLayoutOneComponent,
     PaginationComponent,
     NewsletterComponent,
+    TeamComponent
   ] 
 })
 export class SharedModule { }
