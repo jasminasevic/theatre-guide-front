@@ -12,7 +12,7 @@ export class AboutComponent implements OnInit {
    to achieve one goal - to help you discover some of the greatest shows and buy tickets for them.`;
    teamMembers : any = [
                      {
-                        name     : 'Ryan Tompson',
+                        name     : 'Jasmina Sevic',
                         position : 'Web Developer',
                         image    : 'assets/images/jasmina-sevic.jpg'
                      },

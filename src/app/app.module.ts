@@ -35,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { PartnershipsComponent } from './partnerships/partnerships.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -44,7 +45,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   };
 
 @NgModule({
-  declarations: [			
+  declarations: [				
       AppComponent,
       AdminPanelLayoutComponent,
       FrontendPanelLayoutComponent,
@@ -58,7 +59,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       AdminHeaderComponent,
       AdminSidebarComponent,
       ContactComponent,
-      AboutComponent
+      AboutComponent,
+      PartnershipsComponent
    ],
   imports: [
       BrowserModule,

@@ -5,6 +5,7 @@ import { FrontendPanelLayoutComponent } from './layouts/frontendPanel/FrontendPa
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { PartnershipsComponent } from './partnerships/partnerships.component';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -32,6 +33,10 @@ export const AppRoutes: Routes = [{
   {
     path: 'directors',
     loadChildren: () => import('./directors/directors.module').then(m => m.DirectorsModule)
+  },
+  {
+    path: 'business-partnerships',
+    component: PartnershipsComponent
   },
   {
     path: 'repertoires',
