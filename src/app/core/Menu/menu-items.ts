@@ -30,7 +30,7 @@ const MENUITEMS = [
     name: 'Shows',
     type: 'sub',
     children: [
-      {state: 'shows', substate: 'all-shows', name: 'All Shows', type: 'link'},
+      {state: 'shows', substate: 'all-shows', name: 'Shows', type: 'link'},
       {state: 'actors', substate: 'all-actors', name: 'Actors', type: 'link'},
       {state: 'directors', substate: 'all-directors', name: 'Directors', type: 'link'},
     ]
