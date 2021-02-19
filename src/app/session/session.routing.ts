@@ -4,6 +4,7 @@ import { LoginComponent } from './Login/Login.component';
 import { SignUpComponent } from './SignUp/SignUp.component';
 import { ForgotPasswordComponent } from './ForgotPassword/ForgotPassword.component';
 import { ComingSoonComponent } from './ComingSoon/ComingSoon.component';
+import { BusinessSignUpComponent } from './BusinessSignUp/BusinessSignUp.component';
 
 export const SessionRoutes: Routes = [{
   path: '',
@@ -15,8 +16,11 @@ export const SessionRoutes: Routes = [{
     path: 'login',
     component: LoginComponent
   }, {
-    path: 'signup',
+    path: 'sign-up',
     component: SignUpComponent
+  }, {
+    path: 'business-sign-up',
+    component: BusinessSignUpComponent
   }, {
     path: 'forgot-password',
     component: ForgotPasswordComponent

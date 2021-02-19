@@ -7,20 +7,24 @@ import { LoginComponent } from './Login/Login.component';
 import { SignUpComponent } from './SignUp/SignUp.component';
 import { ForgotPasswordComponent } from './ForgotPassword/ForgotPassword.component';
 import { ComingSoonComponent } from './ComingSoon/ComingSoon.component';
+import { BusinessSignUpComponent } from './BusinessSignUp/BusinessSignUp.component';
 
 import { SessionRoutes } from './session.routing';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(SessionRoutes)
+    RouterModule.forChild(SessionRoutes),
+    SharedModule
   ],
   declarations: [ 
     LoginComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    BusinessSignUpComponent
   ]
 })
 

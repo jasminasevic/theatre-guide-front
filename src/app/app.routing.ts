@@ -6,6 +6,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
+import { LoginComponent } from './session/Login/Login.component';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -27,16 +28,16 @@ export const AppRoutes: Routes = [{
     loadChildren: () => import('./actors/actors.module').then(m => m.ActorsModule)
   },
   {
+    path: 'business-partnerships',
+    component: PartnershipsComponent
+  },
+  {
     path: 'contact',
     component: ContactComponent
   },
   {
     path: 'directors',
     loadChildren: () => import('./directors/directors.module').then(m => m.DirectorsModule)
-  },
-  {
-    path: 'business-partnerships',
-    component: PartnershipsComponent
   },
   {
     path: 'repertoires',
@@ -68,7 +69,7 @@ export const AppRoutes: Routes = [{
   }]
 },
 {
-  path: 'session',
+  path: '',
   component: AuthLayoutComponent,
   children: [{
     path: '',
