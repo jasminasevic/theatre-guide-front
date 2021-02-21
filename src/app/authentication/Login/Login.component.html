@@ -22,13 +22,22 @@
                      </div>
                      <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
-                           <form role="form">
+                           <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                               <div class="form-group mb-3">
                                  <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Email" type="email">
+                                    <input class="form-control" placeholder="Email" type="email" formControlName="email"
+                                       required>
+                                 </div>
+                                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="small text-danger">
+                                    <span *ngIf="email.errors.required">
+                                       Email is required.
+                                    </span>
+                                    <span *ngIf="email.errors.email">
+                                       Please enter a valid email address.
+                                    </span>
                                  </div>
                               </div>
                               <div class="form-group">
@@ -36,7 +45,14 @@
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-unlock-alt"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Password" type="password">
+                                    <input class="form-control" placeholder="Password" type="password"
+                                       formControlName="password">
+                                 </div>
+                                 <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                    class="small text-danger">
+                                    <span *ngIf="password.errors.required">
+                                       Passwrod is required.
+                                    </span>
                                  </div>
                               </div>
                               <div class="text-center mb-3">
@@ -44,10 +60,23 @@
                                     now.</span>
                               </div>
                               <div class="text-center">
-                                 <button type="button" class="btn btn-primary mt-4">Sign in</button>
+                                 <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary mt-4">Sign
+                                    in</button>
                               </div>
                            </form>
                         </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Notice -->
+               <div class="row invalidLoginAlert" *ngIf="invalidLogin">
+                  <div class="col-lg-6 mx-auto mt-3">
+                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                        <span class="alert-inner--text"><strong>Ooops!</strong> Wrong email or password. </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">×</span>
+                        </button>
                      </div>
                   </div>
                </div>

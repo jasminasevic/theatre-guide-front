@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
@@ -36,6 +37,7 @@ import { SharedModule } from './shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -43,6 +45,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     maxFilesize: 50,
     acceptedFiles: 'image/*'
   };
+
+export function tokenGetter(){
+  return localStorage.getItem("jwt");
+}
+  
 
 @NgModule({
   declarations: [				
@@ -75,7 +82,15 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       ActorsModule,
       DirectorsModule,
       RepertoiresModule,
-      SharedModule
+      SharedModule,
+      ReactiveFormsModule,
+      JwtModule.forRoot({
+        config : {
+          tokenGetter: tokenGetter,
+          allowedDomains: [ 'localhost:44355' ],
+          disallowedRoutes: []
+        }
+      })
   ],
   providers: [
       MenuItems, 

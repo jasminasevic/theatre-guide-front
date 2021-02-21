@@ -6,7 +6,7 @@ import { ForgotPasswordComponent } from './ForgotPassword/ForgotPassword.compone
 import { ComingSoonComponent } from './ComingSoon/ComingSoon.component';
 import { BusinessSignUpComponent } from './BusinessSignUp/BusinessSignUp.component';
 
-export const SessionRoutes: Routes = [{
+export const AuthRoutes: Routes = [{
   path: '',
   redirectTo: 'login',
   pathMatch: 'full',

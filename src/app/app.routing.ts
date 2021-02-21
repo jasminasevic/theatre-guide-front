@@ -6,7 +6,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
-import { LoginComponent } from './session/Login/Login.component';
+import { LoginComponent } from './authentication/Login/Login.component';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -73,7 +73,7 @@ export const AppRoutes: Routes = [{
   component: AuthLayoutComponent,
   children: [{
     path: '',
-    loadChildren: () => import('./session/session.module').then(m => m.SessionModule)
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthModule)
   }]
 }
 ];
