@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { AdminMenuItems } from './admin-menu-items';
 
 @Component({
@@ -9,11 +10,19 @@ import { AdminMenuItems } from './admin-menu-items';
 })
 export class AdminHeaderComponent implements OnInit {
 
-   constructor(public adminMenuItems: AdminMenuItems){}
+   constructor(public adminMenuItems: AdminMenuItems,
+    public token: TokenStorageService){}
 
    ngOnInit(){}
 
    ngAfterViewInit()
    {
    }
+
+   logOut() : void{
+    this.token.logOut();
+   }
+
+   
+
 }

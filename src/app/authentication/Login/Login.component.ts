@@ -1,10 +1,15 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { JwtPayload } from 'jwt-decode';
 import jwtDecode from 'jwt-decode'; 
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../tokenStorage.service';
+import { FIRST_NAME, ROLE_KEY, USER_KEY } from 'src/app/app.constants';
+import { JsonpClientBackend } from '@angular/common/http';
+import { first } from 'rxjs/operators';
 
+@Injectable({ providedIn: 'root' })
 @Component({
   selector: 'login',
   templateUrl: './Login.component.html',
@@ -14,12 +19,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
-  submitted: boolean;
-  invalidLogin: boolean;
+  isLoggedIn: boolean = false;
+  isLoginFailed: boolean = false;
    
    constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
-    private router: Router){}
+    private router: Router,
+    private tokenStorage: TokenStorageService){}
 
    ngOnInit(){
     this.loginForm = this.formBuilder.group({
@@ -36,31 +42,56 @@ export class LoginComponent implements OnInit{
    get password(){ return this.loginForm.get('password');}
 
    onSubmit(){
-     this.submitted = true;
-
+     
      const credentials = {
        'username' : this.loginForm.get('email').value,
        'password' : this.loginForm.get('password').value
      }
 
-     this.authService.loginUser(credentials)
+     this.authService.login(credentials)
       .subscribe(response => {
         const token = (<any>response).token;
-        localStorage.setItem("jwt", token);
+        this.tokenStorage.saveToken(token);
 
         const decodedToken = jwtDecode<JwtPayload>(token);
-        let roleId = decodedToken['RoleId'];
+        let userData = decodedToken[USER_KEY]
 
+        let storageData = JSON.parse(userData);
+        let keys = Object.keys(storageData);
+        let values = keys.map(k => storageData[k]);
+        let userId = values[0];
+        let user = values[1];
+        let firstName = values[2];
+        let roleId = values[3];
+       
         if(roleId == 2 || roleId == 3){
-          this.invalidLogin = false;
+          this.tokenStorage.saveUser(decodedToken[USER_KEY]);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.tokenStorage.saveUserId(userId);
+          this.tokenStorage.saveFirstName(firstName);
           this.router.navigate(['/admin/dashboard']);
         }
-
-        this.invalidLogin = true;
-        return;
+        else{
+          this.isLoginFailed = true;
+          return;
+        }
       }, err => {
-        this.invalidLogin = true;
+        this.isLoginFailed = true;
+        console.log(err);
       })
    }
+
+  public logOut(){
+    this.tokenStorage.logOut();
+  }
+
+  removeQuotes(userData){
+    let userDataAray = userData.replaceAll('\"', "");
+  }
+
+  splitValues(userData){
+    let user = userData.splitValues(",");
+  }
 
 }

@@ -64,8 +64,7 @@ export class DashboardOneComponent implements OnInit{
 
 		this.upcomingPremiereService.getUpcomingPremieres()
 			.subscribe(data => {
-				this.upcomingPremieres = data,
-				console.log(data)
+				this.upcomingPremieres = data
 			})
 	}
 

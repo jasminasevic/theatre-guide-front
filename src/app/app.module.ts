@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
@@ -38,6 +38,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthModule } from './authentication/authentication.module';
+import { AuthInterceptor } from './helpers/authInterceptor';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -84,6 +86,7 @@ export function tokenGetter(){
       RepertoiresModule,
       SharedModule,
       ReactiveFormsModule,
+      AuthModule,
       JwtModule.forRoot({
         config : {
           tokenGetter: tokenGetter,
@@ -98,6 +101,11 @@ export function tokenGetter(){
       {
         provide: DROPZONE_CONFIG,
         useValue: DEFAULT_DROPZONE_CONFIG
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
       }
   ],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/co
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 
 @Component({
   selector: 'app-header',
@@ -16,19 +17,20 @@ export class HeaderComponent implements OnInit {
 
    isFixedClass : boolean = false; 
 
-   constructor(private router: Router){}
+   isLoggedIn = false;
+   isLoginFailed = true;
+   firstName: string;
+
+   constructor(private router: Router, 
+      private token: TokenStorageService){}
 
    ngOnInit(){
-      // this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-      //    this.url = event.url;
-      //    if (this.isFixedHeader()) {
-      //       this.isFixedClass = true;
-      //    }
-      //    else
-      //    {
-      //       this.isFixedClass = false;
-      //    }
-      // });
+      this.isLoggedIn = !!this.token.getUser();
+
+      if(this.isLoggedIn){
+         this.isLoginFailed = false;
+         this.firstName = this.token.getFirstName();
+      }
    }
 
    isFixedHeader()
