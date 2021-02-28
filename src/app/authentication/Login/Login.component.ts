@@ -5,9 +5,7 @@ import { JwtPayload } from 'jwt-decode';
 import jwtDecode from 'jwt-decode'; 
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../tokenStorage.service';
-import { FIRST_NAME, ROLE_KEY, USER_KEY } from 'src/app/app.constants';
-import { JsonpClientBackend } from '@angular/common/http';
-import { first } from 'rxjs/operators';
+import { USER_KEY } from 'src/app/app.constants';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -26,6 +24,7 @@ export class LoginComponent implements OnInit{
     private authService: AuthenticationService,
     private router: Router,
     private tokenStorage: TokenStorageService){}
+
 
    ngOnInit(){
     this.loginForm = this.formBuilder.group({

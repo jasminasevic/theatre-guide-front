@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY } from '../app.constants';
-import { UserData } from './userData.model';
 
 @Injectable({
   providedIn: 'root'

@@ -33,9 +33,11 @@
             <ul class="footer-links">
                <li><a class="text-white" routerLink='/about'>About</a></li>
                <li><a class="text-white" routerLink='/contact'>Contact</a></li>
-               <li><a class="text-white" routerLink='/login'>Login</a></li>
-               <li><a class="text-white" routerLink='/sign-up'>Register</a></li>
-               <li><a class="text-white" routerLink='/business-partnerships'>Partner with Us</a></li>
+               <li *ngIf="!isLoggedInStatus"><a class="text-white" routerLink='/login'>Login</a></li>
+               <li *ngIf="!isLoggedInStatus"><a class="text-white" routerLink='/sign-up'>Register</a>
+               </li>
+               <li><a class="text-white" routerLink='/business-partnerships'>Partner with Us</a>
+               </li>
             </ul>
          </div>
       </div>

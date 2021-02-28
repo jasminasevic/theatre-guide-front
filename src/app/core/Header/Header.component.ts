@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
+import { InteractionService } from 'src/app/shared/services/interaction.service';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,13 @@ export class HeaderComponent implements OnInit {
 
    isFixedClass : boolean = false; 
 
-   isLoggedIn = false;
-   isLoginFailed = true;
+   isLoggedIn: boolean = false;
+   isLoginFailed: boolean = true;
    firstName: string;
 
    constructor(private router: Router, 
-      private token: TokenStorageService){}
+      private token: TokenStorageService,
+      private interactionService: InteractionService){}
 
    ngOnInit(){
       this.isLoggedIn = !!this.token.getUser();
@@ -30,6 +32,7 @@ export class HeaderComponent implements OnInit {
       if(this.isLoggedIn){
          this.isLoginFailed = false;
          this.firstName = this.token.getFirstName();
+         this.interactionService.changeLoginStatus(true);
       }
    }
 
@@ -40,6 +43,12 @@ export class HeaderComponent implements OnInit {
        } else {
          return false
        }
+   }
+
+   logOut() : void {
+      this.token.logOut();
+      this.isLoginFailed = true;
+      this.interactionService.changeLoginStatus(false);
    }
 
    ngAfterViewInit()
