@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InteractionService } from '../shared/services/interaction.service';
 
 @Component({
   selector: 'partnerships',
@@ -33,10 +34,17 @@ export class PartnershipsComponent implements OnInit {
                      }
                     
                   ]; 
+
+   isLoggedInStatus: boolean;
                   
-  constructor() { }
+  constructor(private interactionService: InteractionService) { }
 
   ngOnInit() {
+   this.interactionService.currentLoginStatus$
+   .subscribe(
+     message => {
+       this.isLoggedInStatus = message
+     });
   }
 
 

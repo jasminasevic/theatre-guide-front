@@ -14,7 +14,7 @@
          </div>
          <div class="col-lg-8 site-content">
             <div class="content">
-               <div class="row">
+               <div class="row" *ngIf="!isSuccessful">
                   <div class="col-lg-7 mx-auto">
                      <div class="text-center mb-4">
                         <h2>Create Theatre Guide Account</h2>
@@ -22,13 +22,23 @@
                      </div>
                      <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
-                           <form role="form">
+                           <form role="form" [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
                               <div class="form-group mb-3">
                                  <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="First Name" type="text">
+                                    <input class="form-control" formControlName="firstName" placeholder="First Name"
+                                       type="text">
+                                 </div>
+                                 <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                    class="small text-danger">
+                                    <span *ngIf="firstName.errors.required">
+                                       First name is required.
+                                    </span>
+                                    <span *ngIf="firstName.errors.pattern">
+                                       First letter of your name must be capital.
+                                    </span>
                                  </div>
                               </div>
                               <div class="form-group mb-3">
@@ -36,7 +46,17 @@
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Last Name" type="text">
+                                    <input class="form-control" formControlName="lastName" placeholder="Last Name"
+                                       type="text">
+                                 </div>
+                                 <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                    class="small text-danger">
+                                    <span *ngIf="lastName.errors.required">
+                                       Last name is required.
+                                    </span>
+                                    <span *ngIf="lastName.errors.pattern">
+                                       First letter of your last name must be capital.
+                                    </span>
                                  </div>
                               </div>
                               <div class="form-group mb-3">
@@ -44,7 +64,16 @@
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Email" type="email">
+                                    <input class="form-control" formControlName="email" placeholder="Email"
+                                       type="email">
+                                 </div>
+                                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="small text-danger">
+                                    <span *ngIf="email.errors.required">
+                                       Email is required.
+                                    </span>
+                                    <span *ngIf="email.errors.email">
+                                       Please enter a valid email address.
+                                    </span>
                                  </div>
                               </div>
                               <div class="form-group">
@@ -52,18 +81,53 @@
                                     <div class="input-group-prepend">
                                        <span class="input-group-text"><i class="fa fa-unlock-alt"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Password" type="password">
+                                    <input class="form-control" formControlName="password" placeholder="Password"
+                                       type="password" minlength="5">
+                                 </div>
+                                 <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                    class="small text-danger">
+                                    <span *ngIf="password.errors.required">
+                                       Password is required.
+                                    </span>
+                                    <span *ngIf="password.errors.minlength">
+                                       Password must contain at least 5 characters.
+                                    </span>
                                  </div>
                               </div>
                               <div class="text-center mb-3">
                                  <span>You already have an account? <a [routerLink]="['/login']">Sign in</a>
+                                    now.</span><br>
+                                 <span>Are you a business user? <a [routerLink]="['/business-sign-up']">Sign up</a>
                                     now.</span>
                               </div>
                               <div class="text-center">
-                                 <button type="button" class="btn btn-primary mt-4">Register Me</button>
+                                 <button type="submit" class="btn btn-primary mt-2"
+                                    [disabled]="registerUserForm.invalid">Register Me</button>
                               </div>
                            </form>
                         </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Notice -->
+               <div class="row invalidLoginAlert" *ngIf="isSignUpFailed">
+                  <div class="col-lg-7 mx-auto mt-3">
+                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                        <span class="alert-inner--text"> Sign up failed.</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">×</span>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Successful sign up -->
+               <div class="row" *ngIf="isSuccessful">
+                  <div class="col-lg-7 mx-auto">
+                     <div class="text-center mb-4">
+                        <h2>Your registration is successful!</h2>
+                        <h3>Please <a [routerLink]="['/login']">sign in</a> to continue.</h3>
                      </div>
                   </div>
                </div>

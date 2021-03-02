@@ -85,12 +85,4 @@ export class LoginComponent implements OnInit{
     this.tokenStorage.logOut();
   }
 
-  removeQuotes(userData){
-    let userDataAray = userData.replaceAll('\"', "");
-  }
-
-  splitValues(userData){
-    let user = userData.splitValues(",");
-  }
-
 }

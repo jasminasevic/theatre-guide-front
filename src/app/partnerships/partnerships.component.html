@@ -88,7 +88,7 @@
                 <p> It can be difficult to know where to invest time and resources in your theatre. From brand to
                   marketing to ticket sales to audience relations, see how starting with Theatre Guide can help you grow
                   your theatre online.</p>
-                <a [routerLink]="['/business-sign-up']"
+                <a *ngIf="!isLoggedInStatus" [routerLink]="['/business-sign-up']"
                   class="btn btn-lg btn-white font-weight-bold text-black mt-2">Start
                   Now</a>
               </div>
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="">
+      <div *ngIf="!isLoggedInStatus">
         <div class="container">
           <div class="card bg-gradient-warning shadow-lg border-0">
             <div class="p-5">
