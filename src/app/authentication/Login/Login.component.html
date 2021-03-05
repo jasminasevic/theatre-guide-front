@@ -14,11 +14,25 @@
          </div>
          <div class="col-lg-8 site-content">
             <div class="content">
+               <!-- Notice -->
+               <div class="row invalidLoginAlert" *ngIf="isLoginFailed">
+                  <div class="col-lg-6 mx-auto mt-3">
+                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                        <span class="alert-inner--text"><strong>Ooops!</strong> Wrong email or password. </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">×</span>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Form Content -->
                <div class="row">
                   <div class="col-lg-6 mx-auto">
                      <div class="text-center mb-4">
                         <h2>Sign in to Theatre Guide</h2>
-                        <p>Fill up the following details</p>
+                        <p>Fill out the following details</p>
                      </div>
                      <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
@@ -65,18 +79,6 @@
                               </div>
                            </form>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- Notice -->
-               <div class="row invalidLoginAlert" *ngIf="isLoginFailed">
-                  <div class="col-lg-6 mx-auto mt-3">
-                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-                        <span class="alert-inner--text"><strong>Ooops!</strong> Wrong email or password. </span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">×</span>
-                        </button>
                      </div>
                   </div>
                </div>

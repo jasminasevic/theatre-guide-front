@@ -3,7 +3,7 @@
       <div class="row m-0">
          <div class="col-lg-4 h-110-vh side-banner"
             style="background-image:url('assets/images/bg-vertical-red.jpg');background-position: center center; background-size: cover;">
-            <div class="content px-5 text-center d-flex justify-content-center h-100">
+            <div class="content px-5 text-center d-flex justify-content-center h-100-vh">
                <div class="align-self-center">
                   <img src="assets/images/logo-white.png" class="mb-4" alt="">
                   <h4 class="text-white">Discover great theatres in world</h4>
@@ -14,11 +14,24 @@
          </div>
          <div class="col-lg-8 site-content">
             <div class="content">
+               <!-- Notice -->
+               <div class="row invalidLoginAlert" *ngIf="isSignUpFailed">
+                  <div class="col-lg-7 mx-auto mt-3">
+                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                        <span class="alert-inner--text"> Sign up failed.</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">×</span>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <!-- Form Content -->
                <div class="row" *ngIf="!isSuccessful">
                   <div class="col-lg-7 mx-auto">
                      <div class="text-center mb-4">
                         <h2>Create Theatre Guide Account</h2>
-                        <p>Fill up the following details</p>
+                        <p>Fill out the following details</p>
                      </div>
                      <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
@@ -82,7 +95,7 @@
                                        <span class="input-group-text"><i class="fa fa-unlock-alt"></i></span>
                                     </div>
                                     <input class="form-control" formControlName="password" placeholder="Password"
-                                       type="password" minlength="5">
+                                       type="password" minlength="6">
                                  </div>
                                  <div *ngIf="password.invalid && (password.dirty || password.touched)"
                                     class="small text-danger">
@@ -90,7 +103,7 @@
                                        Password is required.
                                     </span>
                                     <span *ngIf="password.errors.minlength">
-                                       Password must contain at least 5 characters.
+                                       Password must contain at least 6 characters.
                                     </span>
                                  </div>
                               </div>
@@ -109,19 +122,6 @@
                      </div>
                   </div>
                </div>
-               <!-- Notice -->
-               <div class="row invalidLoginAlert" *ngIf="isSignUpFailed">
-                  <div class="col-lg-7 mx-auto mt-3">
-                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-                        <span class="alert-inner--text"> Sign up failed.</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">×</span>
-                        </button>
-                     </div>
-                  </div>
-               </div>
-
                <!-- Successful sign up -->
                <div class="row" *ngIf="isSuccessful">
                   <div class="col-lg-7 mx-auto">

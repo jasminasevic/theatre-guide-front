@@ -3,7 +3,7 @@
     <div class="row m-0">
       <div class="col-lg-4 h-110-vh side-banner"
         style="background-image:url('assets/images/bg-vertical-red.jpg');background-position: center center; background-size: cover;">
-        <div class="content px-5 text-center d-flex justify-content-center h-100">
+        <div class="content px-5 text-center d-flex justify-content-center h-100-vh">
           <div class="align-self-center">
             <img src="assets/images/logo-white.png" class="mb-4" alt="">
             <h4 class="text-white">Discover great theatres in world</h4>
@@ -14,21 +14,43 @@
       </div>
       <div class="col-lg-8 site-content">
         <div class="content">
-          <div class="row">
+          <!-- Notice -->
+          <div class="row invalidLoginAlert" *ngIf="isSignUpFailed">
+            <div class="col-lg-7 mx-auto mt-3">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                <span class="alert-inner--text"> Sign up failed.</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Form Content -->
+          <div class="row" *ngIf="!isSuccessful">
             <div class="col-lg-7 mx-auto">
               <div class="text-center mb-4">
-                <h2>Create Theatre Guide Account</h2>
-                <p>Fill up the following details</p>
+                <h2>Join Our Network of Theatres</h2>
+                <p>Fill out the following details</p>
               </div>
               <div class="card bg-secondary shadow border-0">
                 <div class="card-body px-lg-5 py-lg-5">
-                  <form role="form">
+                  <form role="form" [formGroup]="registerBusinessUserForm" (ngSubmit)="onSubmit()">
                     <div class="form-group mb-3">
                       <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa fa-user"></i></span>
                         </div>
-                        <input class="form-control" placeholder="First Name" type="text">
+                        <input class="form-control" formControlName="firstName" placeholder="First Name" type="text">
+                      </div>
+                      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                        class="small text-danger">
+                        <span *ngIf="firstName.errors.required">
+                          First name is required.
+                        </span>
+                        <span *ngIf="firstName.errors.pattern">
+                          Wrong format.
+                        </span>
                       </div>
                     </div>
                     <div class="form-group mb-3">
@@ -36,15 +58,47 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa fa-user"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Last Name" type="text">
+                        <input class="form-control" formControlName="lastName" placeholder="Last Name" type="text">
+                      </div>
+                      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="small text-danger">
+                        <span *ngIf="lastName.errors.required">
+                          Last name is required.
+                        </span>
+                        <span *ngIf="lastName.errors.pattern">
+                          First letter of your last name must be capital.
+                        </span>
                       </div>
                     </div>
                     <div class="form-group mb-3">
                       <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fa fa-puzzle-piece"></i></span>
+                          <span class="input-group-text"><i class="fa fa-user"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Theatre" type="text">
+                        <input class="form-control" formControlName="theatre" placeholder="Theatre" type="text">
+                      </div>
+                      <div *ngIf="theatre.invalid && (theatre.dirty || theatre.touched)" class="small text-danger">
+                        <span *ngIf="theatre.errors.required">
+                          Theatre is required.
+                        </span>
+                        <span *ngIf="theatre.errors.pattern">
+                          First letter of the theatre must be capital.
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input class="form-control" formControlName="address" placeholder="Address" type="text">
+                      </div>
+                      <div *ngIf="address.invalid && (address.dirty || address.touched)" class="small text-danger">
+                        <span *ngIf="address.errors.required">
+                          Last name is required.
+                        </span>
+                        <span *ngIf="address.errors.pattern">
+                          First letter of the address name must be capital.
+                        </span>
                       </div>
                     </div>
                     <div class="form-group mb-3">
@@ -52,7 +106,15 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Email" type="email">
+                        <input class="form-control" formControlName="email" placeholder="Email" type="email">
+                      </div>
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="small text-danger">
+                        <span *ngIf="email.errors.required">
+                          Email is required.
+                        </span>
+                        <span *ngIf="email.errors.email">
+                          Please enter a valid email address.
+                        </span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -60,18 +122,39 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa fa-unlock-alt"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Password" type="password">
+                        <input class="form-control" formControlName="password" placeholder="Password" type="password"
+                          minlength="6">
+                      </div>
+                      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="small text-danger">
+                        <span *ngIf="password.errors.required">
+                          Password is required.
+                        </span>
+                        <span *ngIf="password.errors.minlength">
+                          Password must contain at least 6 characters.
+                        </span>
                       </div>
                     </div>
                     <div class="text-center mb-3">
                       <span>You already have a business account? <a [routerLink]="['/login']">Sign in</a>
-                        now.</span>
+                        now.</span><br>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-primary mt-4">Register Me</button>
+                      <button type="submit" class="btn btn-primary mt-2"
+                        [disabled]="registerBusinessUserForm.invalid">Register
+                        Me</button>
                     </div>
                   </form>
                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- Successful sign up -->
+          <div class="row" *ngIf="isSuccessful">
+            <div class="col-lg-7 mx-auto">
+              <div class="text-center mb-4">
+                <h2>Thank you for your application!</h2>
+                <p>We'll get back to you soon.</p>
+                <h3>Go back to the <a [routerLink]="['/home']">home</a> page.</h3>
               </div>
             </div>
           </div>

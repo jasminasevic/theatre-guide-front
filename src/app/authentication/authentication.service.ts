@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { API_URL } from '../app.constants';
 import { Credentials } from './credentials.model';
 import { UserData } from './userData.model';
+import { BusinessUserData } from './businessUserData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,14 @@ export class AuthenticationService {
     return this.httpClient.post<UserData>(this.API_URL + '/registerUser', user)
       .pipe(
         map((user: UserData) => user),
+        catchError(err => throwError(err))
+      )
+  }
+
+  registerBusinessUser(businessUser: BusinessUserData) : Observable<BusinessUserData>{
+    return this.httpClient.post<BusinessUserData>(this.API_URL + '/registerBusinessUser', businessUser)
+      .pipe(
+        map((businessUser: BusinessUserData) => businessUser),
         catchError(err => throwError(err))
       )
   }
