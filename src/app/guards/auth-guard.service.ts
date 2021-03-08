@@ -8,14 +8,15 @@ import jwtDecode, { JwtPayload } from 'jwt-decode';
 })
 export class AuthGuardService implements CanActivate {
 
-constructor(private router: Router, private jwtHelper: JwtHelperService) { }
+constructor(private router: Router, 
+  private jwtHelper: JwtHelperService) { }
 
 canActivate(){
   const token = localStorage.getItem('jwt');
   let decodedToken = jwtDecode<JwtPayload>(token);
   let roleId = decodedToken['RoleId']; 
 
-  if((roleId == 2 || roleId == 3) && !this.jwtHelper.isTokenExpired(token)){
+  if((roleId == 3) && !this.jwtHelper.isTokenExpired(token)){
     return true;
   }
   this.router.navigate(['/login']);

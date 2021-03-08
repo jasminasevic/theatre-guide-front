@@ -12,6 +12,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 import { AdminPanelLayoutComponent } from './layouts/adminPanel/AdminPanelLayout.component';
+import { AdminTheatreLayoutPanelComponent } from './layouts/adminTheatrePanel/adminTheatrePanel.component';
 import { FrontendPanelLayoutComponent } from './layouts/frontendPanel/FrontendPanel.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
@@ -22,6 +23,7 @@ import { SignInComponent } from './core/SignInPopup/SignIn.component';
 
 import { AdminHeaderComponent } from './core/AdminHeader/AdminHeader.component';
 import { AdminSidebarComponent } from './core/AdminSidebar/AdminSidebar.component';
+import { AdminTheatreSidebarComponent } from './core/AdminTheatreSidebar/AdminTheatreSidebar.component'; 
 
 import { MenuItems } from './core/Menu/menu-items';
 import { AdminMenuItems } from './core/AdminHeader/admin-menu-items';
@@ -57,6 +59,7 @@ export function tokenGetter(){
   declarations: [				
       AppComponent,
       AdminPanelLayoutComponent,
+      AdminTheatreLayoutPanelComponent,
       FrontendPanelLayoutComponent,
       AuthLayoutComponent,
 
@@ -67,6 +70,7 @@ export function tokenGetter(){
 
       AdminHeaderComponent,
       AdminSidebarComponent,
+      AdminTheatreSidebarComponent,
       ContactComponent,
       AboutComponent,
       PartnershipsComponent

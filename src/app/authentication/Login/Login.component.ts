@@ -69,6 +69,11 @@ export class LoginComponent implements OnInit{
           this.isLoggedIn = true;
           this.tokenStorage.saveUserId(userId);
           this.tokenStorage.saveFirstName(firstName);
+
+          if(roleId == 2)
+          this.router.navigate(['/admin-theatre/dashboard']);
+
+          if(roleId == 3)
           this.router.navigate(['/admin/dashboard']);
         }
         else{
@@ -77,7 +82,7 @@ export class LoginComponent implements OnInit{
         }
       }, err => {
         this.isLoginFailed = true;
-        console.log(err);
+        console.log("skkk", err);
       })
    }
 

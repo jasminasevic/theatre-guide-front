@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import { AdminPanelLayoutComponent } from './layouts/adminPanel/AdminPanelLayout.component';
 import { FrontendPanelLayoutComponent } from './layouts/frontendPanel/FrontendPanel.component';
+import { AdminTheatreLayoutPanelComponent } from './layouts/adminTheatrePanel/adminTheatrePanel.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { AuthTheatreGuardService } from './guards/auth-theatre-guard.service';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -67,6 +69,15 @@ export const AppRoutes: Routes = [{
     loadChildren: () => import('./adminPages/admin.module').then(m => m.AdminModule)
   }],
   canActivate: [AuthGuardService]
+},
+{
+  path: 'admin-theatre',
+  component: AdminTheatreLayoutPanelComponent,
+  children: [{
+    path: '',
+    loadChildren: () => import('./adminTheatrePages/adminTheatre.module').then(m => m.AdminTheatreModule)
+  }],
+  canActivate: [AuthTheatreGuardService]
 },
 {
   path: '',
