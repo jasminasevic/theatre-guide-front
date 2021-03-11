@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 declare var $ : any;
 
 @Component({
@@ -10,13 +11,17 @@ declare var $ : any;
 export class AdminTheatreSidebarComponent implements OnInit {
 
   // sidebarIn : boolean = false;
-  constructor(){}
+  constructor(private token: TokenStorageService){}
 
   ngOnInit(){}
 
   ngAfterViewInit()
   {
 
+  }
+
+  logOut(){
+     this.token.logOut();
   }
 
   toggleMenu()

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
    isLoggedIn: boolean = false;
    isLoginFailed: boolean = true;
    firstName: string;
+   theatreId: string;
 
    constructor(private router: Router, 
       private token: TokenStorageService,
@@ -28,10 +29,10 @@ export class HeaderComponent implements OnInit {
 
    ngOnInit(){
       this.isLoggedIn = !!this.token.getUser();
-
       if(this.isLoggedIn){
          this.isLoginFailed = false;
          this.firstName = this.token.getFirstName();
+         this.theatreId = this.token.getTheatreId();
          this.interactionService.changeLoginStatus(true);
       }
    }

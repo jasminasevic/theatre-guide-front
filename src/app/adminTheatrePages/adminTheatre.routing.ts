@@ -1,39 +1,35 @@
 import { Routes } from '@angular/router';
 import { TheatreDashboardComponent } from './dashboard/dashboard.component';
-import { ActorsComponent } from './actors/actors.component';
-import { DirectorsComponent } from './directors/directors.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RepertoireComponent } from './repertoire/repertoire.component';
-import { ScenesComponent } from './scenes/scenes.component';
-import { ShowsComponent } from './shows/shows.component';
-
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { EditTheatreComponent } from './theatre/edit-theatre/edit-theatre.component';
+import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
 export const AdminTheatreRoutes: Routes = [
   {
     path: 'dashboard',
     component: TheatreDashboardComponent
   },
   {
-    path: 'actors',
-    component: ActorsComponent
-  },
-  {
-    path: 'directors',
-    component: DirectorsComponent
-  },
-  {
     path: 'profile',
-    component: ProfileComponent
+    component: EditProfileComponent
+  },
+  {
+    path: 'purchases',
+    component: AllPurchasesComponent
   },
   {
     path: 'repertoire',
-    component: RepertoireComponent
+    loadChildren: () => import('./repertoire/repertoires.module').then(m => m.RepertoiresModule)
   },
   {
     path: 'scenes',
-    component: ScenesComponent
+    loadChildren: () => import('./scenes/scenes.module').then(m => m.ScenesModule)
   },
   {
     path: 'shows',
-    component: ShowsComponent
+    loadChildren: () => import('./shows/shows.module').then(m => m.ShowsModule)
+  },
+  {
+    path: 'theatre',
+    component: EditTheatreComponent
   }
 ]

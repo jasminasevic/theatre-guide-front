@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit{
 
         const decodedToken = jwtDecode<JwtPayload>(token);
         let userData = decodedToken[USER_KEY]
-
         let storageData = JSON.parse(userData);
         let keys = Object.keys(storageData);
         let values = keys.map(k => storageData[k]);
@@ -62,13 +61,16 @@ export class LoginComponent implements OnInit{
         let user = values[1];
         let firstName = values[2];
         let roleId = values[3];
+        let theatreId = values[4];
        
         if(roleId == 2 || roleId == 3){
+          console.log(roleId);
           this.tokenStorage.saveUser(decodedToken[USER_KEY]);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.tokenStorage.saveUserId(userId);
           this.tokenStorage.saveFirstName(firstName);
+          this.tokenStorage.saveTheatreId(theatreId);
 
           if(roleId == 2)
           this.router.navigate(['/admin-theatre/dashboard']);

@@ -10,10 +10,19 @@ import { AdminMenuItems } from './admin-menu-items';
 })
 export class AdminHeaderComponent implements OnInit {
 
-   constructor(public adminMenuItems: AdminMenuItems,
-    public token: TokenStorageService){}
+  isLoggedIn: boolean = true;
+  firstName: string;
+  theatreId: number;
+  
+   constructor(public token: TokenStorageService){}
 
-   ngOnInit(){}
+   ngOnInit(){
+    this.isLoggedIn == !!this.token.getUser();
+    if(this.isLoggedIn){
+      this.firstName = this.token.getFirstName();
+      this.theatreId = this.token.getTheatreId();
+    }
+   }
 
    ngAfterViewInit()
    {

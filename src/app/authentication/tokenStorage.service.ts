@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY } from '../app.constants';
+import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY, THEATRE_KEY, THEATRE_ID_KEY } from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,14 @@ constructor(private router: Router) { }
 
   public getFirstName() : any {
     return localStorage.getItem(FIRST_NAME);
+  }
+
+  public saveTheatreId(theatreId) : void {
+    localStorage.setItem(THEATRE_ID_KEY, theatreId);
+  } 
+
+  public getTheatreId(): any {
+    return JSON.parse(localStorage.getItem(THEATRE_ID_KEY));
   }
 
 }

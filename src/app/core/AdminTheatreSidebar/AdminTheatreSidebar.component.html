@@ -2,6 +2,20 @@
   <div class="dashboard-nav">
     <div class="dashboard-nav-inner">
       <ul data-submenu-title="Main">
+        <li class="active"><a [routerLink]="['/admin-theatre/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a>
+        </li>
+        <li><a [routerLink]="['/admin-theatre/repertoire/all-repertoires']"><i class=" fa fa-calendar"></i>
+            Repertoire</a></li>
+        <li><a [routerLink]="['/admin-theatre/purchases']"><i class=" fa fa-shopping-cart"></i> Purchases</a></li>
+      </ul>
+      <ul data-submenu-title="Theatre">
+        <li><a [routerLink]="['/admin-theatre/theatre']"><i class="fa fa-star"></i> Theatre</a></li>
+        <li><a [routerLink]="['/admin-theatre/scenes/all-scenes']"><i class="fa fa-star"></i> Scenes</a></li>
+      </ul>
+      <ul data-submenu-title="Listings">
+        <li><a [routerLink]="['/admin-theatre/shows/all-shows']"><i class="fa fa-star"></i> Shows</a></li>
+      </ul>
+      <ul data-submenu-title="Main">
         <li class="active"><a [routerLink]="['/admin/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a></li>
         <li><a [routerLink]="['/admin/messages']"><i class="fa fa-inbox"></i> Sceneees <span
               class="nav-tag messages">2</span></a></li>
@@ -14,8 +28,8 @@
         <li><a [routerLink]="['/admin/add-list']"><i class="fa fa-calendar-plus-o"></i> Add Listing</a></li>
       </ul>
       <ul data-submenu-title="Account">
-        <li><a [routerLink]="['/admin/profile']"><i class="fa fa-user"></i> My Profile</a></li>
-        <li><a [routerLink]="['/home']"><i class="fa fa-sign-out"></i> Logout</a></li>
+        <li><a [routerLink]="['/admin-theatre/profile']"><i class="fa fa-user"></i> My Profile</a></li>
+        <li><a [routerLink]="['/home']" (click)="logOut()"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>
     </div>
   </div>

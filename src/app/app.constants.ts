@@ -10,6 +10,10 @@ export const USER_ID_KEY = 'Id';
 
 export const ROLE_KEY = 'Role';
 
+export const THEATRE_KEY = 'Theatre';
+
+export const THEATRE_ID_KEY = 'TheatreId';
+
 export const USER = 'Identity';
 
 export const FIRST_NAME = 'FirstName';
