@@ -26,12 +26,12 @@ export class AdminTheatreSidebarComponent implements OnInit {
 
   toggleMenu()
   {
-     if ( $('app-admin-panel').hasClass( "sidebar-in" ) ) {
-        $('app-admin-panel').removeClass("sidebar-in");
+     if ( $('theatre-admin-panel').hasClass( "sidebar-in" ) ) {
+        $('theatre-admin-panel').removeClass("sidebar-in");
      }
      else
      {
-        $('app-admin-panel').addClass("sidebar-in");
+        $('theatre-admin-panel').addClass("sidebar-in");
      }
      // this.sidebarIn = !this.sidebarIn;
   }

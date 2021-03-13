@@ -6,6 +6,7 @@ export class ShowBaseDetails {
   theatreName: String;
   theatreId: number;
   showImageDtos: IImage[];
+  categoryName: String;
 
   constructor(show){
     this.id = show.id;
@@ -13,5 +14,6 @@ export class ShowBaseDetails {
     this.theatreName = show.theatreName || '';
     this.theatreId = show.theatreId || '';
     this.showImageDtos = show.theatreImage || '';
+    this.categoryName = show.categoryName || '';
   }
 }

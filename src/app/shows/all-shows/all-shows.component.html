@@ -1,75 +1,77 @@
 <div class="main-wrapper">
   <!--Title Bar -->
   <title-bar title="Shows" page="Shows" subtitle="Explore New Shows"></title-bar>
-   <!-- Content -->
-   <div class="content">
-   <div class="container">
-       <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-3 col-md-4">
-              <sidebar-layout-one (searchItem)="onSearchItems($event)" 
-                (sortItems)="onSortItems($event)"
-                (resetItems)="onResetItems($event)"></sidebar-layout-one>
-          </div>
-          <!-- Sidebar / End -->
-           <div class="col-lg-9 col-md-8" *ngIf="shows.length > 0; else noResults">
-               <div class="row">
-                   <!-- Listing Item -->
-                   <div class="col-lg-6 col-md-12 grid-layout-list" *ngFor="let show of shows  | paginate: 
+  <!-- Content -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+          <sidebar-layout-one (searchItem)="onSearchItems($event)" (sortItems)="onSortItems($event)"
+            (resetItems)="onResetItems($event)"></sidebar-layout-one>
+        </div>
+        <!-- Sidebar / End -->
+        <div class="col-lg-9 col-md-8" *ngIf="shows.length > 0; else noResults">
+          <div class="row">
+            <!-- Listing Item -->
+            <div class="col-lg-6 col-md-12 grid-layout-list" *ngFor="let show of shows  | paginate: 
                    {
                       itemsPerPage: size,
                       currentPage: p,
                       totalItems: totalCount 
                    }; 
                    let i = index">
-                       <div  class="listing-item-container">
-                           <div class="listing-item mb-4">
-                            <a [routerLink]="['/shows/about-show', show.id]">  
-                              <img src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}" class="img-fluid" alt="{{show.showImageDtos[0].alt}}">
-                            </a>
-                               <div class="listing-item-content">
-                                   <h3>{{show.title}}</h3>
-                                   <span> <small><a [routerLink]="['/theatres/about-theatre', show.theatreId]">{{show.theatre}}</a></small></span>
-                                   <p class="mt-2">
-                                      <a [routerLink]="['/shows/about-show', show.id]">
-                                          <button class="btn btn-sm btn-primary" type="button">Find out more</button>
-                                      </a>
-                                   </p>
-                               </div>
-                               <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
-                           </div>   
-                       </div>
-                   </div>
-                   <!-- Listing Item / End -->
-               </div>
-               <!-- Pagination -->
-               <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <pagination-controls (pageChange)="handlePageChange($event)" 
-                    previousLabel="Prev" nextLabel="Next" responsive="true"
-                    directionLinks="true"></pagination-controls>
-                </div>
-               <!-- Pagination / End -->
-               <div class="col-lg-6 col-md-6 text-right">
-                  Items per Page:
-                  <select (change)="handlePageSizeChange($event)">
-                    <option *ngFor="let size of pageSizes" value="{{ size }}">
-                      {{ size }}
-                    </option>
-                  </select>
+              <div class="listing-item-container">
+                <div class="listing-item mb-4">
+                  <a [routerLink]="['/shows/about-show', show.id]">
+                    <img src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}" class="img-fluid"
+                      alt="{{show.showImageDtos[0].alt}}">
+                  </a>
+                  <div class="listing-item-content">
+                    <h3>{{show.title}}</h3>
+                    <span> <small><a
+                          [routerLink]="['/theatres/about-theatre', show.theatreId]">{{show.theatre}}</a></small></span>
+                    <p class="mt-2">
+                      <a [routerLink]="['/shows/about-show', show.id]">
+                        <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                      </a>
+                    </p>
+                  </div>
+                  <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
                 </div>
               </div>
-           </div>
-           <ng-template #noResults>
-            <div class="col-lg-9 col-md-8">
-              <div class="row">
-                  <div class="col-lg-6 col-md-12 grid-layout-list" >
-                    No results found.
-                  </div>
-                </div>
             </div>
-           </ng-template>
-       </div>
-   </div>
-</div>
+            <!-- Listing Item / End -->
+          </div>
+          <div class="row">
+            <!-- Pagination -->
+            <div class="col-lg-6 col-md-6">
+              <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Prev" nextLabel="Next"
+                responsive="true" directionLinks="true"></pagination-controls>
+            </div>
+            <!-- Pagination / End -->
+            <!-- Items per page -->
+            <div class="col-lg-6 col-md-6 text-right">
+              Items per Page:
+              <select (change)="handlePageSizeChange($event)">
+                <option *ngFor="let size of pageSizes" value="{{ size }}">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
+            <!-- Items per page / End -->
+          </div>
+        </div>
+        <ng-template #noResults>
+          <div class="col-lg-9 col-md-8">
+            <div class="row">
+              <div class="col-lg-6 col-md-12 grid-layout-list">
+                No results found.
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </div>

@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit{
         let theatreId = values[4];
        
         if(roleId == 2 || roleId == 3){
-          console.log(roleId);
           this.tokenStorage.saveUser(decodedToken[USER_KEY]);
           this.isLoginFailed = false;
           this.isLoggedIn = true;

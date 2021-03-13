@@ -8,6 +8,7 @@ import { TitleBarComponent } from '../globalFrontendComponents/TitleBar/TitleBar
 import { RouterModule } from '@angular/router';
 import { SocialMediaIconsComponent } from '../globalFrontendComponents/socialMediaIcons/socialMediaIcons.component';
 import { SidebarLayoutOneComponent } from '../listing/SidebarLayoutOne/SidebarLayoutOne.component';
+import { SidebarLayoutTwoComponent } from '../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
 import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
@@ -24,6 +25,7 @@ import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
     TitleBarComponent,
     SocialMediaIconsComponent,
     SidebarLayoutOneComponent,
+    SidebarLayoutTwoComponent,
     PaginationComponent,
     NewsletterComponent,
     TeamComponent
@@ -34,6 +36,7 @@ import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
     TitleBarComponent,
     SocialMediaIconsComponent,
     SidebarLayoutOneComponent,
+    SidebarLayoutTwoComponent,
     PaginationComponent,
     NewsletterComponent,
     TeamComponent

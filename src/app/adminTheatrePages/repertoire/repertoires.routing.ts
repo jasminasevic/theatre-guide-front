@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AllRepertoiresComponent } from './all-repertoires/all-repertoires.component';
 import { AddRepertoireComponent } from './add-repertoire/add-repertoire.component';
 import { EditRepertoireComponent } from './edit-repertoire/edit-repertoire.component';

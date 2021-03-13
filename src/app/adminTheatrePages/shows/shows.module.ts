@@ -5,11 +5,15 @@ import { ShowRoutes } from './shows.routing';
 import { AddShowComponent } from './add-show/add-show.component';
 import { AllShowsComponent } from './all-shows/all-shows.component';
 import { EditShowComponent } from './edit-show/edit-show.component';
+import { SharedModule } from '../../shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(ShowRoutes)
+    RouterModule.forChild(ShowRoutes),
+    SharedModule,
+    NgxPaginationModule
   ],
   declarations: [
     AddShowComponent,
