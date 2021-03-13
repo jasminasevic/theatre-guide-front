@@ -4,6 +4,8 @@ import { TokenStorageService } from 'src/app/authentication/tokenStorage.service
 import { ShowBaseDetails } from 'src/app/shows/ShowBaseDetails.model';
 import { ShowsService } from '../shows.service';
 import { SidebarLayoutTwoComponent } from '../../../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
+import { ActivatedRoute } from '@angular/router';
+import { IShowData } from 'src/app/shared/interfaces/IShowData';
 @Component({
   selector: 'app-all-shows',
   templateUrl: './all-shows.component.html',
@@ -31,15 +33,15 @@ export class AllShowsComponent implements OnInit {
 
 
   constructor(private token: TokenStorageService,
-    private showService: ShowsService) { }
+    private showService: ShowsService,
+    private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.showService.getShowsFilteredByTheatre().subscribe(
-      data => {
-        this.shows = data.data,
-        console.log(this.shows);
-      });
+    this.activatedRoute.data.subscribe((data: {showList: IShowData}) => {
+      this.shows = data.showList.data,
+      this.totalCount = data.showList.totalCount
+    });
   }
 
   handlePageSizeChange(event) {
