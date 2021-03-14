@@ -9,6 +9,8 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 import { AdminPanelLayoutComponent } from './layouts/adminPanel/AdminPanelLayout.component';
@@ -91,6 +93,7 @@ export function tokenGetter(){
       SharedModule,
       ReactiveFormsModule,
       AuthModule,
+      NgxDropzoneModule,
       JwtModule.forRoot({
         config : {
           tokenGetter: tokenGetter,

@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { API_URL } from '../app.constants';
 import { DirectorAllDetails } from './DirectorAllDetails.model';
 import { IDirectorData } from '../shared/interfaces/IDirectorData';
+import { DirectorBaseDetails } from './DirectorBaseDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,14 @@ export class DirectorsService {
       return this.httpClient.get<IDirectorData>(this.API_URL + '/directors', {params})
         .pipe(
           map((directorData: IDirectorData) => directorData),
+          catchError(err => throwError(err))
+        )
+    }
+
+    getDirectorsList() : Observable<DirectorBaseDetails[]>{
+      return this.httpClient.get<DirectorBaseDetails[]>(this.API_URL + '/directors')
+        .pipe(
+          map((directorsList: DirectorBaseDetails[]) => directorsList),
           catchError(err => throwError(err))
         )
     }

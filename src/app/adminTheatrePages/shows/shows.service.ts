@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
+import { Show } from './show.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,14 @@ constructor(private httpClient: HttpClient,
 
   public API_URL = API_URL;
   theatreId = this.token.getTheatreId();
+
+addShow(show) : Observable<Show>{
+  return this.httpClient.post<Show>(this.API_URL + '/shows', show)
+    .pipe(
+      map((show: Show) => show),
+      catchError(err => throwError(err))
+    )
+}
 
 getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
 : Observable<IShowData>{
@@ -33,5 +42,4 @@ getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQue
       catchError(err => throwError(err))
     )}
 }
-
 
