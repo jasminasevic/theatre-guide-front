@@ -28,6 +28,8 @@ export class AddShowComponent implements OnInit {
   showForm: FormGroup;
   isSubmitted = false;
   files: File[] = [];
+  filesLength: number;
+  filesValidation: boolean = false;
 
   theatreId: any;
   
@@ -42,6 +44,10 @@ export class AddShowComponent implements OnInit {
     private router: Router) {
       this.theatreId = this.token.getTheatreId();
     }
+
+  titlePattern = "^[A-Z0-9][a-zA-Z0-9 ]+$";
+  namePattern = "^[A-Z][a-zA-Z ]+$";
+  durationPattern ="^[1-9][0-9]+$"
 
   ngOnInit() {
     this.categoryService.getCategoryList()
@@ -64,15 +70,16 @@ export class AddShowComponent implements OnInit {
         this.actorListing = actors
       });
 
+
     this.showForm = this.fb.group({
       id: 0,
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.pattern(this.titlePattern)]],
       sceneId: ['', Validators.required],
       categoryId: ['', Validators.required],
       showDescription: ['', Validators.required],
-      duration: ['', Validators.required],
+      duration: ['', [Validators.required, Validators.pattern(this.durationPattern)]],
       premiereDate: ['', Validators.required],
-      writer: ['', Validators.required],
+      writer: ['', [Validators.required, Validators.pattern(this.namePattern)]],
       directorId: ['', Validators.required],
       actorShowDtos: this.fb.array([this.initialActorRows()])
     });
@@ -123,6 +130,11 @@ export class AddShowComponent implements OnInit {
 
   onSubmit(){
     this.isSubmitted = true;
+    this.filesLength = this.files.length;
+    if(this.filesLength > 0 && this.filesLength < 3){
+      this.filesValidation = true;
+      return;
+    }
 
     if (!this.showForm.valid) {
       return false;

@@ -41,5 +41,18 @@ getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQue
       map((shows: IShowData) => shows),
       catchError(err => throwError(err))
     )}
+
+  editShow(id: number, show) : Observable<void>{
+    return this.httpClient.put<void>(this.API_URL + '/shows/' + id, show)
+      .pipe(
+        map(show => show),
+        catchError(err => throwError(err))
+      )
+  }
+
+  deleteShow(id: number) {
+    return this.httpClient.delete<any>(this.API_URL + '/shows/' + id)
+      .subscribe();
+  }
 }
 

@@ -18,6 +18,9 @@
                     <span *ngIf="title.errors.required">
                       Title is required.
                     </span>
+                    <span *ngIf="title.errors.pattern">
+                      Wrong format.
+                    </span>
                   </div>
                   <input type="text" placeholder="Title" formControlName="title"
                     class="form-control form-control-alternative">
@@ -60,6 +63,9 @@
                     class="text-warning small">
                     <span *ngIf="duration.errors.required">
                       Duration is required.
+                    </span>
+                    <span *ngIf="duration.errors.pattern">
+                      Wrong format.
                     </span>
                   </div>
                   <input type="text" placeholder="Duration (in minutes)" formControlName="duration"
@@ -116,6 +122,9 @@
                     class="text-warning small">
                     <span *ngIf="writer.errors.required">
                       Writer is required.
+                    </span>
+                    <span *ngIf="writer.errors.pattern">
+                      Wrong format.
                     </span>
                   </div>
                   <input type="text" formControlName="writer" placeholder="Writer"
@@ -176,6 +185,9 @@
               <div class="col-md-12">
                 <div *ngIf="isSubmitted && files.length == 0" class="text-warning small">
                   Images are required.
+                </div>
+                <div *ngIf="filesValidation" class="text-warning small">
+                  Please upload at least 3 images.
                 </div>
                 <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                   <ngx-dropzone-label>
