@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY, THEATRE_KEY, THEATRE_ID_KEY } from '../app.constants';
 
 @Injectable({
@@ -7,7 +8,8 @@ import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY, THEATRE_K
 })
 export class TokenStorageService {
 
-constructor(private router: Router) { }
+constructor(private router: Router,
+  private jwtHelper: JwtHelperService) { }
 
   logOut() : void{
     localStorage.clear();
@@ -21,6 +23,16 @@ constructor(private router: Router) { }
 
   public getToken() : string {
     return localStorage.getItem(TOKEN_KEY);
+  }
+
+  isTokenExpired: boolean = true;
+  token: any;
+
+  isExpired(){
+    this.token = this.getToken();
+    if(!this.jwtHelper.isTokenExpired(this.token)){
+      return this.isTokenExpired = false;
+    } 
   }
 
   public saveUser(user) : void {

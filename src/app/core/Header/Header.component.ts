@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
    ngOnInit(){
       this.isLoggedIn = !!this.token.getUser();
-      if(this.isLoggedIn){
+      if(this.isLoggedIn && !this.token.isExpired){
          this.isLoginFailed = false;
          this.firstName = this.token.getFirstName();
          this.theatreId = this.token.getTheatreId();
