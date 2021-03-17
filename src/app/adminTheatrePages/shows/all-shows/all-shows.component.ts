@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TrackByFunction, ViewChild } from '@angular/core';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { ShowBaseDetails } from 'src/app/shows/ShowBaseDetails.model';
 import { ShowsService } from '../shows.service';
 import { SidebarLayoutTwoComponent } from '../../../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
 @Component({
   selector: 'app-all-shows',
@@ -31,11 +31,13 @@ export class AllShowsComponent implements OnInit {
   searchShow: string;
   sortShows: string;
 
+  showId: number;
+  // isDeleted: boolean = false;
 
   constructor(private token: TokenStorageService,
     private showService: ShowsService,
-    private activatedRoute: ActivatedRoute) { }
-
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {showList: IShowData}) => {
@@ -100,4 +102,22 @@ export class AllShowsComponent implements OnInit {
     }
   }
 
+  setId(showId){
+    this.showId = showId
+  }
+
+  deleteShow(){
+    this.showService.deleteShow(this.showId)
+    .subscribe(() =>{
+      this.ngOnInit()
+    }, err => {
+        console.log("nesto ne valja", err);
+      });
+  }
+
+  popoverTitle = 'Be careful!';
+  popoverMessage = 'Are you sure you want to delete this show?';
+  confirmClicked = false;
+  cancelClicked = false;
 }
+

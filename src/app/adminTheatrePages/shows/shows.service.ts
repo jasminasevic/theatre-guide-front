@@ -50,9 +50,8 @@ getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQue
       )
   }
 
-  deleteShow(id: number) {
-    return this.httpClient.delete<any>(this.API_URL + '/shows/' + id)
-      .subscribe();
+  deleteShow(id: number) : Observable<void> {
+    return this.httpClient.delete<any>(this.API_URL + '/shows/' + id);
   }
 }
 

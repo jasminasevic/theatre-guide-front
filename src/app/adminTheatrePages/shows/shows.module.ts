@@ -10,6 +10,7 @@ import { EditShowComponent } from './edit-show/edit-show.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   imports: [
@@ -19,7 +20,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxPaginationModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
   ],
   declarations: [
     AddShowComponent,

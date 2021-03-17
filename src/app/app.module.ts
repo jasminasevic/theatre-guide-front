@@ -8,6 +8,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
@@ -100,7 +101,10 @@ export function tokenGetter(){
           allowedDomains: [ 'localhost:44355' ],
           disallowedRoutes: []
         }
-      })
+      }),
+      ConfirmationPopoverModule.forRoot({
+        confirmButtonType: 'danger'
+      }),
   ],
   providers: [
       MenuItems, 
