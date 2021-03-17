@@ -21,6 +21,8 @@ canActivate(){
   if((roleId == 3 || roleId == 2) && !!this.token.isTokenExpired){
     return true;
   }
+
+  this.token.logOut();
   this.router.navigate(['/login']);
   return false;
   }

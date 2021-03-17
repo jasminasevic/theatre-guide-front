@@ -26,6 +26,18 @@ addShow(show) : Observable<Show>{
     )
 }
 
+getShow(showId) : Observable<Show>{
+
+  let params = new HttpParams();
+  params = params.append('type', 'allInfo');
+
+  return this.httpClient.get<Show>(this.API_URL + '/shows/' + showId, { params })
+    .pipe(
+      map((show: Show) => show),
+      catchError(err => throwError(err))
+    )
+}
+
 getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
 : Observable<IShowData>{
   let params = new HttpParams();
@@ -42,12 +54,12 @@ getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQue
       catchError(err => throwError(err))
     )}
 
-  editShow(id: number, show) : Observable<void>{
-    return this.httpClient.put<void>(this.API_URL + '/shows/' + id, show)
-      .pipe(
-        map(show => show),
-        catchError(err => throwError(err))
-      )
+editShow(id: number, show) : Observable<void>{
+  return this.httpClient.put<void>(this.API_URL + '/shows/' + id, show)
+    .pipe(
+      map(show => show),
+      catchError(err => throwError(err))
+    )
   }
 
   deleteShow(id: number) : Observable<void> {

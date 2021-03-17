@@ -1219,13 +1219,16 @@
  .add-listing-section {
    .row.with-forms {
      input {
-       margin-bottom: 22px;
+       margin-bottom: 5px;
        &[type="text"], &[type="password"], &[type="email"], &[type="number"] {
-         margin-bottom: 22px;
+         margin-bottom: 5px;
        }
      }
      textarea, input, select, .chosen-container {
-       margin-bottom: 22px;
+       margin-bottom: 5px;
+     }
+     label {
+       margin-top: 8px;
      }
    }
    textarea {

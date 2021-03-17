@@ -6,13 +6,16 @@
         <div class="add-listing-section mb-4">
           <!-- Headline -->
           <div class="add-listing-headline">
-            <h3> Show Information </h3>
+            <h3> Add New Show</h3>
           </div>
           <!-- Title -->
           <form [formGroup]="showForm" (ngSubmit)="onSubmit()">
             <div class="row with-forms">
               <div class="col-md-12">
                 <div class="form-group">
+                  <label for="title">Title: </label>
+                  <input type="text" placeholder="Title" formControlName="title"
+                    class="form-control form-control-alternative">
                   <div *ngIf="title.invalid && (title.dirty || title.touched || isSubmitted)"
                     class="text-warning small">
                     <span *ngIf="title.errors.required">
@@ -22,17 +25,13 @@
                       Wrong format.
                     </span>
                   </div>
-                  <input type="text" placeholder="Title" formControlName="title"
-                    class="form-control form-control-alternative">
                 </div>
               </div>
             </div>
             <!-- Scene -->
             <div class="row with-forms">
               <div class="col-md-6">
-                <div *ngIf="isSubmitted && sceneId.errors?.required" class="text-warning small">
-                  Scene is required.
-                </div>
+                <label for="sceneId">Scene: </label>
                 <select class="custom-select form-control-alternative mb-3" formControlName="sceneId"
                   aria-placeholder="Scene">
                   <option value="" disabled>Select scene</option>
@@ -40,12 +39,13 @@
                     {{ scene.sceneName }}
                   </option>
                 </select>
+                <div *ngIf="isSubmitted && sceneId.errors?.required" class="text-warning small">
+                  Scene is required.
+                </div>
               </div>
               <!-- Category -->
               <div class="col-md-6">
-                <div *ngIf="isSubmitted && categoryId.errors?.required" class="text-warning small">
-                  Category is required.
-                </div>
+                <label for="categoryId">Category: </label>
                 <select formControlName="categoryId" class="custom-select form-control-alternative mb-3"
                   aria-placeholder="Category">
                   <option value="" disabled>Select category</option>
@@ -53,12 +53,18 @@
                     {{ category.categoryName }}
                   </option>
                 </select>
+                <div *ngIf="isSubmitted && categoryId.errors?.required" class="text-warning small">
+                  Category is required.
+                </div>
               </div>
             </div>
             <!-- Duration -->
             <div class="row with-forms">
               <div class="col-md-6">
                 <div class="form-group">
+                  <label for="duration">Duration (in minutes): </label>
+                  <input type="text" placeholder="Duration (in minutes)" formControlName="duration"
+                    class="form-control form-control-alternative">
                   <div *ngIf="duration.invalid && (duration.dirty || duration.touched || isSubmitted)"
                     class="text-warning small">
                     <span *ngIf="duration.errors.required">
@@ -68,21 +74,20 @@
                       Wrong format.
                     </span>
                   </div>
-                  <input type="text" placeholder="Duration (in minutes)" formControlName="duration"
-                    class="form-control form-control-alternative">
                 </div>
               </div>
               <!-- Premiere Date -->
               <div class="col-md-6">
                 <div class="form-group">
+                  <label for="premiereDate">Premiere Date: </label>
+                  <input type="date" placeholder="Premiere Date" formControlName="premiereDate"
+                    class="form-control form-control-alternative">
                   <div *ngIf="premiereDate.invalid && (premiereDate.dirty || premiereDate.touched || isSubmitted)"
                     class="text-warning small">
                     <span *ngIf="premiereDate.errors.required">
                       Premiere date is required.
                     </span>
                   </div>
-                  <input type="date" placeholder="Premiere Date" formControlName="premiereDate"
-                    class="form-control form-control-alternative">
                 </div>
               </div>
             </div>
@@ -90,6 +95,9 @@
             <div class="row with-forms">
               <div class="col-md-12">
                 <div class="form-group">
+                  <label for="showDescription">Description: </label>
+                  <textarea class="form-control form-control-alternative" formControlName="showDescription"
+                    placeholder="Description" id="exampleFormControlTextarea1" rows="3"></textarea>
                   <div
                     *ngIf="showDescription.invalid && (showDescription.dirty || showDescription.touched || isSubmitted)"
                     class="text-warning small">
@@ -97,27 +105,29 @@
                       Show description is required.
                     </span>
                   </div>
-                  <textarea class="form-control form-control-alternative" formControlName="showDescription"
-                    placeholder="Description" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
               </div>
             </div>
             <!-- Director -->
             <div class="row with-forms">
               <div class="col-md-6">
-                <div *ngIf="isSubmitted && directorId.errors?.required" class="text-warning small">
-                  Director is required.
-                </div>
+                <label for="directorId">Director: </label>
                 <select class="custom-select form-control-alternative mb-3" formControlName="directorId"
                   aria-placeholder="Director">
                   <option value="" disabled>Select Director</option>
                   <option *ngFor="let director of directorListing" [value]="director.id">
                     {{ director.firstName}} {{ director.lastName }}</option>
                 </select>
+                <div *ngIf="isSubmitted && directorId.errors?.required" class="text-warning small">
+                  Director is required.
+                </div>
               </div>
               <!-- Writer -->
               <div class="col-md-6">
                 <div class="form-group">
+                  <label for="writer">Writer: </label>
+                  <input type="text" formControlName="writer" placeholder="Writer"
+                    class="form-control form-control-alternative">
                   <div *ngIf="writer.invalid && (writer.dirty || writer.touched || isSubmitted)"
                     class="text-warning small">
                     <span *ngIf="writer.errors.required">
@@ -127,8 +137,6 @@
                       Wrong format.
                     </span>
                   </div>
-                  <input type="text" formControlName="writer" placeholder="Writer"
-                    class="form-control form-control-alternative">
                 </div>
               </div>
             </div>
@@ -136,10 +144,7 @@
             <div formArrayName="actorShowDtos" *ngFor="let actorRow of actorControls; let i= index">
               <div class="row with-forms" [formGroupName]='i'>
                 <div class="col-md-6">
-                  <div *ngIf="isSubmitted && actorControls[i].get('actorId').hasError('required')"
-                    class="text-warning small">
-                    Actor is required.
-                  </div>
+                  <label for="actorId">Actor: </label>
                   <select class="custom-select form-control-alternative mb-3" formControlName="actorId"
                     aria-placeholder="Actor">
                     <option value="" disabled>Select Actor</option>
@@ -147,48 +152,51 @@
                       {{ actor.firstName }} {{ actor.lastName }}
                     </option>
                   </select>
+                  <div *ngIf="isSubmitted && actorControls[i].get('actorId').hasError('required')"
+                    class="text-warning small">
+                    Actor is required.
+                  </div>
                 </div>
                 <!-- Role name -->
                 <div class="col-md-6">
                   <div class="form-group">
+                    <label for="actorRoleName">Role Name: </label>
+                    <input type="text" formControlName="actorRoleName" placeholder="Role Name"
+                      class="form-control form-control-alternative">
                     <div *ngIf="isSubmitted && actorControls[i].get('actorRoleName').hasError('required')"
                       class="text-warning small">
                       Role name is required.
                     </div>
-                    <input type="text" formControlName="actorRoleName" placeholder="Role Name"
-                      class="form-control form-control-alternative">
                   </div>
                 </div>
                 <!-- Role Description -->
                 <div class="col-md-6">
                   <div class="form-group">
+                    <label for="actorRoleDescription">Role Description: </label>
                     <input type="text" formControlName="actorRoleDescription" placeholder="Role Description"
                       class="form-control form-control-alternative">
                   </div>
                 </div>
                 <div class="col-md-3">
+                  <label for="">Add More Actors: </label>
                   <button type="button" (click)="addNewActor()" [disabled]="actorShowDtos.invalid"
                     class="btn btn-sm btn-primary text-white">
                     Add another actor <i class="fa fa-plus-circle" aria-hidden="true"></i>
                   </button>
-                </div>
-                <div class="col-md-3">
                   <button *ngIf="actorControls.length > 1" (click)="deleteActorRow(i)"
                     class="btn btn-sm btn-danger text-white">
                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                   </button>
+                </div>
+                <div class="col-md-3">
+
                 </div>
               </div>
             </div>
             <!-- Images -->
             <div class="row with-forms">
               <div class="col-md-12">
-                <div *ngIf="isSubmitted && files.length == 0" class="text-warning small">
-                  Images are required.
-                </div>
-                <div *ngIf="filesValidation" class="text-warning small">
-                  Please upload at least 3 images.
-                </div>
+                <label for="f">Show Images: </label>
                 <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                   <ngx-dropzone-label>
                     <div>
@@ -199,6 +207,12 @@
                     [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                   </ngx-dropzone-image-preview>
+                </div>
+                <div *ngIf="isSubmitted && files.length == 0" class="text-warning small">
+                  Images are required.
+                </div>
+                <div *ngIf="filesValidation" class="text-warning small">
+                  Please upload at least 3 images.
                 </div>
               </div>
             </div>

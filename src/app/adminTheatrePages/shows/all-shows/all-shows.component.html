@@ -45,7 +45,7 @@
               <button class="btn btn-sm btn-danger text-white" mwlConfirmationPopover [popoverTitle]="popoverTitle"
                 [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
                 [placement]="placement" (confirm)="deleteShow(); confirmClicked = true;" (cancel)="cancelClicked = true"
-                confirmButtonType="danger" cancelButtonType="outline-secondary"
+                confirmButtonType="danger btn-sm" cancelButtonType="outline-secondary btn-sm"
                 (click)="setId(show.id); confirmClicked = false; cancelClicked = false" [appendToBody]="true">
                 Delete
               </button>

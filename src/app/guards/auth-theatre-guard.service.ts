@@ -19,6 +19,7 @@ constructor(private router: Router,
     if((roleId == 2) && !!this.token.isTokenExpired){
       return true;
     }
+    this.token.logOut();
     this.router.navigate(['login']);
     return false;
   }

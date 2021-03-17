@@ -119,5 +119,7 @@ export class AllShowsComponent implements OnInit {
   popoverMessage = 'Are you sure you want to delete this show?';
   confirmClicked = false;
   cancelClicked = false;
+  confirmText = 'Yes';
+  cancelText = 'No';
 }
 
