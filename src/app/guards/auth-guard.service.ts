@@ -18,7 +18,7 @@ canActivate(){
   let decodedToken = jwtDecode<JwtPayload>(token);
   let roleId = decodedToken['RoleId']; 
 
-  if((roleId == 3 || roleId ==2) && !this.token.isTokenExpired){
+  if((roleId == 3 || roleId == 2) && !!this.token.isTokenExpired){
     return true;
   }
   this.router.navigate(['/login']);
