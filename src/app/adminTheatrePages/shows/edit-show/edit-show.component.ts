@@ -59,7 +59,7 @@ export class EditShowComponent implements OnInit {
         this.categoryListing = categories
       });
 
-    this.sceneService.getSceneListFiltereByTheatre()
+    this.sceneService.getSceneListFilteredByTheatre()
       .subscribe(scenes => {
         this.sceneListing = scenes
       });

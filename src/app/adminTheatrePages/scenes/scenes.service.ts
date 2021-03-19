@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
+import { ISceneData } from 'src/app/shared/interfaces/ISceneData';
 import { SceneBaseInfo } from './sceneBaseInfo.model';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class ScenesService {
   public API_URL = API_URL;
   theatreId = this.token.getTheatreId();
   
-  getSceneListFiltereByTheatre() : Observable<SceneBaseInfo[]>{
+  getSceneListFilteredByTheatre() : Observable<SceneBaseInfo[]>{
     let params = new HttpParams();
     params = params.append('TheatreId', this.theatreId);
 
@@ -27,4 +28,25 @@ export class ScenesService {
         catchError(err => throwError(err))
       );
   }
+
+  getScenesFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
+: Observable<ISceneData>{
+  let params = new HttpParams();
+  params = params.append('perPage', String(perPage));
+  params = params.append('pageNumber', String(pageNumber));
+  params = params.append('searchQuery', String(searchQuery));
+  params = params.append('sortOrder', String(sortOrder));
+  params = params.append('Type', 'scenesFilteredByTheatre');
+  params = params.append('TheatreId', this.theatreId);
+
+  return this.httpClient.get<ISceneData>(this.API_URL + '/scenes', { params })
+    .pipe(
+      map((scenes: ISceneData) => scenes),
+      catchError(err => throwError(err))
+    )}
+
+  deleteScene(id: number) : Observable<void> {
+    return this.httpClient.delete<any>(this.API_URL + '/scenes/' + id);
+  }
+
 }
