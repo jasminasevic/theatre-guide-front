@@ -109,7 +109,8 @@ export class AllShowsComponent implements OnInit {
   deleteShow(){
     this.showService.deleteShow(this.showId)
     .subscribe(() =>{
-      this.ngOnInit()
+      this.ngOnInit(),
+      this.confirmClicked = true;
     }, err => {
         console.log("nesto ne valja", err);
       });

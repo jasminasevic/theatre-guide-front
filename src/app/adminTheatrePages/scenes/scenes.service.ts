@@ -24,8 +24,7 @@ export class ScenesService {
 
     return this.httpClient.get<SceneBaseInfo[]>(this.API_URL + '/scenes', { params })
       .pipe(
-        map((scenes: SceneBaseInfo[]) => scenes),
-        catchError(err => throwError(err))
+        map((scenes: SceneBaseInfo[]) => scenes)
       );
   }
 
@@ -41,8 +40,7 @@ export class ScenesService {
 
   return this.httpClient.get<ISceneData>(this.API_URL + '/scenes', { params })
     .pipe(
-      map((scenes: ISceneData) => scenes),
-      catchError(err => throwError(err))
+      map((scenes: ISceneData) => scenes)
     )}
 
   deleteScene(id: number) : Observable<void> {

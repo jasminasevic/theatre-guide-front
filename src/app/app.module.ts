@@ -45,6 +45,7 @@ import { PartnershipsComponent } from './partnerships/partnerships.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from './authentication/authentication.module';
 import { AuthInterceptor } from './helpers/authInterceptor';
+import { HttpErrorInterceptor } from './helpers/http-error.interceptor';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -116,6 +117,11 @@ export function tokenGetter(){
       {
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptor,
+        multi: true
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpErrorInterceptor,
         multi: true
       }
   ],

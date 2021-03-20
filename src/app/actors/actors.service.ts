@@ -19,8 +19,7 @@ export class ActorsService {
   getActor(actorId) : Observable<ActorAllDetails>{
     return this.httpClient.get<ActorAllDetails>(this.API_URL + '/actors/' + actorId)
       .pipe(
-        map((actor: ActorAllDetails) => actor),
-        catchError(err => throwError(err))
+        map((actor: ActorAllDetails) => actor)
       )
   }
 
@@ -35,16 +34,14 @@ export class ActorsService {
 
       return this.httpClient.get<IActorData>(this.API_URL + '/actors', {params})
         .pipe(
-          map((actorData: IActorData) => actorData),
-          catchError(err => throwError(err))
+          map((actorData: IActorData) => actorData)
         )
   }
 
   getActorsList() : Observable<ActorBaseDetails[]>{
     return this.httpClient.get<ActorBaseDetails[]>(this.API_URL + '/actors')
       .pipe(
-        map((actors: ActorBaseDetails[]) => actors),
-        catchError(err => throwError(err))
+        map((actors: ActorBaseDetails[]) => actors)
       )
   }
 }

@@ -6,53 +6,57 @@
         (resetItems)="onResetItems($event)"></sidebar-layout-two>
     </div>
     <!-- Sidebar / End -->
+
     <!-- Listings -->
     <div class="col-lg-12 col-md-12" *ngIf="shows.length > 0; else noResults">
-      <div class="dashboard-list-box mb-4">
+      <div class="card">
         <div class="db-tile">
           <h4>Shows <a [routerLink]="['/admin-theatre/shows/add-show']"
               class="btn btn-sm btn-primary text-white float-sm-right">
               <i class="sl sl-icon-plus"></i>+ Add new item</a>
           </h4>
         </div>
-        <ul class="row border-grid">
-          <li class="col-sm-6 col-md-6 col-lg-6" *ngFor="let show of shows | paginate: 
-          {
-             itemsPerPage: size,
-             currentPage: p,
-             totalItems: totalCount 
-          }; 
-          let i = index">
-            <div class="list-box-listing">
-              <div class="list-box-listing-img">
-                <a [routerLink]="['/shows/about-show', show.id]">
-                  <img src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}" class="img-fluid"
-                    alt="{{show.showImageDtos[0].alt}}">
-                </a>
-              </div>
-              <div class="list-box-listing-content">
-                <div class="inner">
-                  <h3>
-                    <a [routerLink]="['/shows/about-show', show.id]">{{show.title}}</a>
-                  </h3>
-                  <span>{{show.categoryName}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="btn-g pt-4">
-              <a [routerLink]="['/admin-theatre/shows/edit-show', show.id]" class="btn btn-sm btn-primary text-white"><i
-                  class="sl sl-icon-note"></i> Edit</a>
-              <button class="btn btn-sm btn-danger text-white" mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
-                [placement]="placement" (confirm)="deleteShow(); confirmClicked = true;" (cancel)="cancelClicked = true"
-                confirmButtonType="danger btn-sm" cancelButtonType="outline-secondary btn-sm"
-                (click)="setId(show.id); confirmClicked = false; cancelClicked = false" [appendToBody]="true">
-                Delete
-              </button>
-            </div>
-          </li>
-        </ul>
+        <div class="dashboard-list-box table-responsive invoices with-icons">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Show</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="col-sm-6 col-md-6 col-lg-6" *ngFor="let show of shows | paginate: 
+        {
+           itemsPerPage: size,
+           currentPage: p,
+           totalItems: totalCount 
+        }; 
+        let i = index">
+                <td>{{ i + 1}}</td>
+                <td> <img class="img-fluid rounded shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"
+                    alt="{{show.showImageDtos[0].alt}}" width="80" height="80"></td>
+                <td><a [routerLink]="['/shows/about-show', show.id]">{{ show.title }}</a></td>
+                <td>{{ show.categoryName }}</td>
+                <td>
+                  <a [routerLink]="['/admin-theatre/shows/edit-show', show.id]"
+                    class="btn btn-sm btn-primary text-white"><i class="sl sl-icon-note"></i> Edit</a>
+                  <button class="btn btn-sm btn-danger text-white" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
+                    [placement]="placement" (confirm)="deleteShow();" (cancel)="cancelClicked = true"
+                    confirmButtonType="danger btn-sm" cancelButtonType="outline-secondary btn-sm"
+                    (click)="setId(show.id); confirmClicked = false; cancelClicked = false" [appendToBody]="true">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+      <br>
       <div class="col-lg-12 col-md-12">
         <div class="row">
           <!-- Pagination -->
@@ -73,8 +77,8 @@
           <!-- Items per page / End -->
         </div>
       </div>
+      <!-- Listings / End -->
     </div>
-    <!-- Listings / End -->
   </div>
   <ng-template #noResults>
     <div class="col-lg-9 col-md-8">

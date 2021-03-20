@@ -8,6 +8,7 @@ import { AddSceneComponent } from './add-scene/add-scene.component';
 import { EditSceneComponent } from './edit-scene/edit-scene.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule.forChild(ScenesRoutes),
     SharedModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmationPopoverModule
   ],
   declarations: [
     AllScenesComponent,

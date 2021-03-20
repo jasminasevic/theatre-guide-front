@@ -9,7 +9,6 @@ import { RepertoiresModule } from './repertoire/repertoires.module';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

@@ -108,8 +108,10 @@ export class AllScenesComponent implements OnInit {
   }
 
   deleteScene(){
+    console.log('kliknuto');
     this.sceneService.deleteScene(this.sceneId)
     .subscribe(() =>{
+      this.confirmClicked = true,
       this.ngOnInit()
     }, err => {
         console.log("nesto ne valja", err);
@@ -117,7 +119,7 @@ export class AllScenesComponent implements OnInit {
   }
 
   popoverTitle = 'Be careful!';
-  popoverMessage = 'Are you sure you want to delete this show?';
+  popoverMessage = 'Are you sure you want to delete this scene?';
   confirmClicked = false;
   cancelClicked = false;
   confirmText = 'Yes';
