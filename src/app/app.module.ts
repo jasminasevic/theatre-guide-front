@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -46,6 +46,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from './authentication/authentication.module';
 import { AuthInterceptor } from './helpers/authInterceptor';
 import { HttpErrorInterceptor } from './helpers/http-error.interceptor';
+import { AlertifyService } from './shared/services/alertify.service';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -60,7 +61,7 @@ export function tokenGetter(){
   
 
 @NgModule({
-  declarations: [				
+  declarations: [						
       AppComponent,
       AdminPanelLayoutComponent,
       AdminTheatreLayoutPanelComponent,
@@ -105,10 +106,11 @@ export function tokenGetter(){
       }),
       ConfirmationPopoverModule.forRoot({
         confirmButtonType: 'danger'
-      }),
+      })
   ],
   providers: [
-      MenuItems, 
+      MenuItems,
+      AlertifyService, 
       AdminMenuItems,
       {
         provide: DROPZONE_CONFIG,
@@ -116,12 +118,13 @@ export function tokenGetter(){
       },
       {
         provide: HTTP_INTERCEPTORS,
-        useClass: AuthInterceptor,
-        multi: true
+        useClass: HttpErrorInterceptor,
+        multi: true,
+        deps: [ AlertifyService ]
       },
       {
         provide: HTTP_INTERCEPTORS,
-        useClass: HttpErrorInterceptor,
+        useClass: AuthInterceptor,
         multi: true
       }
   ],

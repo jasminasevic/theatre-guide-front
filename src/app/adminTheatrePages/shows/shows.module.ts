@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +24,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     NgxDropzoneModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
-    }),
+    })
   ],
   declarations: [
     AddShowComponent,

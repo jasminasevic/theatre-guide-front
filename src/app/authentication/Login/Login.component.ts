@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../tokenStorage.service';
 import { USER_KEY } from 'src/app/app.constants';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit{
    constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private router: Router,
-    private tokenStorage: TokenStorageService){}
+    private tokenStorage: TokenStorageService,
+    private alertify: AlertifyService){}
 
 
    ngOnInit(){
@@ -65,7 +67,6 @@ export class LoginComponent implements OnInit{
        
         if(roleId == 2 || roleId == 3){
           this.tokenStorage.saveUser(decodedToken[USER_KEY]);
-          this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.tokenStorage.saveUserId(userId);
           this.tokenStorage.saveFirstName(firstName);
@@ -78,12 +79,11 @@ export class LoginComponent implements OnInit{
           this.router.navigate(['/admin/dashboard']);
         }
         else{
-          this.isLoginFailed = true;
+          this.alertify.error('Wrong email or password');
           return;
         }
       }, err => {
-        this.isLoginFailed = true;
-        console.log("skkk", err);
+        this.alertify.error('Wrong email or password');
       })
    }
 

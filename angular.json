@@ -32,7 +32,8 @@
               "src/assets/css/icon-font.css",
               "src/assets/css/bootstrap-datepicker.min.css",
               "node_modules/slick-carousel/slick/slick.scss",
-              "node_modules/slick-carousel/slick/slick-theme.scss"
+              "node_modules/slick-carousel/slick/slick-theme.scss",
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/scripts/jquery-2.2.0.min.js",

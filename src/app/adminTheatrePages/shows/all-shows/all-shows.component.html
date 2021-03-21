@@ -47,7 +47,7 @@
                     [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
                     [placement]="placement" (confirm)="deleteShow();" (cancel)="cancelClicked = true"
                     confirmButtonType="danger btn-sm" cancelButtonType="outline-secondary btn-sm"
-                    (click)="setId(show.id); confirmClicked = false; cancelClicked = false" [appendToBody]="true">
+                    (click)="setId(show.id); cancelClicked = false" [appendToBody]="true">
                     Delete
                   </button>
                 </td>
@@ -89,8 +89,4 @@
       </div>
     </div>
   </ng-template>
-
-  <div class="alert alert-info" [hidden]="!confirmClicked">
-    Succesfully deleted!
-  </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthenticationService } from '../authentication.service';
 import { UserData } from '../userData.model';
 
@@ -13,11 +14,11 @@ export class SignUpComponent implements OnInit{
 
   registerUserForm: FormGroup;
   isSuccessful: boolean = false;
-  isSignUpFailed: boolean = false;
   errorMessage: string = '';
   
    constructor(private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService){}
+    private authenticationService: AuthenticationService,
+    private alertify: AlertifyService){}
 
    namePattern = "^[A-Z][a-zA-Z ]+$";
    ngOnInit(){
@@ -49,12 +50,10 @@ export class SignUpComponent implements OnInit{
 
     this.authenticationService.registerUser(userData)
       .subscribe(data => { 
-        this.isSuccessful = true,
-        this.isSignUpFailed = false
+        this.isSuccessful = true
       },
       err => {
-        this.errorMessage = err.error.errorMessage,
-        this.isSignUpFailed = true;
+        this.alertify.error("Wrong email or password");
       });
   }
 }

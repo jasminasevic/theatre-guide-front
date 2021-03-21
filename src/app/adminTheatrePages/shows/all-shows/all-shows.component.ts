@@ -6,6 +6,7 @@ import { ShowsService } from '../shows.service';
 import { SidebarLayoutTwoComponent } from '../../../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 @Component({
   selector: 'app-all-shows',
   templateUrl: './all-shows.component.html',
@@ -37,7 +38,8 @@ export class AllShowsComponent implements OnInit {
   constructor(private token: TokenStorageService,
     private showService: ShowsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {showList: IShowData}) => {
@@ -110,9 +112,10 @@ export class AllShowsComponent implements OnInit {
     this.showService.deleteShow(this.showId)
     .subscribe(() =>{
       this.ngOnInit(),
+      this.alertify.success("Successfully deleted");
       this.confirmClicked = true;
     }, err => {
-        console.log("nesto ne valja", err);
+        this.alertify.error('Something went wrong');
       });
   }
 

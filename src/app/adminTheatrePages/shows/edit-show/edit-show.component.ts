@@ -13,6 +13,7 @@ import { TokenStorageService } from 'src/app/authentication/tokenStorage.service
 import { ShowsService } from '../shows.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Show } from '../show.model';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'app-edit-show',
@@ -45,7 +46,8 @@ export class EditShowComponent implements OnInit {
     private showService: ShowsService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private convertDate: ConvertDateService) {
+    private convertDate: ConvertDateService,
+    private alertify: AlertifyService) {
       this.theatreId = this.token.getTheatreId();
     }
 
@@ -210,8 +212,12 @@ export class EditShowComponent implements OnInit {
     // new Response(formData).text().then(console.log);
 
     this.showService.editShow(this.showId, formData)
-      .subscribe(() =>{
+      .subscribe(() => {
+        this.alertify.success('Succesfully edited');
         this.router.navigate(['/admin-theatre/shows/all-shows']);
+      },
+      () => {
+        this.alertify.error('Something went wrong');
       })
     }
 

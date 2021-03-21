@@ -12,6 +12,7 @@ import { SidebarLayoutTwoComponent } from '../listing/SidebarLayoutTwo/SidebarLa
 import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
+
 @NgModule({
   imports: [
     CommonModule,

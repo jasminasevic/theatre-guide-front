@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -12,11 +13,11 @@ export class BusinessSignUpComponent implements OnInit {
 
   registerBusinessUserForm: FormGroup;
   isSuccessful: boolean = false;
-  isSignUpFailed: boolean = false;
   errorMessage: string = '';
   
   constructor(private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService,
+    private alertify: AlertifyService) { }
 
   namePattern = "^[A-Z][a-zA-Z ]+$";
 
@@ -48,16 +49,12 @@ export class BusinessSignUpComponent implements OnInit {
       'password' : this.registerBusinessUserForm.get('password').value
     }
     
-    console.log(businessUserData);
-
     this.authenticationService.registerBusinessUser(businessUserData)
       .subscribe(data => {
-        this.isSuccessful = true,
-        this.isSignUpFailed = false
+        this.isSuccessful = true
       }, 
       err => {
-        this.errorMessage = err.error.errorMessage,
-        this.isSignUpFailed = true
+        this.alertify.error("An error occurred.")
       });
   }
 

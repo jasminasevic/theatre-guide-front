@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^10.0.7",
     "@angular/router": "^10.0.7",
     "@auth0/angular-jwt": "^5.0.2",
+    "alertifyjs": "^1.13.1",
     "angular-confirmation-popover": "^6.0.0",
     "chosen-js": "^1.8.7",
     "core-js": "^3.6.5",
