@@ -216,8 +216,8 @@ export class EditShowComponent implements OnInit {
         this.alertify.success('Succesfully edited');
         this.router.navigate(['/admin-theatre/shows/all-shows']);
       },
-      () => {
-        this.alertify.error('Something went wrong');
+      err => {
+        this.alertify.error(err);
       })
     }
 

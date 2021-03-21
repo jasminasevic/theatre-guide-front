@@ -54,7 +54,7 @@ export class BusinessSignUpComponent implements OnInit {
         this.isSuccessful = true
       }, 
       err => {
-        this.alertify.error("An error occurred.")
+        this.alertify.error("Something went wrong.")
       });
   }
 

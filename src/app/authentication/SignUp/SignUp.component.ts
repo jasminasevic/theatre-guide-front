@@ -53,7 +53,7 @@ export class SignUpComponent implements OnInit{
         this.isSuccessful = true
       },
       err => {
-        this.alertify.error("Wrong email or password");
+        this.alertify.error("Something went wrong.");
       });
   }
 }

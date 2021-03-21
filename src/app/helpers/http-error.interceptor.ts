@@ -24,19 +24,19 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         else {
                         switch (error.status) {
                             case 401: {
-                                errorMessage = `Unauthorized Client: ${error.status}`;
+                                errorMessage = `Unauthorized Client`;
                                 break;
                             }
                             case 403: {
-                                errorMessage = `Access Denied: ${error.status}`;
+                                errorMessage = `Access Denied`;
                                 break;
                             }
                             case 404: {
-                                errorMessage = `Not Found: ${error.status}`;
+                                errorMessage = `Not Found`;
                                 break;
                             }
                             case 422: {
-                                errorMessage = `Unprocessable Entity: ${error.headers.get('error')}`;
+                                errorMessage = error.error.message;
                                 break;
                             }
                             case 500: {
@@ -48,9 +48,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                                 break;
                             }
                         }
-                        console.log(errorMessage);
-                        // let aloneMsg = JSON.parse(errorMessage).error[0];
-                        // console.log('zastooo', aloneMsg);  
                         return throwError(errorMessage);     
                     }
                 
