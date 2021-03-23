@@ -12,6 +12,7 @@ import { ConvertDateService } from '../../../shared/services/convert-date.servic
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { ShowsService } from '../shows.service';
 import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'app-add-show',
@@ -41,7 +42,8 @@ export class AddShowComponent implements OnInit {
     private convertDateService: ConvertDateService,
     private token: TokenStorageService,
     private showService: ShowsService,
-    private router: Router) {
+    private router: Router,
+    private alertify: AlertifyService) {
       this.theatreId = this.token.getTheatreId();
     }
 
@@ -172,7 +174,10 @@ export class AddShowComponent implements OnInit {
 
     this.showService.addShow(formData)
       .subscribe(() =>{
+        this.alertify.success("Sucessfully added."),
         this.router.navigate(['/admin-theatre/shows/all-shows']);
-      })
+      }, err => {
+        this.alertify.error(err)
+      });
     }
   }

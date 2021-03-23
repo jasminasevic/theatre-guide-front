@@ -6,6 +6,7 @@ import { SidebarLayoutTwoComponent } from 'src/app/listing/SidebarLayoutTwo/Side
 import { SceneBaseInfo } from '../sceneBaseInfo.model';
 import { ScenesService } from '../scenes.service';
 import { ISceneData } from '../../../shared/interfaces/ISceneData';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'app-all-scenes',
@@ -37,12 +38,12 @@ export class AllScenesComponent implements OnInit {
   constructor(private token: TokenStorageService,
     private sceneService: ScenesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {sceneList: ISceneData}) => {
       this.scenes = data.sceneList.data,
-      console.log(data),
       this.totalCount = data.sceneList.totalCount
     });
   }
@@ -108,13 +109,11 @@ export class AllScenesComponent implements OnInit {
   }
 
   deleteScene(){
-    console.log('kliknuto');
     this.sceneService.deleteScene(this.sceneId)
-    .subscribe(() =>{
-      this.confirmClicked = true,
-      this.ngOnInit()
+    .subscribe(() => {
+      this.alertify.success("Successfully deleted")
     }, err => {
-        console.log("nesto ne valja", err);
+      this.alertify.error('Something went wrong');
       });
   }
 

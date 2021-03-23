@@ -6,6 +6,7 @@ import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { ISceneData } from 'src/app/shared/interfaces/ISceneData';
 import { SceneBaseInfo } from './sceneBaseInfo.model';
+import { Scene } from './scene.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,20 @@ export class ScenesService {
     .pipe(
       map((scenes: ISceneData) => scenes)
     )}
+
+  addScene(scene) : Observable<Scene>{
+    return this.httpClient.post<Scene>(this.API_URL + '/scenes/', scene)
+      .pipe(
+        map((scene: Scene) => scene)
+      )
+  }
+
+  editScene(id: number, scene: Scene) : Observable<Scene>{
+    return this.httpClient.put<Scene>(this.API_URL + '/scenes/' + id, scene)
+      .pipe(
+        map((scene: Scene) => scene)
+      )
+  }
 
   deleteScene(id: number) : Observable<void> {
     return this.httpClient.delete<any>(this.API_URL + '/scenes/' + id);

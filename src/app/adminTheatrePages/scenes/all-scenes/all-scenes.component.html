@@ -32,7 +32,7 @@
              totalItems: totalCount 
           }; 
           let i = index">
-                <td>{{ i + 1}}</td>
+                <td>{{ size*(p-1)+i+1 }}</td>
                 <td>{{ scene.sceneName }}</td>
                 <td>
                   <a [routerLink]="['/admin-theatre/scenes/edit-scene', scene.id]"
@@ -82,8 +82,4 @@
         </div>
       </div>
     </ng-template>
-
-    <div class="alert alert-info" [hidden]="!confirmClicked">
-      Succesfully deleted!
-    </div>
   </div>

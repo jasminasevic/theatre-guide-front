@@ -35,7 +35,7 @@
            totalItems: totalCount 
         }; 
         let i = index">
-                <td>{{ i + 1}}</td>
+                <td>{{ size*(p-1)+i+1 }}</td>
                 <td> <img class="img-fluid rounded shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"
                     alt="{{show.showImageDtos[0].alt}}" width="80" height="80"></td>
                 <td><a [routerLink]="['/shows/about-show', show.id]">{{ show.title }}</a></td>
