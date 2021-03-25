@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { ISceneData } from 'src/app/shared/interfaces/ISceneData';
@@ -18,6 +18,7 @@ export class ScenesService {
 
   public API_URL = API_URL;
   theatreId = this.token.getTheatreId();
+
   
   getSceneListFilteredByTheatre() : Observable<SceneBaseInfo[]>{
     let params = new HttpParams();
@@ -61,5 +62,4 @@ export class ScenesService {
   deleteScene(id: number) : Observable<void> {
     return this.httpClient.delete<any>(this.API_URL + '/scenes/' + id);
   }
-
 }

@@ -108,10 +108,12 @@ export class AllShowsComponent implements OnInit {
     this.showId = showId
   }
 
-  deleteShow(){
+  deleteShow(index){
     this.showService.deleteShow(this.showId)
     .subscribe(() =>{
-      this.ngOnInit(),
+      if(index !== -1){
+        this.shows.splice(index, 1);
+      }
       this.alertify.success("Successfully deleted")
     }, err => {
         this.alertify.error('Something went wrong')

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
@@ -108,9 +108,12 @@ export class AllScenesComponent implements OnInit {
     this.sceneId = sceneId
   }
 
-  deleteScene(){
+  deleteScene(index){
     this.sceneService.deleteScene(this.sceneId)
     .subscribe(() => {
+      if (index !== -1) {
+        this.scenes.splice(index, 1);
+      } 
       this.alertify.success("Successfully deleted")
     }, err => {
       this.alertify.error('Something went wrong');
