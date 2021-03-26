@@ -10,6 +10,6 @@ export class Scene {
     this.id = scene.id;
     this.sceneName = scene.sceneName || '';
     this.theatreId = scene.theatreId || '';
-    this.addSectorDtos = scene.sectors || '';
+    this.addSectorDtos = scene.addSectorDtos || '';
   }
 }

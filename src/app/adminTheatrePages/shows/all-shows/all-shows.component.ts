@@ -108,12 +108,11 @@ export class AllShowsComponent implements OnInit {
     this.showId = showId
   }
 
-  deleteShow(index){
+  deleteShow(){
     this.showService.deleteShow(this.showId)
     .subscribe(() =>{
-      if(index !== -1){
-        this.shows.splice(index, 1);
-      }
+      let index = this.shows.findIndex(x => x.id === this.showId); //find index in array
+      this.shows.splice(index, 1);//remove element from array
       this.alertify.success("Successfully deleted")
     }, err => {
         this.alertify.error('Something went wrong')

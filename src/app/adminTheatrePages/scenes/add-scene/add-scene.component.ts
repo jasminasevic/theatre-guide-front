@@ -90,7 +90,7 @@ export class AddSceneComponent implements OnInit {
         this.router.navigate(['/admin-theatre/scenes/all-scenes'])
       },
       err => {
-        this.alertify.error('Something went wrong.')
+        this.alertify.error(err);
       });
   }
 }

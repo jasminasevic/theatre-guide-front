@@ -108,12 +108,11 @@ export class AllScenesComponent implements OnInit {
     this.sceneId = sceneId
   }
 
-  deleteScene(index){
+  deleteScene(){
     this.sceneService.deleteScene(this.sceneId)
     .subscribe(() => {
-      if (index !== -1) {
-        this.scenes.splice(index, 1);
-      } 
+      let index = this.scenes.findIndex(x => x.id === this.sceneId); //find index in array
+      this.scenes.splice(index, 1);//remove element from array
       this.alertify.success("Successfully deleted")
     }, err => {
       this.alertify.error('Something went wrong');

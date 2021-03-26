@@ -1,3 +1,113 @@
-<p>
-  edit-scene works!
-</p>
+<div class="dashboard-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="add-listing">
+        <!-- Section -->
+        <div class="add-listing-section mb-4">
+          <!-- Headline -->
+          <div class="add-listing-headline">
+            <h3> Edit Scene</h3>
+          </div>
+          <!-- Title -->
+          <form [formGroup]="sceneForm" (ngSubmit)="onSubmit()">
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="sceneName">Scene Name: </label>
+                  <input type="text" placeholder="Scene Name" formControlName="sceneName"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="sceneName.invalid && (sceneName.dirty || sceneName.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="sceneName.errors.required">
+                      Scene name is required.
+                    </span>
+                    <span *ngIf="sceneName.errors.pattern">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Sectors -->
+            <div formArrayName="addSectorDtos" *ngFor="let sectorRow of sectorControls; let i= index">
+              <div class="row with-forms" [formGroupName]='i'>
+                <div class="col-md-6">
+                  <label for="sectorName">Sector: </label>
+                  <input type="text" formControlName="sectorName" placeholder="Sector Name"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="sectorControls[i].get('sectorName').invalid && 
+                  (sectorControls[i].get('sectorName').dirty || 
+                  sectorControls[i].get('sectorName').touched || isSubmitted)" class="text-warning small">
+                    <span *ngIf="sectorControls[i].get('sectorName').errors.required">
+                      Sector name is required.
+                    </span>
+                    <span *ngIf="sectorControls[i].get('sectorName').errors.pattern">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+                <!-- Seat capacity -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="seatCapacity">Seat Capacity: </label>
+                    <input type="text" formControlName="seatCapacity" placeholder="Seat capacity"
+                      class="form-control form-control-alternative">
+                    <div *ngIf="sectorControls[i].get('seatCapacity').invalid && 
+                      (sectorControls[i].get('seatCapacity').dirty || 
+                      sectorControls[i].get('seatCapacity').touched || isSubmitted)" class="text-warning small">
+                      <span *ngIf="sectorControls[i].get('seatCapacity').errors.required">
+                        Seat capacity is required.
+                      </span>
+                      <span *ngIf="sectorControls[i].get('seatCapacity').errors.pattern">
+                        Wrong format.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Role Description -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="rowsTotalNumber">Number of Rows: </label>
+                    <input type="text" formControlName="rowsTotalNumber" placeholder="Number of rows"
+                      class="form-control form-control-alternative">
+                    <div *ngIf="sectorControls[i].get('rowsTotalNumber').invalid && 
+                      (sectorControls[i].get('rowsTotalNumber').dirty || 
+                      sectorControls[i].get('rowsTotalNumber').touched || isSubmitted)" class="text-warning small">
+                      <span *ngIf="sectorControls[i].get('rowsTotalNumber').errors.required">
+                        Number of rows is required.
+                      </span>
+                      <span *ngIf="sectorControls[i].get('rowsTotalNumber').errors.pattern">
+                        Wrong format.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Add More Sectors: </label><br>
+                  <button type="button" (click)="addNewSector()" [disabled]="addSectorDtos.invalid"
+                    class="btn btn-sm btn-primary text-white">
+                    Add another sector <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="sectorControls.length > 1" (click)="deleteSectorRow(i)"
+                    class="btn btn-sm btn-danger text-white">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" [routerLink]="['/admin-theatre/scenes/all-scenes']"
+                    class="btn button-outline">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Section / End -->
+      </div>
+    </div>
+  </div>
+</div>

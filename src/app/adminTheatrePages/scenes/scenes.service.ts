@@ -59,6 +59,13 @@ export class ScenesService {
       )
   }
 
+  getScene(id: number) : Observable<Scene>{
+    return this.httpClient.get<Scene>(this.API_URL + '/scenes/' + id)
+      .pipe(
+        map((scene: Scene) => scene)
+      )
+  }
+
   deleteScene(id: number) : Observable<void> {
     return this.httpClient.delete<any>(this.API_URL + '/scenes/' + id);
   }
