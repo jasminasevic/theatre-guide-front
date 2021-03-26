@@ -8,6 +8,9 @@ import { ScenesModule } from './scenes/scenes.module';
 import { RepertoiresModule } from './repertoire/repertoires.module';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
+import { EditTheatreComponent } from './theatre/edit-theatre/edit-theatre.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   imports: [
@@ -15,12 +18,15 @@ import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.c
     RouterModule.forChild(AdminTheatreRoutes),
     ShowsModule,
     ScenesModule,
-    RepertoiresModule
+    RepertoiresModule,
+    ReactiveFormsModule,
+    NgxDropzoneModule
   ],
   declarations: [
     TheatreDashboardComponent,
     EditProfileComponent,
-    AllPurchasesComponent
+    AllPurchasesComponent,
+    EditTheatreComponent
   ]
 })
 export class AdminTheatreModule { }

@@ -1,3 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+
+
+ngx-dropzone,
+.custom-dropzone {
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.custom-dropzone {
+    height: 200px;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: 2px dashed rgb(138, 114, 248);
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 5px solid rgb(138, 114, 248);
+}

@@ -1,3 +1,150 @@
-<p>
-  edit-theatre works!
-</p>
+<div class="dashboard-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="add-listing">
+        <!-- Section -->
+        <div class="add-listing-section mb-4">
+          <!-- Headline -->
+          <div class="add-listing-headline">
+            <h3> Theatre Profile</h3>
+          </div>
+          <!-- Theatre Name -->
+          <form [formGroup]="theatreForm" (ngSubmit)="onSubmit()">
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="name">Name: </label>
+                  <input type="text" placeholder="Name" disabled formControlName="name"
+                    class="form-control form-control-alternative">
+                  <span *ngIf="name.invalid && (name.dirty || name.touched || isSubmitted)" class="text-warning small">
+                    <span *ngIf="name.errors.required">
+                      Name is required.
+                    </span>
+                    <span *ngIf="name.errors.pattern">
+                      Wrong format.
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="row with-forms">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email: </label>
+                  <input type="text" formControlName="email" placeholder="Email"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="email.invalid && (email.dirty || email.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="email.errors.required">
+                      Email is required.
+                    </span>
+                    <span *ngIf="email.errors.email">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Telephone -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="telephone">Telephone: </label>
+                  <input type="text" formControlName="telephone" placeholder="Telephone"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="telephone.errors.required">
+                      Telephone is required.
+                    </span>
+                    <span *ngIf="telephone.errors.pattern">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Location -->
+            <div class="row with-forms">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="location">Address: </label>
+                  <input type="text" formControlName="location" placeholder="Address"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="location.invalid && (location.dirty || location.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="location.errors.required">
+                      Address is required.
+                    </span>
+                    <span *ngIf="location.errors.pattern">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Working Hours -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="workingHours">Working Hours: </label>
+                  <input type="text" formControlName="workingHours" placeholder="Working Hours"
+                    class="form-control form-control-alternative">
+                  <div *ngIf="workingHours.invalid && (workingHours.dirty || workingHours.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="workingHours.errors.required">
+                      Working hours are required.
+                    </span>
+                    <span *ngIf="workingHours.errors.pattern">
+                      Wrong format.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="description">Description: </label>
+                  <textarea class="form-control form-control-alternative" formControlName="description"
+                    placeholder="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <div *ngIf="description.invalid && (description.dirty || description.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="description.errors.required">
+                      Theatre description is required.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Images -->
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <label for="f">Theatre Images: </label>
+                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                  <ngx-dropzone-label>
+                    <div>
+                      <p>Upload theatre images</p>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                    [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-image-preview>
+                </div>
+              </div>
+            </div>
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" [routerLink]="['/admin-theatre/dashboard']"
+                    class="btn button-outline">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Section / End -->
+      </div>
+    </div>
+  </div>
+</div>
