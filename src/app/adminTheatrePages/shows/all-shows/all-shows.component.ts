@@ -1,12 +1,12 @@
-import { Component, OnInit, TrackByFunction, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IMG_BASE_URL } from 'src/app/app.constants';
-import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { ShowBaseDetails } from 'src/app/shows/ShowBaseDetails.model';
 import { ShowsService } from '../shows.service';
 import { SidebarLayoutTwoComponent } from '../../../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+
 @Component({
   selector: 'app-all-shows',
   templateUrl: './all-shows.component.html',
@@ -33,12 +33,9 @@ export class AllShowsComponent implements OnInit {
   sortShows: string;
 
   showId: number;
-  // isDeleted: boolean = false;
 
-  constructor(private token: TokenStorageService,
-    private showService: ShowsService,
+  constructor(private showService: ShowsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private alertify: AlertifyService) { }
 
   ngOnInit() {

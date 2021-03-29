@@ -5,7 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
-import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { Show } from './show.model';
 
 @Injectable({
@@ -14,8 +13,7 @@ import { Show } from './show.model';
 export class ShowsService {
 
 constructor(private httpClient: HttpClient,
-  private token: TokenStorageService,
-  private alertify: AlertifyService) { }
+  private token: TokenStorageService) { }
 
   public API_URL = API_URL;
   theatreId = this.token.getTheatreId();
@@ -60,8 +58,8 @@ editShow(id: number, show) : Observable<void>{
     )
   }
 
-  deleteShow(id: number) : Observable<void> {
-    return this.httpClient.delete<any>(this.API_URL + '/shows/' + id);
+deleteShow(id: number) : Observable<void> {
+  return this.httpClient.delete<any>(this.API_URL + '/shows/' + id);
   }
 }
 

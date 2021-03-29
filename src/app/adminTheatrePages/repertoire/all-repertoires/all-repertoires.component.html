@@ -1,3 +1,104 @@
-<p>
-  all-repertoires works!
-</p>
+<div class="dashboard-content">
+  <div class="row responsive-row">
+    <!-- Sidebar -->
+    <div class="col-lg-12 col-md-4">
+      <sidebar-layout-two (searchItem)="onSearchItems($event)" (sortItems)="onSortItems($event)"
+        (resetItems)="onResetItems($event)"></sidebar-layout-two>
+    </div>
+    <!-- Sidebar / End -->
+
+    <!-- Listings -->
+    <div class="col-lg-12 col-md-12" *ngIf="repertoires.length > 0; else noResults">
+      <div class="card">
+        <div class="db-tile">
+          <h4>Repertoires
+            <span class="checkboxes in-row float-right">
+              <input id="includePastShows" type="checkbox" name="check" (change)="showPastShows($event)">
+              <label for="includePastShows">Include past shows</label>
+              <a [routerLink]="['/admin-theatre/repertoires/add-repertoire']"
+                class="btn btn-sm btn-primary text-white float-sm-right">
+                <i class="sl sl-icon-plus"></i>+ Add new item</a>
+            </span>
+          </h4>
+        </div>
+        <div class="dashboard-list-box table-responsive invoices with-icons">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Scene</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="col-sm-6 col-md-6 col-lg-6" *ngFor="let repertoire of repertoires | paginate: 
+        {
+           itemsPerPage: size,
+           currentPage: p,
+           totalItems: totalCount 
+        }; 
+        let i = index">
+                <td>{{ size*(p-1)+i+1 }}</td>
+                <td><a [routerLink]="['/repertoires/about-play', repertoire.id]">
+                    {{ repertoire.showName }} </a>
+                  <span *ngIf="repertoire.isPremiere"
+                    class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
+                </td>
+                <td>{{ repertoire.sceneName }}</td>
+                <td>{{ repertoire.showDate | date:'dd MMM yyyy' }}</td>
+                <td>{{ repertoire.showDate | date:'HH:mm' }}</td>
+                <td>
+                  <a [routerLink]="['/admin-theatre/repertoires/edit-repertoire', repertoire.id]"
+                    class="btn btn-sm btn-primary text-white" *ngIf="isAfterToday(repertoire.showDate)"><i
+                      class="sl sl-icon-note"></i> Edit</a>
+                  <button class="btn btn-sm btn-danger text-white" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
+                    [placement]="placement" (confirm)="deleteRepertoire();" (cancel)="cancelClicked = true"
+                    confirmButtonType="danger btn-sm" cancelButtonType="outline-secondary btn-sm"
+                    (click)="setId(repertoire.id); cancelClicked = false" [appendToBody]="true"
+                    *ngIf="isAfterToday(repertoire.showDate)">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br>
+      <div class="col-lg-12 col-md-12">
+        <div class="row">
+          <!-- Pagination -->
+          <div class="col-lg-6 col-md-6">
+            <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Prev" nextLabel="Next"
+              responsive="true" directionLinks="true"></pagination-controls>
+          </div>
+          <!-- Pagination / End -->
+          <!-- Items per page -->
+          <div class="col-lg-6 col-md-6 text-right">
+            Items per Page:
+            <select (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" value="{{ size }}">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+          <!-- Items per page / End -->
+        </div>
+      </div>
+      <!-- Listings / End -->
+    </div>
+  </div>
+  <ng-template #noResults>
+    <div class="col-lg-9 col-md-8">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 grid-layout-list">
+          No results found.
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

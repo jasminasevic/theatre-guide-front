@@ -31,6 +31,7 @@ export class TheatresService {
     params = params.append('pageNumber', String(pageNumber));
     params = params.append('searchQuery', String(searchQuery));
     params = params.append('sortOrder', String(sortOrder));
+    params = params.append('Type', "visible");
 
     return this.httpClient.get<ITheatreData>(this.API_URL + '/theatres', { params })
       .pipe(

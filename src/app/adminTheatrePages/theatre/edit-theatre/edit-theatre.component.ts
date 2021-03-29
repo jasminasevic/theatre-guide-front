@@ -56,7 +56,7 @@ export class EditTheatreComponent implements OnInit {
   createTheatreForm() : FormGroup {
     return this.fb.group({
       id: 0,
-      name: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+      name: [{value: '', disabled: true}, [Validators.required, Validators.pattern(this.namePattern)]],
       description: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
