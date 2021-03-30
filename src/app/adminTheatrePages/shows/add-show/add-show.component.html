@@ -32,7 +32,7 @@
             <div class="row with-forms">
               <div class="col-md-6">
                 <label for="sceneId">Scene: </label>
-                <select class="custom-select form-control-alternative mb-3" formControlName="sceneId"
+                <select class="custom-select form-control-alternative mb-1" formControlName="sceneId"
                   aria-placeholder="Scene">
                   <option value="" disabled>Select scene</option>
                   <option *ngFor="let scene of sceneListing" [value]="scene.id">
@@ -46,7 +46,7 @@
               <!-- Category -->
               <div class="col-md-6">
                 <label for="categoryId">Category: </label>
-                <select formControlName="categoryId" class="custom-select form-control-alternative mb-3"
+                <select formControlName="categoryId" class="custom-select form-control-alternative mb-1"
                   aria-placeholder="Category">
                   <option value="" disabled>Select category</option>
                   <option *ngFor="let category of categoryListing" [value]="category.id">
@@ -112,7 +112,7 @@
             <div class="row with-forms">
               <div class="col-md-6">
                 <label for="directorId">Director: </label>
-                <select class="custom-select form-control-alternative mb-3" formControlName="directorId"
+                <select class="custom-select form-control-alternative mb-1" formControlName="directorId"
                   aria-placeholder="Director">
                   <option value="" disabled>Select Director</option>
                   <option *ngFor="let director of directorListing" [value]="director.id">
@@ -145,7 +145,7 @@
               <div class="row with-forms" [formGroupName]='i'>
                 <div class="col-md-6">
                   <label for="actorId">Actor: </label>
-                  <select class="custom-select form-control-alternative mb-3" formControlName="actorId"
+                  <select class="custom-select form-control-alternative mb-1" formControlName="actorId"
                     aria-placeholder="Actor">
                     <option value="" disabled>Select Actor</option>
                     <option *ngFor="let actor of actorListing" [value]="actor.id">

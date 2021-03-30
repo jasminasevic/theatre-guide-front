@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { IRepertoireData } from 'src/app/shared/interfaces/IRepertoireData';
+import { AddRepertoire } from './addRepertoire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ constructor(private httpClient: HttpClient,
 public API_URL = API_URL;
 public theatreId = this.token.getTheatreId();
 
-getUpcomingRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
+getUpcomingRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
+  searchQuery: string = "", sortOrder: string = "") 
 : Observable<IRepertoireData>{
   let params = new HttpParams();
   params = params.append('perPage', String(perPage));
@@ -34,7 +36,8 @@ getUpcomingRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number 
     )}
 
 
-getRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
+getRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
+  searchQuery: string = "", sortOrder: string = "") 
 : Observable<IRepertoireData>{
   let params = new HttpParams();
   params = params.append('perPage', String(perPage));
@@ -49,7 +52,12 @@ getRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, sea
       map((repertoire: IRepertoireData) => repertoire)
     )}
 
-
+addRepertoire(repertoire) : Observable<AddRepertoire>{
+  return this.httpClient.post<AddRepertoire>(this.API_URL + '/repertoires', repertoire)
+    .pipe(
+      map((repertoire: AddRepertoire) => repertoire)
+    )
+  }
 
 deleteRepertoire(id: number) : Observable<void> {
   return this.httpClient.delete<void>(this.API_URL + '/repertoires/' + id);

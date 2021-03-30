@@ -6,6 +6,8 @@ import { API_URL } from 'src/app/app.constants';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
 import { Show } from './show.model';
+import { ShowListForRepertoire } from './showListForRepertoire.model';
+import { ShowForRepertoire } from './showForRepertoire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,7 @@ addShow(show) : Observable<Show>{
     .pipe(
       map((show: Show) => show)
     )
-}
+  }
 
 getShow(showId) : Observable<Show>{
 
@@ -34,7 +36,7 @@ getShow(showId) : Observable<Show>{
     .pipe(
       map((show: Show) => show)
     )
-}
+  }
 
 getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
 : Observable<IShowData>{
@@ -49,7 +51,30 @@ getShowsFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, searchQue
   return this.httpClient.get<IShowData>(this.API_URL + '/shows', { params })
     .pipe(
       map((shows: IShowData) => shows)
-    )}
+    )
+  }
+
+getShowsForRepertoireFilteredByTheatre() : Observable<ShowListForRepertoire[]>{
+  let params = new HttpParams();
+  params = params.append('Type', 'showsForRepertoireFilteredByTheatre');
+  params = params.append('TheatreId', this.theatreId);
+
+  return this.httpClient.get<ShowListForRepertoire[]>(this.API_URL + '/shows', { params })
+    .pipe(
+      map((repertoires: ShowListForRepertoire[]) => repertoires)
+    )
+  }
+
+getShowForRepertoire(showId: number) : Observable<ShowForRepertoire[]>{
+  let params = new HttpParams();
+  params = params.append('type', 'repertoire');
+
+  return this.httpClient.get<ShowForRepertoire[]>(this.API_URL + '/shows/' + showId, { params })
+    .pipe(
+      map((showForRepertoire: ShowForRepertoire[]) => showForRepertoire),
+      catchError(err => throwError(err))
+    )
+  }
 
 editShow(id: number, show) : Observable<void>{
   return this.httpClient.put<void>(this.API_URL + '/shows/' + id, show)
@@ -61,6 +86,7 @@ editShow(id: number, show) : Observable<void>{
 deleteShow(id: number) : Observable<void> {
   return this.httpClient.delete<any>(this.API_URL + '/shows/' + id);
   }
+
 }
 
 

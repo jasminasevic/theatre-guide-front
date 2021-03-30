@@ -18,7 +18,7 @@ export class PopularShowsVerticalService {
   getPopularShowsFilteredById(showId) : Observable<PopularShows[]>{
     
     let params = new HttpParams;
-    params = params.append('Type', 'popularShows');
+    params = params.append('Type', 'popularShowsFilteredById');
     params = params.append('ShowId', showId);
 
     return this.httpClient.get<PopularShows[]>(this.API_URL + '/shows', { params })
@@ -31,7 +31,7 @@ export class PopularShowsVerticalService {
   getPopularShowsFilteredByActor(actorId) : Observable<ActorPopularShows[]>{
     
     let params = new HttpParams;
-    params = params.append('Type', 'popularShows');
+    params = params.append('Type', 'popularShowsFilteredByActor');
     params = params.append('ActorId', actorId);
 
     return this.httpClient.get<ActorPopularShows[]>(this.API_URL + '/shows', { params })
@@ -44,7 +44,7 @@ export class PopularShowsVerticalService {
   getPopularShowsFilteredByDirector(directorId) : Observable<PopularShows[]>{
     
     let params = new HttpParams;
-    params = params.append('Type', 'popularShows');
+    params = params.append('Type', 'popularShowsFilteredByDirector');
     params = params.append('DirectorId', directorId);
 
     return this.httpClient.get<PopularShows[]>(this.API_URL + '/shows', { params })
@@ -57,7 +57,7 @@ export class PopularShowsVerticalService {
   getPopularShowsFilteredByTheatre(theatreId) : Observable<PopularShows[]>{
     
     let params = new HttpParams;
-    params = params.append('Type', 'popularShows');
+    params = params.append('Type', 'popularShowsFilteredByTheatre');
     params = params.append('TheatreId', theatreId);
 
     return this.httpClient.get<PopularShows[]>(this.API_URL + '/shows', { params })

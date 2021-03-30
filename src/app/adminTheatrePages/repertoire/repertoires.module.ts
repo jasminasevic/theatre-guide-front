@@ -8,6 +8,7 @@ import { EditRepertoireComponent } from './edit-repertoire/edit-repertoire.compo
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     RouterModule.forChild(RepertoiresRoutes),
     SharedModule,
     NgxPaginationModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AllRepertoiresComponent,
