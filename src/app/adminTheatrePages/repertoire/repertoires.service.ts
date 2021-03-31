@@ -18,26 +18,8 @@ constructor(private httpClient: HttpClient,
 public API_URL = API_URL;
 public theatreId = this.token.getTheatreId();
 
-getUpcomingRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
-  searchQuery: string = "", sortOrder: string = "") 
-: Observable<IRepertoireData>{
-  let params = new HttpParams();
-  params = params.append('perPage', String(perPage));
-  params = params.append('pageNumber', String(pageNumber));
-  params = params.append('searchQuery', String(searchQuery));
-  params = params.append('sortOrder', String(sortOrder));
-  params = params.append('Type', 'repertoiresFilteredByTheatre');
-  params = params.append('TheatreId', this.theatreId);
-  params = params.append('PastShows', 'no');
-
-  return this.httpClient.get<IRepertoireData>(this.API_URL + '/repertoires', { params })
-    .pipe(
-      map((repertoire: IRepertoireData) => repertoire)
-    )}
-
-
 getRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
-  searchQuery: string = "", sortOrder: string = "") 
+  searchQuery: string = "", sortOrder: string = "", pastShows: boolean = false) 
 : Observable<IRepertoireData>{
   let params = new HttpParams();
   params = params.append('perPage', String(perPage));
@@ -46,6 +28,7 @@ getRepertoiresFilteredByTheatre(perPage: number = 4, pageNumber: number = 1,
   params = params.append('sortOrder', String(sortOrder));
   params = params.append('Type', 'repertoiresFilteredByTheatre');
   params = params.append('TheatreId', this.theatreId);
+  params = params.append('PastShows', String(pastShows));
 
   return this.httpClient.get<IRepertoireData>(this.API_URL + '/repertoires', { params })
     .pipe(

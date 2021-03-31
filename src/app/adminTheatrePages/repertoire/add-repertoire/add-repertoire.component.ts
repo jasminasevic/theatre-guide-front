@@ -35,6 +35,8 @@ export class AddRepertoireComponent implements OnInit {
       value: 'Yes'
     }];
 
+  minDate: any;
+
   constructor(private showService: ShowsService,
     private currencyService: CurrenciesService,
     private fb: FormBuilder,
@@ -42,7 +44,9 @@ export class AddRepertoireComponent implements OnInit {
     private convertDateService: ConvertDateService,
     private repertoireService: RepertoiresService,
     private alertify: AlertifyService,
-    private router: Router) { }
+    private router: Router) {
+      this.minDate = this.convertDateService.getMinDate();
+    }
 
   ngOnInit() {
     this.showService.getShowsForRepertoireFilteredByTheatre()

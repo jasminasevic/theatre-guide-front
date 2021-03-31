@@ -11,7 +11,7 @@ export class AllRepertoiresResolverService implements Resolve<IRepertoireData> {
 
 constructor(private repertoireService: RepertoiresService) { }
   resolve(route: ActivatedRouteSnapshot): Observable<IRepertoireData> {
-    return this.repertoireService.getUpcomingRepertoiresFilteredByTheatre();
+    return this.repertoireService.getRepertoiresFilteredByTheatre();
   }
 
 }

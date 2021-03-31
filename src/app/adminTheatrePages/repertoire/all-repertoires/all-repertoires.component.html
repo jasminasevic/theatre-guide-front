@@ -51,7 +51,7 @@
                 <td>{{ repertoire.showDate | date:'dd MMM yyyy' }}</td>
                 <td>{{ repertoire.showDate | date:'HH:mm' }}</td>
                 <td>
-                  <a [routerLink]="['/admin-theatre/repertoires/edit-repertoire', repertoire.id]"
+                  <a [routerLink]="['/admin-theatre/repertoire/edit-repertoire', repertoire.id]"
                     class="btn btn-sm btn-primary text-white" *ngIf="isAfterToday(repertoire.showDate)"><i
                       class="sl sl-icon-note"></i> Edit</a>
                   <button class="btn btn-sm btn-danger text-white" mwlConfirmationPopover [popoverTitle]="popoverTitle"

@@ -29,7 +29,7 @@
                 <div class="form-group">
                   <label for="showDate">Show Date and Time: </label>
                   <input type="datetime-local" placeholder="Show Date" formControlName="showDate"
-                    class="form-control form-control-alternative">
+                    class="form-control form-control-alternative" min="{{ minDate }}">
                   <div *ngIf="showDate.invalid && (showDate.dirty || showDate.touched || isSubmitted)"
                     class="text-warning small">
                     <span *ngIf="showDate.errors.required">

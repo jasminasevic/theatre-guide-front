@@ -22,6 +22,27 @@ convertDate(fullDate){
   return convertedDate + ' ' + convertedTime;
   }
 
+getTwoDigitValue(number){
+  return number < 10 ? '0' + number : '' + number;
+}
+
+getMinDate(){
+  var date = new Date(),
+  mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+  day = ("0" + date.getDate()).slice(-2),
+
+  hrs = (date.getHours()),
+  mins = (date.getMinutes()),
+
+  twoDigitHours = this.getTwoDigitValue(hrs),
+  twoDigitMins = this.getTwoDigitValue(mins)
+
+  var convertedDate = [date.getFullYear(), mnth, day].join("-");
+  var convertedTime = [twoDigitHours, twoDigitMins].join(":");
+
+  return convertedDate + 'T' + convertedTime;
+}
+
 
 formatPremiereDate(date) {
   const d = new Date(date);

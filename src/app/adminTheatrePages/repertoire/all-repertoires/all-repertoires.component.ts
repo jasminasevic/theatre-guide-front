@@ -30,6 +30,7 @@ export class AllRepertoiresComponent implements OnInit {
   sortRepertoires: string;
 
   repertoireId: number;
+  isPastShowsVisible: boolean = false;
 
   constructor(private repertoireService: RepertoiresService,
     private activatedRoute: ActivatedRoute,
@@ -44,17 +45,21 @@ export class AllRepertoiresComponent implements OnInit {
 
   showPastShows(event){
     if(event.target.checked){
-      this.repertoireService.getRepertoiresFilteredByTheatre()
+      this.isPastShowsVisible = event.target.checked;
+      this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, 
+        this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
         .subscribe(data => {
           this.repertoires = data.data,
           this.totalCount = data.totalCount
         })
     } else {
-      this.repertoireService.getUpcomingRepertoiresFilteredByTheatre()
-      .subscribe(data => {
-        this.repertoires = data.data,
-        this.totalCount = data.totalCount
-      })
+      this.isPastShowsVisible = false;
+      this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, 
+        this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
+        .subscribe(data => {
+          this.repertoires = data.data,
+          this.totalCount = data.totalCount
+        })
     }
   }
 
@@ -65,10 +70,12 @@ export class AllRepertoiresComponent implements OnInit {
   handlePageSizeChange(event) {
     this.size = event.target.value;
   
-    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p, 
+      this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
     .subscribe(data => {
       if(data.data.length == 0){
-        this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+        this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, 
+          this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
           .subscribe(data => {
             this.repertoires = data.data,
             this.totalCount = data.totalCount
@@ -81,7 +88,8 @@ export class AllRepertoiresComponent implements OnInit {
 
   handlePageChange(event) {
     this.p = event;
-    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p, 
+      this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
@@ -91,7 +99,8 @@ export class AllRepertoiresComponent implements OnInit {
   onSearchItems(searchTerm: string) : void {
     this.searchRepertoire = searchTerm;
 
-    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, 
+      this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
@@ -101,7 +110,8 @@ export class AllRepertoiresComponent implements OnInit {
   onSortItems(sortOrder: string) : void{
     this.sortRepertoires = sortOrder;
 
-    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getRepertoiresFilteredByTheatre(this.size, this.p = 1, 
+      this.searchRepertoire, this.sortRepertoires, this.isPastShowsVisible)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
@@ -110,7 +120,7 @@ export class AllRepertoiresComponent implements OnInit {
 
   onResetItems(value){
     if(value == true){
-      this.repertoireService.getRepertoiresFilteredByTheatre(this.size, 1, '', '')
+      this.repertoireService.getRepertoiresFilteredByTheatre(this.size, 1, '', '', this.isPastShowsVisible)
       .subscribe(data => {
         this.repertoires = data.data,
         this.totalCount = data.totalCount
