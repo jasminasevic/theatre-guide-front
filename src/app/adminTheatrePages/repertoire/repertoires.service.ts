@@ -42,6 +42,25 @@ addRepertoire(repertoire) : Observable<AddRepertoire>{
     )
   }
 
+getRepertoire(id): Observable<AddRepertoire>{
+  let params = new HttpParams();
+  params = params.append('Type', 'repertoireForEdit');
+
+  return this.httpClient.get<AddRepertoire>(this.API_URL + '/repertoires/' + id, { params })
+    .pipe(
+      map((repertoire: AddRepertoire) => repertoire)
+    )
+  }
+
+  
+editRepertoire(id, repertoire) : Observable<AddRepertoire>{
+  return this.httpClient.put<AddRepertoire>(this.API_URL + '/repertoires/' + id, repertoire)
+    .pipe(
+      map((repertoire: AddRepertoire) => repertoire)
+    )
+  }
+
+
 deleteRepertoire(id: number) : Observable<void> {
   return this.httpClient.delete<void>(this.API_URL + '/repertoires/' + id);
   }

@@ -17,3 +17,13 @@ export const THEATRE_ID_KEY = 'TheatreId';
 export const USER = 'Identity';
 
 export const FIRST_NAME = 'FirstName';
+
+export const IS_PREMIERE: Array<any> = [
+    {
+      id: false,
+      value: 'No'
+    },
+    {
+      id: true,
+      value: 'Yes'
+    }];

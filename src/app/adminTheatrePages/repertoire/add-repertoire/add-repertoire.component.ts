@@ -10,6 +10,7 @@ import { ConvertDateService } from 'src/app/shared/services/convert-date.service
 import { RepertoiresService } from '../repertoires.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { Router } from '@angular/router';
+import { IS_PREMIERE } from '../../../app.constants';
 
 @Component({
   selector: 'app-add-repertoire',
@@ -24,16 +25,7 @@ export class AddRepertoireComponent implements OnInit {
   isSubmitted: boolean = false;
   selectedShow: boolean = false;
   theatreId: any;
-
-  isPremiere: any = [
-    {
-      id: false,
-      value: 'No'
-    },
-    {
-      id: true,
-      value: 'Yes'
-    }];
+  isPremiere = IS_PREMIERE;
 
   minDate: any;
 

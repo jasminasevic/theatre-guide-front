@@ -33,6 +33,7 @@ getMinDate(){
 
   hrs = (date.getHours()),
   mins = (date.getMinutes()),
+  secs = (date.getSeconds()),
 
   twoDigitHours = this.getTwoDigitValue(hrs),
   twoDigitMins = this.getTwoDigitValue(mins)

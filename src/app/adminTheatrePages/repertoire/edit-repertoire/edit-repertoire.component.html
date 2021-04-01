@@ -1,3 +1,121 @@
-<p>
-  edit-repertoire works!
-</p>
+<div class="dashboard-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="add-listing">
+        <!-- Section -->
+        <div class="add-listing-section mb-4">
+          <!-- Headline -->
+          <div class="add-listing-headline">
+            <h3> Edit Repertoire</h3>
+          </div>
+          <!-- Title -->
+          <form [formGroup]="repertoireForm" (ngSubmit)="onSubmit()">
+            <div class="row with-forms">
+              <div class="col-md-6">
+                <label for="showId">Show: </label>
+                <select class="custom-select form-control-alternative mb-1" formControlName="showId"
+                  aria-placeholder="Show" (ngModelChange)="onChangeObj($event)">
+                  <option value="" disabled>Select show</option>
+                  <option *ngFor="let show of showListing" [value]="show.id">
+                    {{ show.title }}
+                  </option>
+                </select>
+                <div *ngIf="isSubmitted && showId.errors?.required" class="text-warning small">
+                  Show is required.
+                </div>
+              </div>
+              <!-- Show Date -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="showDate">Show Date and Time: </label>
+                  <input type="datetime-local" placeholder="Show Date" formControlName="showDate"
+                    class="form-control form-control-alternative" min="{{ minDate }}">
+                  <div *ngIf="showDate.invalid && (showDate.dirty || showDate.touched || isSubmitted)"
+                    class="text-warning small">
+                    <span *ngIf="showDate.errors.required">
+                      Show date and time details are required.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Scene -->
+            <div *ngIf="selectedShow">
+              <div class="row with-forms">
+                <div class="col-md-6">
+                  <label for="sceneName">Scene: </label>
+                  <input type="text" placeholder="Scene name" formControlName="sceneName" readonly
+                    class="form-control form-control-alternative">
+                </div>
+                <!-- Premiere -->
+                <div class="col-md-6">
+                  <label for="isPremiere">Premiere: </label>
+                  <select formControlName="isPremiere" class="custom-select form-control-alternative mb-1"
+                    aria-placeholder="Premiere">
+                    <option value="" disabled>Select Premiere Status</option>
+                    <option *ngFor="let premiere of isPremiere" [value]="premiere.id">
+                      {{ premiere.value }}
+                    </option>
+                  </select>
+                  <div *ngIf="isSubmitted && premiere.errors?.required" class="text-warning small">
+                    Premiere status is required.
+                  </div>
+                </div>
+              </div>
+              <!-- Sectors with Prices -->
+              <div formArrayName="addPriceDtos" *ngFor="let sectorRow of sectorControls; let i= index">
+                <div class="row with-forms" [formGroupName]='i'>
+                  <div class="col-md-6">
+                    <label for="sectorId">Sector: </label>
+                    <input type="hidden" formControlName="sectorId">
+                    <input type="text" formControlName="sectorName" placeholder="Sector Name" readonly
+                      class="form-control form-control-alternative">
+                  </div>
+                  <!-- Price -->
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="ticketPrice">Price: </label>
+                      <input type="text" placeholder="Ticket Price" required formControlName="ticketPrice"
+                        class="form-control form-control-alternative">
+                    </div>
+                    <div *ngIf="isSubmitted && sectorControls[i].get('ticketPrice').hasError('required')"
+                      class="text-warning small">
+                      Price is required.
+                    </div>
+                  </div>
+                  <!-- Currency -->
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="currencyId">Currency: </label>
+                      <select class="custom-select form-control-alternative mb-1" formControlName="currencyId"
+                        aria-placeholder="Currency" required>
+                        <option value="" disabled>Select currency</option>
+                        <option *ngFor="let currency of currencyListing" [value]="currency.id">
+                          {{ currency.currencyName }}
+                        </option>
+                      </select>
+                      <div *ngIf="isSubmitted && sectorControls[i].get('currencyId').hasError('required')"
+                        class="text-warning small">
+                        Currency is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row with-forms">
+              <div class="col-md-12">
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" [routerLink]="['/admin-theatre/repertoire/all-repertoires']"
+                    class="btn button-outline">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Section / End -->
+      </div>
+    </div>
+  </div>
+</div>
