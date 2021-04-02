@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditTheatreComponent } from './edit-theatre/edit-theatre.component';
-import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule,
-    NgxDropzoneModule
+    ReactiveFormsModule
   ],
-  declarations: [
-    EditTheatreComponent
-  ]
+  declarations: [EditProfileComponent]
 })
-export class TheatreModule { }
+export class ProfileModule { }

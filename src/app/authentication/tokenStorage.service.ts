@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { FIRST_NAME, ROLE_KEY, TOKEN_KEY, USER, USER_ID_KEY, USER_KEY, THEATRE_KEY, THEATRE_ID_KEY } from '../app.constants';
 
 @Injectable({
@@ -74,6 +75,19 @@ constructor(private router: Router,
 
   public getTheatreId(): any {
     return JSON.parse(localStorage.getItem(THEATRE_ID_KEY));
+  }
+
+  public getUserId(){
+    const token = this.getToken()
+    this.saveToken(token);
+
+    const decodedToken = jwtDecode<JwtPayload>(token);
+        let userData = decodedToken[USER_KEY]
+        let storageData = JSON.parse(userData);
+        let keys = Object.keys(storageData);
+        let values = keys.map(k => storageData[k]);
+        let userId = values[0];
+        return userId;
   }
 
 }
