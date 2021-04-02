@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SidebarLayoutTwoComponent } from 'src/app/listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
+import { IPurchaseData } from 'src/app/shared/interfaces/IPurchaseData';
+import { Purchase } from '../purchase.model';
+import { PurchasesService } from '../purchases.service';
 
 @Component({
   selector: 'app-all-purchases',
@@ -7,9 +12,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllPurchasesComponent implements OnInit {
 
-  constructor() { }
+  purchases: Purchase[];
+  totalCount: number;
+  itemsPerPage: any;
+  currentPage: number = 1;
+  totalItems: any;
+
+  p: number = 1;
+  size: number = 4;
+  pageSizes: Array<number> = [4, 8, 12];
+
+  @ViewChild(SidebarLayoutTwoComponent) searchItem;
+  @ViewChild(SidebarLayoutTwoComponent) sortItems;
+
+  searchPurchase: string;
+  sortPurchases: string;
+
+  purchaseId: number;
+ 
+  constructor(private purchaseService: PurchasesService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe((data: {purchaseList: IPurchaseData}) => {
+      this.purchases = data.purchaseList.data,
+      this.totalCount = data.purchaseList.totalCount
+    });
+  }
+
+  handlePageSizeChange(event) {
+    this.size = event.target.value;
+  
+    this.purchaseService.getPurchasesFilteredByTheatre(this.size, this.p, this.searchPurchase, this.sortPurchases)
+    .subscribe(data => {
+      if(data.data.length == 0){
+        this.purchaseService.getPurchasesFilteredByTheatre(this.size, this.p = 1, this.searchPurchase, this.sortPurchases)
+          .subscribe(data => {
+            this.purchases = data.data,
+            this.totalCount = data.totalCount
+          })
+      }
+      this.purchases = data.data,
+      this.totalCount = data.totalCount
+    })
+  }
+
+  handlePageChange(event) {
+    this.p = event;
+    this.purchaseService.getPurchasesFilteredByTheatre(this.size, this.p, this.searchPurchase, this.sortPurchases)
+    .subscribe(data => {
+      this.purchases = data.data,
+      this.totalCount = data.totalCount
+    })
+  }
+
+  onSearchItems(searchTerm: string) : void {
+    this.searchPurchase = searchTerm;
+
+    this.purchaseService.getPurchasesFilteredByTheatre(this.size, this.p = 1, this.searchPurchase, this.sortPurchases)
+    .subscribe(data => {
+      this.purchases = data.data,
+      this.totalCount = data.totalCount
+    })
+  }
+
+  onSortItems(sortOrder: string) : void{
+    this.sortPurchases = sortOrder;
+
+    this.purchaseService.getPurchasesFilteredByTheatre(this.size, this.p = 1, this.searchPurchase, this.sortPurchases)
+    .subscribe(data => {
+      this.purchases = data.data,
+      this.totalCount = data.totalCount
+    })
+  }
+
+  onResetItems(value){
+    if(value == true){
+      this.purchaseService.getPurchasesFilteredByTheatre(this.size, 1, '', '')
+      .subscribe(data => {
+        this.purchases = data.data,
+        this.totalCount = data.totalCount
+      })
+    }
   }
 
 }

@@ -6,8 +6,8 @@ import { AdminTheatreRoutes } from './adminTheatre.routing';
 import { TheatreDashboardComponent } from './dashboard/dashboard.component';
 import { ScenesModule } from './scenes/scenes.module';
 import { RepertoiresModule } from './repertoire/repertoires.module';
+import { PurchasesModule } from './purchases/purchases.module';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
-import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
 import { EditTheatreComponent } from './theatre/edit-theatre/edit-theatre.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
@@ -20,12 +20,12 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ScenesModule,
     RepertoiresModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    PurchasesModule
   ],
   declarations: [
     TheatreDashboardComponent,
     EditProfileComponent,
-    AllPurchasesComponent,
     EditTheatreComponent
   ]
 })
