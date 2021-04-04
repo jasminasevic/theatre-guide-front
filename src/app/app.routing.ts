@@ -59,6 +59,10 @@ export const AppRoutes: Routes = [{
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./adminUserPages/adminUser.module').then(m => m.AdminUserModule)
   }]
 }, 
 {

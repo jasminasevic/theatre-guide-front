@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { PopularShowsVerticalComponent } from '../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.component';
@@ -12,13 +14,15 @@ import { SidebarLayoutTwoComponent } from '../listing/SidebarLayoutTwo/SidebarLa
 import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SlickCarouselModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     GallerySliderComponent,
@@ -29,7 +33,8 @@ import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
     SidebarLayoutTwoComponent,
     PaginationComponent,
     NewsletterComponent,
-    TeamComponent
+    TeamComponent,
+    ProfileComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -40,7 +45,8 @@ import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
     SidebarLayoutTwoComponent,
     PaginationComponent,
     NewsletterComponent,
-    TeamComponent
+    TeamComponent,
+    ProfileComponent
   ] 
 })
 export class SharedModule { }

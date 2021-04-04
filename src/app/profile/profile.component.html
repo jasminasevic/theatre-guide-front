@@ -1,0 +1,99 @@
+<div class="row">
+  <!-- Profile -->
+  <div class="col-lg-6 col-md-12">
+    <div class="dashboard-list-box mb-5">
+      <div class="dashboard-list-box-static">
+        <h4 class="mb-3">Profile Details</h4>
+        <!-- Details -->
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="my-profile">
+            <div class="mt-3">
+              <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" placeholder="First Name" formControlName="firstName"
+                  class="form-control form-control-alternative">
+                <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmitted)"
+                  class="text-warning small">
+                  <span *ngIf="firstName.errors.required">
+                    First name is required.
+                  </span>
+                  <span *ngIf="firstName.errors.pattern">
+                    Wrong format.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div>
+              <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" placeholder="Last Name" formControlName="lastName"
+                  class="form-control form-control-alternative">
+                <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmitted)"
+                  class="text-warning small">
+                  <span *ngIf="lastName.errors.required">
+                    Last name is required.
+                  </span>
+                  <span *ngIf="lastName.errors.pattern">
+                    Wrong format.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group" *ngIf="theatreId">
+              <label for="theatreName">Theatre</label>
+              <input type="text" placeholder="Theatre Name" formControlName="theatreName"
+                class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" placeholder="E-mail" formControlName="email"
+                class="form-control form-control-alternative">
+              <span *ngIf="email.invalid && (email.dirty || email.touched || isSubmitted)" class="text-warning small">
+                <span *ngIf="email.errors.required">
+                  Email is required.
+                </span>
+                <span *ngIf="email.errors.email">
+                  Wrong format.
+                </span>
+              </span>
+            </div>
+          </div>
+          <button class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Change Password -->
+  <div class="col-lg-6 col-md-12">
+    <div class="dashboard-list-box mb-5">
+      <div class="dashboard-list-box-static">
+        <h4 class="mb-3">Change Password</h4>
+        <!-- Change Password -->
+        <form [formGroup]="resetPassForm" (ngSubmit)="onResetPass()">
+          <div class="my-profile">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" placeholder="Current Password" formControlName="password"
+                class="form-control form-control-alternative">
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New password</label>
+              <input type="password" placeholder="New Password" formControlName="newPassword"
+                class="form-control form-control-alternative">
+              <span *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched || isPassSubmitted)"
+                class="text-warning small">
+                <span *ngIf="newPassword.errors.required">
+                  New password is required.
+                </span>
+                <span *ngIf="newPassword.errors.minlength">
+                  New password must have at least 6 characters.
+                </span>
+              </span>
+            </div>
+            <button class="btn btn-primary">Change Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
