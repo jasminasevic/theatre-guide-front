@@ -7,7 +7,7 @@
         <div class="card-body text-center">
           <i class="i-Add-User"></i>
           <div class="py-4">
-            <h2 class="text-primary mb-2">205</h2>
+            <h2 class="text-primary mb-2">{{ soldTicketsNumber }}</h2>
             <p class="text-muted mt-2 mb-0">Tickets Sold</p>
           </div>
         </div>
@@ -20,7 +20,8 @@
           <i class="i-Add-User"></i>
           <div class="py-4">
             <h2 class="text-primary mb-2">{{ showFollowers }}</h2>
-            <p class="text-muted mt-2 mb-0">Show Followers</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="showFollowers != 1">Show Followers</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="showFollowers == 1">Show Follower</p>
           </div>
         </div>
       </div>
@@ -84,7 +85,7 @@
           <h4>Most Popular Shows</h4>
         </div>
         <div class="db-activities p-4">
-          <div class="d-flex align-items-center  pb-3 mb-3" *ngFor="let popularShow of shows">
+          <div class="d-flex align-items-center border-bottom pb-3 mb-3" *ngFor="let popularShow of shows">
             <div *ngFor="let image of popularShow.showImage">
               <a [routerLink]="['/shows/about-show', popularShow.id ]">
                 <img class="rounded" src="{{ IMG_BASE_URL + image.path }}" alt="image.alt" width="90" height="60">
