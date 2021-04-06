@@ -8,7 +8,8 @@
           <i class="i-Add-User"></i>
           <div class="py-4">
             <h2 class="text-primary mb-2">{{ soldTicketsNumber }}</h2>
-            <p class="text-muted mt-2 mb-0">Tickets Sold</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber != 1">Tickets Sold</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber == 1">Ticket Sold</p>
           </div>
         </div>
       </div>

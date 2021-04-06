@@ -4,10 +4,12 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { EditTheatreComponent } from './theatre/edit-theatre/edit-theatre.component';
 import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
 import { AllPurchasesResolverService } from './purchases/all-purchases/all-purchases-resolver.service';
+import { DashboardResolverService } from './dashboard/dashboard-resolver.service';
 export const AdminTheatreRoutes: Routes = [
   {
     path: 'dashboard',
-    component: TheatreDashboardComponent
+    component: TheatreDashboardComponent,
+    resolve: { data: DashboardResolverService }
   },
   {
     path: 'settings',
