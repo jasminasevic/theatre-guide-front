@@ -33,49 +33,16 @@
     <div class="col-lg-6 col-md-12 mb-4">
       <div class="card">
         <div class="db-tile">
-          <h4>Latest Activities</h4>
+          <h4>Recent Purchases</h4>
         </div>
         <div class="db-activities">
-          <div class="alert alert-dismissible fade show" role="alert">
-            <img src="assets/images/thumb-1.jpg" class="img-fluid rounded-circle shadow-lg" width="50" height="50"
-              alt="">
-            <p class="alert-inner--text mb-0 px-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true" class="text-danger d-inline-block">×</span>
-            </button>
-          </div>
-          <div class="alert alert-dismissible fade show" role="alert">
-            <img src="assets/images/thumb-2.jpg" class="img-fluid rounded-circle shadow-lg" width="50" height="50"
-              alt="">
-            <p class="alert-inner--text mb-0 px-3">Nullam nec velit quis lacus imperdiet ultricies id sagittis neque.
-            </p>
-            <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true" class="text-danger d-inline-block">×</span>
-            </button>
-          </div>
-          <div class="alert alert-dismissible fade show" role="alert">
-            <img src="assets/images/thumb-3.jpg" class="img-fluid rounded-circle shadow-lg" width="50" height="50"
-              alt="">
-            <p class="alert-inner--text mb-0 px-3">Praesent ac dolor consequat, imperdiet massa a, gravida urna.</p>
-            <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true" class="text-danger d-inline-block">×</span>
-            </button>
-          </div>
-          <div class="alert alert-dismissible fade show" role="alert">
-            <img src="assets/images/thumb-4.jpg" class="img-fluid rounded-circle shadow-lg" width="50" height="50"
-              alt="">
-            <p class="alert-inner--text mb-0 px-3"> Vestibulum varius turpis vel elit congue, at faucibus</p>
-            <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true" class="text-danger d-inline-block">×</span>
-            </button>
-          </div>
-          <div class="alert alert-dismissible fade show" role="alert">
-            <img src="assets/images/thumb-1.jpg" class="img-fluid rounded-circle shadow-lg" width="50" height="50"
-              alt="">
-            <p class="alert-inner--text mb-0 px-3"><strong>Ethan Moore</strong> Simply dummy text </p>
-            <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true" class="text-danger d-inline-block">×</span>
-            </button>
+          <div class="alert alert-dismissible fade show" role="alert" *ngFor="let purchase of recentPurchases">
+            <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="50" height="50" alt="">
+            <span class="alert-inner--text mb-0 px-3">Ticket sold on {{ purchase.createdAt | date: 'd MMMM yyyy' }} for
+              <a [routerLink]="['/repertoire/about-play', purchase.repertoireId ]">{{ purchase.showName }}</a>
+              show that will be on view {{ purchase.date | date: 'd MMMM yyyy' }} at {{ purchase.date | date: 'HH:mm'
+              }}.
+            </span>
           </div>
         </div>
       </div>

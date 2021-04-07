@@ -14,6 +14,7 @@ export class TheatreDashboardComponent implements OnInit {
   readonly IMG_BASE_URL = IMG_BASE_URL;
   showFollowers: number;
   soldTicketsNumber: number;
+  recentPurchases: any;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
@@ -21,7 +22,9 @@ export class TheatreDashboardComponent implements OnInit {
     this.activatedRoute.data.subscribe((data: any) => {
       this.shows = data.data.popularShows,
       this.showFollowers = data.data.showFollowers,
-      this.soldTicketsNumber = data.data.soldTicketsNumber
+      this.soldTicketsNumber = data.data.soldTicketsNumber,
+      this.recentPurchases = data.data.recentPurchases,
+      console.log(this.recentPurchases)
     });    
   }
 

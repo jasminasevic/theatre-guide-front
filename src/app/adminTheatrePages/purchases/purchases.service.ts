@@ -45,4 +45,15 @@ getPurchasesFilteredByTheatre(perPage: number = 4, pageNumber: number = 1,
       )
     }
 
+  getRecentPurchasesFilteredByTheatre(theatreId) : Observable<number>{
+    let params = new HttpParams();
+    params = params.append('Type', 'recentPurchasesFilteredByTheatre');
+    params = params.append('TheatreId', theatreId);
+    
+    return this.httpClient.get<number>(this.API_URL + '/purchases', { params })
+      .pipe(
+        map((purchases: number) => purchases)
+      )
+    }
+
 }

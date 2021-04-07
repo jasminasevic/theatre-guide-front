@@ -24,13 +24,15 @@ constructor(private popularShowsService: PopularShowsVerticalService,
     this.theatreId = this.token.getTheatreId();
     return forkJoin([this.showFollowersService.getShowFollowersFilteredByTheatre(this.theatreId),
       this.purchasesService.getPurchasesNumberFilteredByTheatre(this.theatreId),
-      this.popularShowsService.getPopularShowsFilteredByTheatre(this.theatreId)])
+      this.popularShowsService.getPopularShowsFilteredByTheatre(this.theatreId),
+      this.purchasesService.getRecentPurchasesFilteredByTheatre(this.theatreId)])
         .pipe(
           map(data => {
             return { 
               'showFollowers': data[0],
               'soldTicketsNumber': data[1],
-              'popularShows': data[2]
+              'popularShows': data[2],
+              'recentPurchases': data[3]
             }
           })
         )
