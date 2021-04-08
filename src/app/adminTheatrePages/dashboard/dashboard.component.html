@@ -39,7 +39,7 @@
           <div class="alert alert-dismissible fade show" role="alert" *ngFor="let purchase of recentPurchases">
             <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="50" height="50" alt="">
             <span class="alert-inner--text mb-0 px-3">Ticket sold on {{ purchase.createdAt | date: 'd MMMM yyyy' }} for
-              <a [routerLink]="['/repertoire/about-play', purchase.repertoireId ]">{{ purchase.showName }}</a>
+              <a [routerLink]="['/repertoires/about-play', purchase.repertoireId ]">{{ purchase.showName }}</a>
               show that will be on view {{ purchase.date | date: 'd MMMM yyyy' }} at {{ purchase.date | date: 'HH:mm'
               }}.
             </span>

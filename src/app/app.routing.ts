@@ -8,12 +8,14 @@ import { ContactComponent } from './contact/contact.component';
 import { PartnershipsComponent } from './partnerships/partnerships.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AuthTheatreGuardService } from './guards/auth-theatre-guard.service';
+import { NotFoundComponent } from './notFound/notFound.component';
 
 export const AppRoutes: Routes = [{
   path: '',
   redirectTo: 'home',
   pathMatch: 'full',
-}, {
+}, 
+{
   path: '',
   component: FrontendPanelLayoutComponent,
   children: [{
@@ -63,8 +65,12 @@ export const AppRoutes: Routes = [{
   {
     path: 'user',
     loadChildren: () => import('./adminUserPages/adminUser.module').then(m => m.AdminUserModule)
-  }]
-}, 
+  },
+  { 
+    path: 'not-found', 
+    component: NotFoundComponent 
+  }
+]}, 
 {
   path: 'admin',
   component: AdminPanelLayoutComponent,
@@ -90,5 +96,8 @@ export const AppRoutes: Routes = [{
     path: '',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthModule)
   }]
-}
-];
+},
+{ 
+  path: '**', 
+  redirectTo: 'not-found' 
+}];

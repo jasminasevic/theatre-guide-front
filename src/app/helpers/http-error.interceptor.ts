@@ -1,14 +1,16 @@
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { TokenStorageService } from '../authentication/tokenStorage.service';
 import { AlertifyService } from '../shared/services/alertify.service';
-import * as alertify from 'alertifyjs';
    
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-    constructor(private alertify: AlertifyService){}
+    constructor(private alertify: AlertifyService,
+        private router: Router,
+        private token: TokenStorageService){}
 
     intercept(request: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>>{
         return next.handle(request)
@@ -22,9 +24,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         }
                         //server-side error
                         else {
+                            console.log(error.status);
                         switch (error.status) {
                             case 401: {
                                 errorMessage = `Unauthorized Client`;
+                                this.token.logOut();
                                 break;
                             }
                             case 403: {
@@ -33,6 +37,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                             }
                             case 404: {
                                 errorMessage = `Not Found`;
+                                this.router.navigate(['not-found']);
                                 break;
                             }
                             case 422: {

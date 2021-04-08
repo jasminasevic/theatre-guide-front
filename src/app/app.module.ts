@@ -47,6 +47,8 @@ import { AuthModule } from './authentication/authentication.module';
 import { AuthInterceptor } from './helpers/authInterceptor';
 import { HttpErrorInterceptor } from './helpers/http-error.interceptor';
 import { AlertifyService } from './shared/services/alertify.service';
+import { NotFoundComponent } from './notFound/notFound.component';
+import { TokenStorageService } from './authentication/tokenStorage.service';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -61,7 +63,7 @@ export function tokenGetter(){
   
 
 @NgModule({
-  declarations: [							
+  declarations: [								
       AppComponent,
       AdminPanelLayoutComponent,
       AdminTheatreLayoutPanelComponent,
@@ -78,7 +80,8 @@ export function tokenGetter(){
       AdminTheatreSidebarComponent,
       ContactComponent,
       AboutComponent,
-      PartnershipsComponent
+      PartnershipsComponent,
+      NotFoundComponent
    ],
   imports: [
       BrowserModule,
@@ -120,7 +123,7 @@ export function tokenGetter(){
         provide: HTTP_INTERCEPTORS,
         useClass: HttpErrorInterceptor,
         multi: true,
-        deps: [ AlertifyService ]
+        deps: [ AlertifyService, Router, TokenStorageService ]
       },
       {
         provide: HTTP_INTERCEPTORS,

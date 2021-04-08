@@ -23,8 +23,7 @@ export class TheatreDashboardComponent implements OnInit {
       this.shows = data.data.popularShows,
       this.showFollowers = data.data.showFollowers,
       this.soldTicketsNumber = data.data.soldTicketsNumber,
-      this.recentPurchases = data.data.recentPurchases,
-      console.log(this.recentPurchases)
+      this.recentPurchases = data.data.recentPurchases
     });    
   }
 
