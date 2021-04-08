@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit{
           this.router.navigate(['/admin-theatre/dashboard']);
 
           if(roleId == 3)
-          this.router.navigate(['/admin/dashboard']);
+          this.router.navigate(['/home']);
         }
         else{
           this.alertify.error('Wrong email or password');

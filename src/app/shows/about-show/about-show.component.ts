@@ -20,7 +20,7 @@ export class AboutShowComponent implements OnInit {
    show: ShowAllDetails;
    showId: any;
 
-   shows: PopularShows[];
+   shows: PopularShows[] = [];
 	popularShowsTitle : string = 'Popular Shows';
 
    constructor(private activatedRoute: ActivatedRoute,

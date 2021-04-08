@@ -16,7 +16,7 @@ export class AboutRepertoireComponent implements OnInit {
    theatreId: any;
    showId: any;
 
-   shows: PopularShows[];
+   shows: PopularShows[] = [];
 	 popularShowsTitle : string = 'Related Shows';
 
    constructor(private activatedRoute: ActivatedRoute,

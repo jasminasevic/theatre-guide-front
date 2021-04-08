@@ -24,7 +24,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         }
                         //server-side error
                         else {
-                            console.log(error.status);
                         switch (error.status) {
                             case 401: {
                                 errorMessage = `Unauthorized Client`;
@@ -33,6 +32,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                             }
                             case 403: {
                                 errorMessage = `Access Denied`;
+                                this.token.logOut();
+                                this.router.navigate(['login']);
                                 break;
                             }
                             case 404: {
