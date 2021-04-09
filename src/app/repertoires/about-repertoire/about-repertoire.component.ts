@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsVerticalService } from 'src/app/globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
+import { ModalService } from 'src/app/_modal';
 import { RepertoireAllDetails } from '../RepertoireAllDetails.model';
 
 @Component({
@@ -20,7 +21,8 @@ export class AboutRepertoireComponent implements OnInit {
 	 popularShowsTitle : string = 'Related Shows';
 
    constructor(private activatedRoute: ActivatedRoute,
-      private popularShowVerticalService: PopularShowsVerticalService){}
+      private popularShowVerticalService: PopularShowsVerticalService,
+      public modalService: ModalService){}
 
    ngOnInit(){
       this.activatedRoute.data.subscribe((data: {repertoire: RepertoireAllDetails}) => {

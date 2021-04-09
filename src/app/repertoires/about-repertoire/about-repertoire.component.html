@@ -1,117 +1,149 @@
-
 <div class="main-wrapper">
-   <title-bar title="{{ repertoire.showName }}" page="Repertoire" subtitle="{{ repertoire.showDate | date: 'd LLL yyy,  H:mm'}}"></title-bar>
-    <!-- Content -->
-    <div class="container">
-       <div class="content">
-          <div class="row sticky-wrapper">
-             <div class="col-lg-9 col-md-9">
-                <div class="">
-                   <div class="detail-tile mb-4">
-                      <h3>
+   <title-bar title="{{ repertoire.showName }}" page="Repertoire"
+      subtitle="{{ repertoire.showDate | date: 'd LLL yyy,  H:mm'}}"></title-bar>
+   <!-- Content -->
+   <div class="container">
+      <div class="content">
+         <div class="row sticky-wrapper">
+            <div class="col-lg-9 col-md-9">
+               <div class="">
+                  <div class="detail-tile mb-4">
+                     <h3>
                         <a [routerLink]="['/shows/about-show', repertoire.showId ]"> {{ repertoire.showName }}</a>
-                      </h3>
-                      <span class="text-muted">{{ repertoire.showDate | date: 'd LLL yyy,  H:mm' }}</span><br>
-                      <span class="text-muted"><a [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]">{{ repertoire.theatreName }}</a></span><br>
-                      <span class="badge badge-pill badge-info text-uppercase mr-2">{{ repertoire.category }}</span>
-                      <span *ngIf="repertoire.isPremiere" class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
-                     </div>
-                   <div class="nav-wrapper mb-4">
-                      <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab" href="#aboutShow" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-info-circle mr-2"></i>Details</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#showLocation" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-map-marker mr-2"></i>Location</a>
-                         </li>
-                      </ul>
-                   </div>
-                   <div class="card shadow">
-                      <div class="card-body">
-                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="aboutShow" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                             <h4 class="mb-4">
-                                Details
-                             </h4>
-                             <div class="row mb-4">
-                                <div class="col-lg-4">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-star-o mr-2"></i><small class="text-uppercase font-weight-bold">Title</small></div>
-                                         <p class="m-0 text-small text-muted"><a [routerLink]="['/shows/about-show', repertoire.showId ]"> {{ repertoire.showName }}</a></p>
-                                   </div>
-                                </div>
-                                <div class="col-lg-4">
-                                   <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-clock-o mr-2"></i><small class="text-uppercase font-weight-bold">Duration</small></div>
-                                    <p class="m-0 text-small text-muted">{{ repertoire.duration }} min.</p>
-                                 </div>
-                                </div>
-                                <div class="col-lg-4">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-certificate mr-2"></i><small class="text-uppercase font-weight-bold">Category</small></div>
-                                      <p class="m-0 text-small text-muted">{{ repertoire.category }}</p>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="row mb-4">
+                     </h3>
+                     <span class="text-muted">{{ repertoire.showDate | date: 'd LLL yyy, H:mm' }}</span><br>
+                     <span class="text-muted"><a [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]">{{
+                           repertoire.theatreName }}</a></span><br>
+                     <span class="badge badge-pill badge-info text-uppercase mr-2">{{ repertoire.category }}</span>
+                     <span *ngIf="repertoire.isPremiere"
+                        class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
+                  </div>
+                  <div class="nav-wrapper mb-4">
+                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab"
+                              href="#aboutShow" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i
+                                 class="fa fa-info-circle mr-2"></i>Details</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                              href="#showLocation" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
+                                 class="fa fa-map-marker mr-2"></i>Location</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="card shadow">
+                     <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                           <div class="tab-pane fade active show" id="aboutShow" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-1-tab">
+                              <h4 class="mb-4">
+                                 Details
+                              </h4>
+                              <div class="row mb-4">
                                  <div class="col-lg-4">
                                     <div class="detail-list mb-2">
-                                       <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-calendar-times-o mr-2"></i><small class="text-uppercase font-weight-bold">Date</small></div>
-                                       <p class="m-0 text-small text-muted">{{ repertoire.showDate | date: 'd LLL yyy,  H:mm' }} </p>
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-star-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Title</small></div>
+                                       <p class="m-0 text-small text-muted"><a
+                                             [routerLink]="['/shows/about-show', repertoire.showId ]"> {{
+                                             repertoire.showName }}</a></p>
                                     </div>
                                  </div>
-                                <div class="col-lg-4">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-puzzle-piece mr-2"></i><small class="text-uppercase font-weight-bold">Theatre</small></div>
-                                      <p class="m-0 text-small text-muted"><a [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]"> {{ repertoire.theatreName }}</a></p>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-clock-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Duration</small></div>
+                                       <p class="m-0 text-small text-muted">{{ repertoire.duration }} min.</p>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-square-o mr-2"></i><small class="text-uppercase font-weight-bold">Scene</small></div>
-                                      <p class="m-0 text-small text-muted">{{ repertoire.sceneName }}</p>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="row mb-4">
-                                <div class="col-lg-12">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-ticket mr-2"></i><small class="text-uppercase font-weight-bold">Ticket Prices</small></div>
-                                      <div *ngFor="let price of repertoire.getPriceDtos">
-                                          <div class="m-2 text-small text-muted">{{ price.sectorName }}: 
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-certificate mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Category</small></div>
+                                       <p class="m-0 text-small text-muted">{{ repertoire.category }}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row mb-4">
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-calendar-times-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Date</small></div>
+                                       <p class="m-0 text-small text-muted">{{ repertoire.showDate | date: 'd LLL yyy,
+                                          H:mm' }} </p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-puzzle-piece mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Theatre</small></div>
+                                       <p class="m-0 text-small text-muted"><a
+                                             [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]"> {{
+                                             repertoire.theatreName }}</a></p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-square-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Scene</small></div>
+                                       <p class="m-0 text-small text-muted">{{ repertoire.sceneName }}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-ticket mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Ticket Prices</small></div>
+                                       <div *ngFor="let price of repertoire.getPriceDtos">
+                                          <div class="m-2 text-small text-muted">{{ price.sectorName }}:
                                              {{ price.price }} {{ price.currencyName}}
                                           </div>
-                                      </div>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="row mb-4">
-                              <div class="col-lg-12">
-                                 <button class="btn btn-lg btn-primary" type="button">Buy Ticket</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <button class="btn btn-lg btn-primary" (click)="modalService.open('modal-1')"
+                                       type="button">Buy Ticket</button>
+                                 </div>
                               </div>
                            </div>
-                            </div>
-                            <div class="tab-pane fade" id="showLocation" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-                             <h4 class="mb-4">
-                                Location
-                             </h4>
-                             <div class="row mb-4">
-                                <div class="col-lg-12">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Scene:</small></div>
-                                      <p class="m-0 text-small text-muted">{{ repertoire.sceneName }}</p>
-                                   </div>
-                                </div>
-                             </div>
-                             <div class="row mb-4">
-                                <div class="col-lg-12">
-                                   <div class="detail-list mb-2">
-                                      <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Theatre</small></div>
-                                      <p class="m-0 text-small text-muted"><a [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]">{{ repertoire.theatreName }}</a></p>
-                                   </div>
-                                </div>
-                             </div>
-                             <!-- <div class="row mb-4">
+                           <div class="tab-pane fade" id="showLocation" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-2-tab">
+                              <h4 class="mb-4">
+                                 Location
+                              </h4>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><small
+                                             class="text-uppercase font-weight-bold">Scene:</small></div>
+                                       <p class="m-0 text-small text-muted">{{ repertoire.sceneName }}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><small
+                                             class="text-uppercase font-weight-bold">Theatre</small></div>
+                                       <p class="m-0 text-small text-muted"><a
+                                             [routerLink]="['/theatres/about-theatre', repertoire.theatreId ]">{{
+                                             repertoire.theatreName }}</a></p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- <div class="row mb-4">
                                 <div class="col-lg-12">
                                    <div class="detail-list mb-2">
                                       <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Address</small></div>
@@ -119,46 +151,51 @@
                                    </div>
                                 </div>
                              </div> -->
-                             <div>
-                                  <!-- <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
+                              <div>
+                                 <!-- <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
                                       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                                   </agm-map> -->
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-lg-3 col-md-3">
-                 <div class="sidebar right">
-                    <!-- Newsletter Widget -->
-                    <newsletter></newsletter>
-                    <!-- Newsletter Widget / End -->
-  
-                    <!-- Popular Shows Vertical Widget -->
-                    <div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+               <div class="sidebar right">
+                  <!-- Newsletter Widget -->
+                  <newsletter></newsletter>
+                  <!-- Newsletter Widget / End -->
+
+                  <!-- Popular Shows Vertical Widget -->
+                  <div>
                      <div *ngIf="shows.length > 0">
                         <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
-                    </div>
-                    </div>
-                    <!-- Popular Shows Vertical Widget / End -->
-  
-                    <!-- Social Media Icons Widget -->
-                    <div class="widget margin-top-40">
-                       <h3 class="margin-bottom-25">Follow Us</h3>
-                       <div class=" btn-wrapper">
-                          <social-media-icons></social-media-icons>
-                       </div>
-                    </div>
-                    <!-- Social Media Icons Widget / End-->
-  
-                    <div class="clearfix"></div>
-                    <div class="margin-bottom-40"></div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-  
+                     </div>
+                  </div>
+                  <!-- Popular Shows Vertical Widget / End -->
+
+                  <!-- Social Media Icons Widget -->
+                  <div class="widget margin-top-40">
+                     <h3 class="margin-bottom-25">Follow Us</h3>
+                     <div class=" btn-wrapper">
+                        <social-media-icons></social-media-icons>
+                     </div>
+                  </div>
+                  <!-- Social Media Icons Widget / End-->
+
+                  <div class="clearfix"></div>
+                  <div class="margin-bottom-40"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<jw-modal id="modal-1">
+   <p>Test modal</p>
+   <button class="btn btn-lg btn-primary" (click)="modalService.close('modal-1')" type="button">Close modal</button>
+   <ticket-selection></ticket-selection>
+</jw-modal>

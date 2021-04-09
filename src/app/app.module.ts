@@ -49,6 +49,7 @@ import { HttpErrorInterceptor } from './helpers/http-error.interceptor';
 import { AlertifyService } from './shared/services/alertify.service';
 import { NotFoundComponent } from './notFound/notFound.component';
 import { TokenStorageService } from './authentication/tokenStorage.service';
+import { ModalModule } from './_modal';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -109,7 +110,8 @@ export function tokenGetter(){
       }),
       ConfirmationPopoverModule.forRoot({
         confirmButtonType: 'danger'
-      })
+      }),
+      ModalModule
   ],
   providers: [
       MenuItems,

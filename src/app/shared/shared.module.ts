@@ -15,6 +15,7 @@ import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagi
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { TicketSelectionComponent } from '../globalFrontendComponents/ticketSelection/ticketSelection.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ProfileComponent } from '../profile/profile.component';
     PaginationComponent,
     NewsletterComponent,
     TeamComponent,
-    ProfileComponent
+    ProfileComponent,
+    TicketSelectionComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -46,7 +48,8 @@ import { ProfileComponent } from '../profile/profile.component';
     PaginationComponent,
     NewsletterComponent,
     TeamComponent,
-    ProfileComponent
+    ProfileComponent,
+    TicketSelectionComponent
   ] 
 })
 export class SharedModule { }

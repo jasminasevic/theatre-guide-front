@@ -15,6 +15,7 @@ import { AllRepertoiresComponent } from './all-repertoires/all-repertoires.compo
 
 import { SharedModule } from '../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ModalModule } from '../_modal';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -31,7 +32,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(RepertoiresRoutes),
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule
   ],
   declarations: [ 
     AboutRepertoireComponent,
