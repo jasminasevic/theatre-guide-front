@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup;
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
+  isSubmitted: boolean = false;
    
    constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
@@ -43,6 +44,12 @@ export class LoginComponent implements OnInit{
    get password(){ return this.loginForm.get('password');}
 
    onSubmit(){
+
+    this.isSubmitted = true;
+
+    if(this.loginForm.invalid){
+      return false;
+    }
      
      const credentials = {
        'username' : this.loginForm.get('email').value,

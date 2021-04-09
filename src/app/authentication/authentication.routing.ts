@@ -5,10 +5,11 @@ import { SignUpComponent } from './SignUp/SignUp.component';
 import { ForgotPasswordComponent } from './ForgotPassword/ForgotPassword.component';
 import { ComingSoonComponent } from './ComingSoon/ComingSoon.component';
 import { BusinessSignUpComponent } from './BusinessSignUp/BusinessSignUp.component';
+import { FrontendPanelLayoutComponent } from '../layouts/frontendPanel/FrontendPanel.component';
 
 export const AuthRoutes: Routes = [{
   path: '',
-  redirectTo: 'login',
+  redirectTo: 'home',
   pathMatch: 'full',
 },{
   path: '',

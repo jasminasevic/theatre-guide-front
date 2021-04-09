@@ -27,7 +27,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         switch (error.status) {
                             case 401: {
                                 errorMessage = `Unauthorized Client`;
-                                this.token.logOut();
                                 break;
                             }
                             case 403: {
