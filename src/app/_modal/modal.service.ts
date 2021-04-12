@@ -1,8 +1,10 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
     private modals: any[] = [];
+
+    constructor(){}
 
     add(modal: any) {
         // add modal to array of active modals

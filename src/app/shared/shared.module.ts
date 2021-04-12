@@ -15,7 +15,7 @@ import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagi
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { TicketSelectionComponent } from '../globalFrontendComponents/ticketSelection/ticketSelection.component';
+import { SeatsComponent} from '../globalFrontendComponents/seats/seats.component';
 
 @NgModule({
   imports: [
@@ -36,7 +36,7 @@ import { TicketSelectionComponent } from '../globalFrontendComponents/ticketSele
     NewsletterComponent,
     TeamComponent,
     ProfileComponent,
-    TicketSelectionComponent
+    SeatsComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -49,7 +49,7 @@ import { TicketSelectionComponent } from '../globalFrontendComponents/ticketSele
     NewsletterComponent,
     TeamComponent,
     ProfileComponent,
-    TicketSelectionComponent
+    SeatsComponent
   ] 
 })
 export class SharedModule { }
