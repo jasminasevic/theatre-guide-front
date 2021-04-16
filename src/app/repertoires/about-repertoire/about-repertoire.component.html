@@ -222,7 +222,7 @@
    </div>
 
    <div *ngIf="selectedSector">
-      <seats></seats>
+      <seats [sectorWithSeatsStatus]="sectorWithUnavailableSeats"></seats>
    </div>
 
    <button class="btn btn-lg btn-primary mt-3" (click)="modalService.close('selectSeatModal')"

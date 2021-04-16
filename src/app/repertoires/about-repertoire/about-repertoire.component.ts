@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/_modal';
 import { RepertoireAllDetails } from '../RepertoireAllDetails.model';
 import { IPricePerSector } from '../../shared/interfaces/IPricePerSector';
 import { SectorsService } from '../../services/sectors.service';
+import { ThisExpression } from 'typescript';
 
 @Component({
   selector: 'about-repertoire',
@@ -53,10 +54,10 @@ export class AboutRepertoireComponent implements OnInit {
       this.selectedSector = true;
       this.sectorsService.getSectorWithUnavailableSeatc(this.repertoireId, value)
          .subscribe(data => {
-            this.sectorWithUnavailableSeats = data,
-            console.log(this.sectorWithUnavailableSeats)
+            this.sectorWithUnavailableSeats = data
+           // console.log(this.sectorWithUnavailableSeats)
          })
-      console.log(this.sectorsWithPrices)
+    //  console.log(this.sectorsWithPrices)
    }
 
 }
