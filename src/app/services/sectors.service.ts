@@ -14,7 +14,7 @@ constructor(private httpClient: HttpClient) { }
 
 public API_URL = API_URL;
 
-getSectorWithUnavailableSeatc(repertoireId, sectorId) 
+getSectorWithUnavailableSeats(repertoireId, sectorId) 
 : Observable<ISectorWithSeats>{
   
   let params = new HttpParams();

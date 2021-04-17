@@ -1,8 +1,8 @@
 export interface IPricePerSector {
   price: number;
   sectorId: number;
-  sectorName: String;
-  currencyName: String;
+  sectorName: string;
+  currencyName: string;
   seatCapacity: number;
   rowsTotalNumber: number;
 }

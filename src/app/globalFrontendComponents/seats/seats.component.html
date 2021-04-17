@@ -13,7 +13,8 @@
         </li>
         <li class="seat" *ngFor="let seat of seatsArray; let seatIndex = index">
           <input type="checkbox" id="{{ rowIndex + 1 }},{{seatIndex + 1}}" value="{{ rowIndex + 1 }},{{seatIndex + 1}}"
-            [disabled]="unavailableSeatsList.includes(getIndex(rowIndex, seatIndex))" />
+            [disabled]="unavailableSeatsList.includes(getIndex(rowIndex, seatIndex))"
+            (change)="getSeatId($event, getIndex(rowIndex, seatIndex))" />
           <label for="{{ rowIndex + 1 }},{{seatIndex + 1}}"></label>
         </li>
       </ol>

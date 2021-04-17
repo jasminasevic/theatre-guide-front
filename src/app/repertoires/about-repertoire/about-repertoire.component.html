@@ -195,36 +195,87 @@
 </div>
 
 <jw-modal id="selectSeatModal">
-   <div class="row">
-      <div class="col-lg-6">
-         <div class="row with-forms">
-            <div class="col-md-6">
-               <label for="sectorId">Please select sector: </label>
-               <select class="custom-select form-control-alternative mb-1" aria-placeholder="Sector"
-                  (change)="onChangeSector($event.target.value)">
-                  <option selected value="" disabled>Select sector</option>
-                  <option *ngFor="let sector of sectorsWithPrices" [value]="sector.sectorId">
-                     {{ sector.sectorName }} - {{ sector.price }} {{ sector.currencyName}} per ticket
-                  </option>
-               </select>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-6">
+            <div class="row with-forms">
+               <div class="col-md-12">
+                  <label for="sectorId">Please select sector: </label>
+                  <select class="custom-select form-control-alternative mb-1" aria-placeholder="Sector"
+                     (change)="onChangeSector($event)">
+                     <option selected value="" disabled>Select sector</option>
+                     <option *ngFor="let sector of sectorsWithPrices" [value]="sector.sectorId">
+                        {{ sector.sectorName }} - {{ sector.price }} {{ sector.currencyName}} per ticket
+                     </option>
+                  </select>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row mt-3" *ngIf="isSelectedSector">
+         <div class="col-lg-6">
+            <div class="row with-forms">
+               <div class="col-md-6">
+                  <label for="sectorId">Please select seat(s): </label>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div *ngIf="isSelectedSector">
+         <seats [sectorWithSeatsStatus]="sectorWithUnavailableSeats" (newSeatEvent)="addSeat($event)"></seats>
+      </div>
+
+
+      <div *ngIf="isSelectedSector">
+         <div class="content">
+            <div class="row sticky-wrapper">
+               <div class="col-lg-6 col-md-6">
+                  <div class="">
+                     <div class="card shadow">
+                        <div class="card-body">
+                           <div class="tab-content" id="myTabContent">
+                              <div class="tab-pane fade active show" id="aboutShow" role="tabpanel"
+                                 aria-labelledby="tabs-icons-text-1-tab">
+                                 <h4 class="mb-4">
+                                    Ticket Details
+                                 </h4>
+                                 <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                       <div class="detail-list mb-2">
+                                          <p class="m-0 text-small"> <small
+                                                class="text-uppercase font-weight-bold">Title:</small>
+                                             {{ repertoire.showName }}</p>
+                                          <p class="m-0 text-small"><small
+                                                class="text-uppercase font-weight-bold">Date:</small>
+                                             {{ repertoire.showDate | date: 'd LLL yyy,
+                                             H:mm' }}</p>
+                                          <p class="m-0 text-small"><small
+                                                class="text-uppercase font-weight-bold">Theatre:</small>
+                                             {{ repertoire.theatreName }}</p>
+                                          <p class="m-0 text-small"><small
+                                                class="text-uppercase font-weight-bold">Scene:</small>
+                                             {{ repertoire.sceneName }}</p>
+                                          <p class="m-0 text-small"><small
+                                                class="text-uppercase font-weight-bold">Sector:</small>
+                                             {{ selectedSectorName }}</p>
+                                          <p class="m-0 text-small"><small class="text-uppercase font-weight-bold">Price
+                                                per ticket:</small>
+                                             {{ ticketPrice }} {{ currencyName }} per ticket</p>
+                                          <button class="btn btn-lg btn-primary mt-3"
+                                             (click)="modalService.close('selectSeatModal')"
+                                             type="button">Cancel</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
-   <div class="row mt-3" *ngIf="selectedSector">
-      <div class="col-lg-6">
-         <div class="row with-forms">
-            <div class="col-md-6">
-               <label for="sectorId">Please select seat(s): </label>
-            </div>
-         </div>
-      </div>
-   </div>
-
-   <div *ngIf="selectedSector">
-      <seats [sectorWithSeatsStatus]="sectorWithUnavailableSeats"></seats>
-   </div>
-
-   <button class="btn btn-lg btn-primary mt-3" (click)="modalService.close('selectSeatModal')"
-      type="button">Cancel</button>
 </jw-modal>

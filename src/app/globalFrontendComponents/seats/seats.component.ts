@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'seats',
@@ -14,13 +14,20 @@ export class SeatsComponent implements OnInit {
   rowsArray: number[];
   seatsArray: number[];
   unavailableSeatsList: Array<any> = [];
+  selectedSeats:any[];
+
+  @Output() newSeatEvent = new EventEmitter<string>();
+
+  addNewSeat(value){
+    this.newSeatEvent.emit(value);
+  }
 
   constructor() { 
   }
 
   @Input() set sectorWithSeatsStatus(sectorWithSeatsStatus: any) {
     if(sectorWithSeatsStatus){
-      console.log('vrednosti', sectorWithSeatsStatus);
+      this.selectedSeats = new Array<string>();
       this.rowsTotalNumber = sectorWithSeatsStatus.rowsTotalNumber;
       this.seatCapacity = sectorWithSeatsStatus.seatCapacity;
       this.seatsPerRow = Math.floor(this.seatCapacity / this.rowsTotalNumber);
@@ -42,12 +49,19 @@ export class SeatsComponent implements OnInit {
     return position;
   }
 
-
-  ngOnInit() {
+  getSeatId($event, id){
+    if($event.target.checked){
+      this.selectedSeats.push(id);
+      this.addNewSeat(this.selectedSeats);
+    }
+    else {
+      this.selectedSeats = this.selectedSeats.filter(s => s != id);
+      this.addNewSeat(this.selectedSeats);
+    }
   }
 
-}
+  ngOnInit() {
+    this.selectedSeats = new Array<string>();
+  }
 
-export class RowsLoop {
-  
 }

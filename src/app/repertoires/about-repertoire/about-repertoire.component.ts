@@ -20,14 +20,22 @@ export class AboutRepertoireComponent implements OnInit {
    theatreId: any;
    showId: any;
    sectorsWithPrices: IPricePerSector[];
-   selectedSector: boolean = false;
+   isSelectedSector: boolean = false;
    sectorWithUnavailableSeats;
+   selectedSector: any;
+   selectedSectorAndPrice: string;
+   selectedSectorName: any;
+   ticketPrice: number;
+   currencyName: string;
+
 
    sectorId: any;
    repertoireId: any;
 
    shows: PopularShows[] = [];
 	popularShowsTitle : string = 'Related Shows';
+
+   selectedSeats: string[];
 
    constructor(private activatedRoute: ActivatedRoute,
       private popularShowVerticalService: PopularShowsVerticalService,
@@ -40,7 +48,8 @@ export class AboutRepertoireComponent implements OnInit {
          this.theatreId = data.repertoire.theatreId,
          this.showId = data.repertoire.showId,
          this.repertoireId = data.repertoire.id
-         this.sectorsWithPrices = data.repertoire.getPriceDtos
+         this.sectorsWithPrices = data.repertoire.getPriceDtos,
+         console.log(this.sectorsWithPrices);
       });
 
       this.popularShowVerticalService.getPopularShowsFilteredByIdAndTheatre(this.theatreId, this.showId)
@@ -50,14 +59,30 @@ export class AboutRepertoireComponent implements OnInit {
 
    }
 
-   onChangeSector(value){
-      this.selectedSector = true;
-      this.sectorsService.getSectorWithUnavailableSeatc(this.repertoireId, value)
+   onChangeSector($event){
+      this.isSelectedSector = true;
+      this.selectedSector = $event.target.value;
+    
+      this.sectorsWithPrices.forEach(element => {
+         if(element.sectorId == this.selectedSector){
+            this.selectedSectorName = element.sectorName,
+            this.ticketPrice = element.price,
+            this.currencyName = element.currencyName
+         }
+      });
+
+      this.sectorsService.getSectorWithUnavailableSeats(this.repertoireId, this.selectedSector)
          .subscribe(data => {
             this.sectorWithUnavailableSeats = data
-           // console.log(this.sectorWithUnavailableSeats)
          })
-    //  console.log(this.sectorsWithPrices)
+      }
+
+   addSeat(newSeat: string){
+      this.selectedSeats = new Array<string>();
+      this.selectedSeats.push(newSeat);
+      console.log('selectovana sedista', this.selectedSeats);
    }
 
 }
+
+
