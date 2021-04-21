@@ -12,10 +12,12 @@
           {{ rowIndex + 1}}
         </li>
         <li class="seat" *ngFor="let seat of seatsArray; let seatIndex = index">
-          <input type="checkbox" id="{{ rowIndex + 1 }},{{seatIndex + 1}}" value="{{ rowIndex + 1 }},{{seatIndex + 1}}"
-            [disabled]="unavailableSeatsList.includes(getIndex(rowIndex, seatIndex))"
-            (change)="getSeatId($event, getIndex(rowIndex, seatIndex))" />
-          <label for="{{ rowIndex + 1 }},{{seatIndex + 1}}"></label>
+          <input type="checkbox" id="{{ sectorId }},{{ rowIndex + 1 }},{{seatIndex + 1}}"
+            value="{{ sectorId }},{{ rowIndex + 1 }},{{seatIndex + 1}}"
+            [disabled]="unavailableSeatsList.includes(getIndex(sectorId, rowIndex, seatIndex))"
+            [checked]="obj[getIndex(sectorId, rowIndex, seatIndex)]"
+            (change)="changeSeatAvailability($event, getIndex(sectorId, rowIndex, seatIndex))" />
+          <label for="{{ sectorId }},{{ rowIndex + 1 }},{{seatIndex + 1}}"></label>
         </li>
       </ol>
     </li>

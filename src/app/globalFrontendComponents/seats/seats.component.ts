@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'seats',
   templateUrl: './seats.component.html',
-  styleUrls: ['./seats.component.scss']
+  styleUrls: ['./seats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class SeatsComponent implements OnInit {
 
+  sectorId: number;
   repertoireId: number;
   rowsTotalNumber: number;
   seatCapacity: number;
@@ -15,6 +17,7 @@ export class SeatsComponent implements OnInit {
   seatsArray: number[];
   unavailableSeatsList: Array<any> = [];
   selectedSeats:any[];
+  obj = {};
 
   @Output() newSeatEvent = new EventEmitter<string>();
 
@@ -22,46 +25,54 @@ export class SeatsComponent implements OnInit {
     this.newSeatEvent.emit(value);
   }
 
-  constructor() { 
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.selectedSeats = new Array<string>();
   }
 
   @Input() set sectorWithSeatsStatus(sectorWithSeatsStatus: any) {
     if(sectorWithSeatsStatus){
-      this.selectedSeats = new Array<string>();
+      this.sectorId = sectorWithSeatsStatus.id;
       this.rowsTotalNumber = sectorWithSeatsStatus.rowsTotalNumber;
       this.seatCapacity = sectorWithSeatsStatus.seatCapacity;
       this.seatsPerRow = Math.floor(this.seatCapacity / this.rowsTotalNumber);
       this.rowsArray = new Array(this.rowsTotalNumber);
       this.seatsArray = new Array(this.seatsPerRow);
-
-      var seatValues = sectorWithSeatsStatus.unavailableSeatsDto;
+      
+      var seatValues = [];
+      seatValues = sectorWithSeatsStatus.unavailableSeatsDto;
       this.unavailableSeatsList = [];
       seatValues.forEach(element => {
         this.unavailableSeatsList.push(element.seatRowDetails);
       });
+
+
+      for(let i = 0; i < this.rowsArray[0]; i += 1) {
+        for (let j = 0; j < this.seatsArray[0]; j += 1) {
+          const id = this.getIndex(this.sectorId, i + 1, j + 1);
+          this.obj[id] = false;
+        }
+      }
     }
 }
 
-  getIndex(i, j) { 
+  getIndex(sectorId, i, j) { 
     let rowValue = Number(i + 1).toString();
     let seatValue = Number(j + 1).toString();
-    let position = (rowValue + ',' + seatValue).toString();
+    let position = (sectorId + ',' + rowValue + ',' + seatValue).toString();
     return position;
   }
 
-  getSeatId($event, id){
-    if($event.target.checked){
+  changeSeatAvailability($event, id){
+    this.obj[id] = $event.target.checked;
+    if(this.obj[id]){
       this.selectedSeats.push(id);
       this.addNewSeat(this.selectedSeats);
+    } else {
+      this.selectedSeats.splice(id, 1);
     }
-    else {
-      this.selectedSeats = this.selectedSeats.filter(s => s != id);
-      this.addNewSeat(this.selectedSeats);
-    }
-  }
-
-  ngOnInit() {
-    this.selectedSeats = new Array<string>();
   }
 
 }

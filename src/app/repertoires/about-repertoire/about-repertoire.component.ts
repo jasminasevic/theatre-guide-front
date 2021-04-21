@@ -28,6 +28,8 @@ export class AboutRepertoireComponent implements OnInit {
    ticketPrice: number;
    currencyName: string;
 
+   totalTicketsNumber: number;
+   totalTicketPrice: number;
 
    sectorId: any;
    repertoireId: any;
@@ -78,9 +80,28 @@ export class AboutRepertoireComponent implements OnInit {
       }
 
    addSeat(newSeat: string){
+      console.log(newSeat);
       this.selectedSeats = new Array<string>();
+
       this.selectedSeats.push(newSeat);
+
+      this.selectedSeats = this.selectedSeats.concat(newSeat);
       console.log('selectovana sedista', this.selectedSeats);
+
+      this.totalTicketsNumber = this.selectedSeats.length; 
+      this.totalTicketPrice = this.totalTicketsNumber * this.ticketPrice;
+   }
+
+   getSelectedRowNumber(selectedSeat: string){
+      let seat = selectedSeat.split(',');
+      let rowNumber = seat[1];
+      return rowNumber;
+   }
+
+   getSelectedSeatNumber(selectedSeat: string){
+      let seat = selectedSeat.split(',');
+      let seatNumber = seat[2];
+      return seatNumber;
    }
 
 }

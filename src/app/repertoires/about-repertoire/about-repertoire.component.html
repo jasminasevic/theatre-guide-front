@@ -262,6 +262,23 @@
                                           <p class="m-0 text-small"><small class="text-uppercase font-weight-bold">Price
                                                 per ticket:</small>
                                              {{ ticketPrice }} {{ currencyName }} per ticket</p>
+                                          <div *ngFor="let selectedTicket of selectedSeats">
+                                             <p class="m-0 text-small"><small
+                                                   class="text-uppercase font-weight-bold">Row: </small>
+                                                <!-- {{ getSelectedRowNumber(selectedTicket) }} -->
+                                                <small class="text-uppercase font-weight-bold">Seat: </small>
+                                                <!-- {{ getSelectedSeatNumber(selectedTicket) }} -->
+                                             </p>
+                                          </div>
+                                          <div *ngIf="selectedSeats">
+                                             <p class="m-0 text-small red"><small
+                                                   class="text-uppercase font-weight-bold red">Number of tickets:
+                                                </small>
+                                                {{ totalTicketsNumber }} <br>
+                                                <small class="text-uppercase font-weight-bold red">Total Price: </small>
+                                                {{ totalTicketPrice }} {{ currencyName }}
+                                             </p>
+                                          </div>
                                           <button class="btn btn-lg btn-primary mt-3"
                                              (click)="modalService.close('selectSeatModal')"
                                              type="button">Cancel</button>
