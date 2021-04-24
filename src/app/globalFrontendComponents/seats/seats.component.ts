@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'seats',
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   styleUrls: ['./seats.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class SeatsComponent implements OnInit {
+export class SeatsComponent {
 
   sectorId: number;
   repertoireId: number;
@@ -16,20 +16,17 @@ export class SeatsComponent implements OnInit {
   rowsArray: number[];
   seatsArray: number[];
   unavailableSeatsList: Array<any> = [];
-  selectedSeats:any[];
   obj = {};
 
   @Output() newSeatEvent = new EventEmitter<string>();
+  @Output() removedSeatEvent = new EventEmitter<string>();
 
-  addNewSeat(value){
+  addNewSeat(value): void {
     this.newSeatEvent.emit(value);
   }
 
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.selectedSeats = new Array<string>();
+  removeSeat(value: string): void {
+    this.removedSeatEvent.emit(value);
   }
 
   @Input() set sectorWithSeatsStatus(sectorWithSeatsStatus: any) {
@@ -65,13 +62,12 @@ export class SeatsComponent implements OnInit {
     return position;
   }
 
-  changeSeatAvailability($event, id){
-    this.obj[id] = $event.target.checked;
-    if(this.obj[id]){
-      this.selectedSeats.push(id);
-      this.addNewSeat(this.selectedSeats);
+  changeSeatAvailability($event, seatId){
+    this.obj[seatId] = $event.target.checked;
+    if (this.obj[seatId]) {
+      this.addNewSeat(seatId);
     } else {
-      this.selectedSeats.splice(id, 1);
+      this.removeSeat(seatId);
     }
   }
 
