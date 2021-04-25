@@ -1,0 +1,89 @@
+<form>
+  <div class="row with-forms">
+    <div class="col-md-12 mb-3">
+      <label for="showId">Title: </label>
+      <input type="hidden">
+      <input type="text" placeholder="{{  repertoire.showName }}" disabled
+        class="form-control form-control-alternative">
+    </div>
+  </div>
+  <div class="row with-forms">
+    <div class="col-md-6 mb-3">
+      <label for="showDate">Date: </label>
+      <input type="text" placeholder="{{ repertoire.showDate | date: 'd LLL yyy' }}"
+        class="form-control form-control-alternative" disabled>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="showDate">Time: </label>
+      <input type="text" placeholder="{{ repertoire.showDate | date: 'H:mm' }}"
+        class="form-control form-control-alternative" disabled>
+    </div>
+  </div>
+
+  <div class="row with-forms">
+    <div class="col-md-12 mb-3">
+      <label for="theatreName">Theatre: </label>
+      <input type="text" placeholder="{{ repertoire.theatreName }}" class="form-control form-control-alternative"
+        disabled>
+    </div>
+  </div>
+
+  <div class="row with-forms">
+    <div class="col-md-12 mb-3">
+      <label for="sceneName">Scene: </label>
+      <input type="text" placeholder="{{ repertoire.sceneName }}" class="form-control form-control-alternative"
+        disabled>
+    </div>
+  </div>
+
+  <div *ngFor="let seatDetail of selectedSeatDetails | keyvalue">
+    <div class="row with-forms">
+      <div class="col-md-4 mb-3">
+        <label for="sceneName">Sector: </label>
+        <input type="hidden" placeholder="{{ seatDetail.value.sectorId }}">
+        <input type="text" placeholder="{{ seatDetail.value.sectorName }}" disabled
+          class="form-control form-control-alternative">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label for="rowNumber">Row: </label>
+        <input type="text" placeholder="{{ seatDetail.value.rowNumber }}" disabled
+          class="form-control form-control-alternative">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label for="seatNumber">Seat: </label>
+        <input type="text" placeholder="{{ seatDetail.value.seatNumber }}" disabled
+          class="form-control form-control-alternative">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="ticketPrice">Price: </label>
+        <input type="text" placeholder="{{ seatDetail.value.ticketPrice }} {{ seatDetail.value.currencyName }}" disabled
+          class="form-control form-control-alternative">
+      </div>
+    </div>
+  </div>
+
+  <div class="row with-forms">
+    <div class="col-md-6 mb-3">
+      <label for="ticketNumber">Selected tickets number: </label>
+      <input type="text" placeholder="{{ selectedSeatsCounter }}" disabled
+        class="form-control form-control-alternative">
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="totalPrice">Total price: </label>
+      <input type="text" placeholder="{{ calculateTotalTicketPrice() }} " disabled
+        class="form-control form-control-alternative">
+    </div>
+  </div>
+
+  <div class="row with-forms">
+    <div class="col-md-12 mb-3">
+      <button *ngIf="selectedSeatsCounter == 1" class="btn btn-lg btn-primary mt-3"
+        (click)="reserveTicket($event);">Reserve ticket</button>
+      <button *ngIf="selectedSeatsCounter > 1" class="btn btn-lg btn-primary mt-3"
+        (click)="reserveTicket($event);">Reserve tickets</button>
+      <button class="btn btn-lg btn-primary mt-3" (click)="modalService.close('selectSeatModal')"
+        type="button">Cancel</button>
+    </div>
+  </div>
+</form>

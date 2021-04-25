@@ -114,7 +114,8 @@
                               <div class="row mb-4">
                                  <div class="col-lg-12">
                                     <button class="btn btn-lg btn-primary"
-                                       (click)="modalService.open('selectSeatModal');" type="button">Buy Ticket</button>
+                                       (click)="modalService.open('selectSeatModal');" type="button">Reserve
+                                       tickets</button>
                                  </div>
                               </div>
                            </div>
@@ -227,7 +228,6 @@
             (removedSeatEvent)="removeSeat($event)"></seats>
       </div>
 
-
       <div *ngIf="selectedSeatsCounter > 0">
          <div class="content">
             <div class="row sticky-wrapper">
@@ -238,100 +238,12 @@
                            <div class="tab-pane fade active show" id="aboutShow" role="tabpanel"
                               aria-labelledby="tabs-icons-text-1-tab">
                               <h4 class="mb-4">
-                                 Purchase Details
+                                 Reservation Details
                               </h4>
-
-                              <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
-                                 <div class="row with-forms">
-                                    <div class="col-md-12 mb-3">
-                                       <label for="showId">Title: </label>
-                                       <input type="hidden" formControlName="repertoireId">
-                                       <input type="text" placeholder="{{  repertoire.showName }}"
-                                          formControlName="showName" disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-                                 </div>
-                                 <div class="row with-forms">
-                                    <div class="col-md-12 mb-3">
-                                       <label for="showDate">Date and time: </label>
-                                       <input type="text"
-                                          placeholder="{{ repertoire.showDate | date: 'd LLL yyy, H:mm' }}"
-                                          formControlName="showDate" disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-                                 </div>
-
-                                 <div class="row with-forms">
-                                    <div class="col-md-12 mb-3">
-                                       <label for="theatreName">Theatre: </label>
-                                       <input type="text" placeholder="{{ repertoire.theatreName }}"
-                                          formControlName="theatreName" disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-                                 </div>
-
-                                 <div class="row with-forms">
-                                    <div class="col-md-12 mb-3">
-                                       <label for="sceneName">Scene: </label>
-                                       <input type="text" placeholder="{{ repertoire.sceneName }}"
-                                          formControlName="theatreName" disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-                                 </div>
-
-                                 <div formArrayName="selectedTicketDtos"
-                                    *ngFor="let seatDetail of selectedSeatDetails | keyvalue; let i = index">
-                                    <div class="row with-forms" [formGroupName]='i'>
-                                       <div class="col-md-4 mb-3">
-                                          <label for="sceneName">Sector: </label>
-                                          <input type="hidden" placeholder="{{ seatDetail.value.sectorId }}"
-                                             formControlName="sectorId" value="{{ seatDetail.value.sectorId }}">
-                                          <input type="text" placeholder="{{ seatDetail.value.sectorName }}"
-                                             formControlName="sectorName" disabled
-                                             class="form-control form-control-alternative">
-                                       </div>
-                                       <div class="col-md-2 mb-3">
-                                          <label for="rowNumber">Row: </label>
-                                          <input type="text" placeholder="{{ seatDetail.value.rowNumber }}"
-                                             formControlName="rowNumber" disabled
-                                             class="form-control form-control-alternative">
-                                       </div>
-                                       <div class="col-md-2 mb-3">
-                                          <label for="seatNumber">Seat: </label>
-                                          <input type="text" placeholder="{{ seatDetail.value.seatNumber }}"
-                                             formControlName="seatNumber" disabled
-                                             class="form-control form-control-alternative">
-                                       </div>
-                                       <div class="col-md-4 mb-3">
-                                          <label for="ticketPrice">Price: </label>
-                                          <input type="text"
-                                             placeholder="{{ seatDetail.value.ticketPrice }} {{ seatDetail.value.currencyName }}"
-                                             formControlName="ticketPrice" disabled
-                                             class="form-control form-control-alternative">
-                                       </div>
-                                    </div>
-                                 </div>
-
-                                 <div class="row with-forms">
-                                    <div class="col-md-6 mb-3">
-                                       <label for="ticketNumber">Selected tickets number: </label>
-                                       <input type="text" placeholder="{{ selectedSeatsCounter }}" disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                       <label for="totalPrice">Total price: </label>
-                                       <input type="text" placeholder="{{ calculateTotalTicketPrice() }} " disabled
-                                          class="form-control form-control-alternative">
-                                    </div>
-                                 </div>
-
-                                 <button class="btn btn-lg btn-primary mt-3" type="submit">Buy
-                                    tickets</button>
-                                 <button class="btn btn-lg btn-primary mt-3"
-                                    (click)="modalService.close('selectSeatModal')" type="button">Cancel</button>
-                              </form>
-
+                              <div>
+                                 <reservations [repertoire]="repertoire" [sectorsWithPrices]="sectorsWithPrices"
+                                    [lastSelectedSeat]="lastSelectedSeat" [seatId]="seatId"></reservations>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -340,5 +252,6 @@
             </div>
          </div>
       </div>
+
    </div>
 </jw-modal>
