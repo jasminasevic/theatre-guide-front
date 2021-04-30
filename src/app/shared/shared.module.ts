@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { GallerySliderComponent } from '../globalFrontendComponents/GallerySlider/GallerySlider.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -16,6 +15,7 @@ import { NewsletterComponent } from '../globalFrontendComponents/newsletter/news
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { SeatsComponent} from '../globalFrontendComponents/seats/seats.component';
+import { AddReservationComponent } from '../reservations/add-reservation/add-reservation.component';
 
 @NgModule({
   imports: [
@@ -36,7 +36,8 @@ import { SeatsComponent} from '../globalFrontendComponents/seats/seats.component
     NewsletterComponent,
     TeamComponent,
     ProfileComponent,
-    SeatsComponent
+    SeatsComponent,
+    AddReservationComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -49,7 +50,8 @@ import { SeatsComponent} from '../globalFrontendComponents/seats/seats.component
     NewsletterComponent,
     TeamComponent,
     ProfileComponent,
-    SeatsComponent
+    SeatsComponent,
+    AddReservationComponent
   ] 
 })
 export class SharedModule { }

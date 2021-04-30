@@ -66,11 +66,13 @@ export class AboutRepertoireComponent implements OnInit {
 
    addSeat(lastSelectedSeat: string): void {
       this.lastSelectedSeat = lastSelectedSeat;
+      console.log('last selected ', this.lastSelectedSeat);
       this.selectedSeatsCounter += 1;
    }
 
    removeSeat(seatId: string): void {
       this.seatId = seatId;
+      console.log('seat id ', this.seatId)
       this.selectedSeatsCounter -= 1;
    }
 }
