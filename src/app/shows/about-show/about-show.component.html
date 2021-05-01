@@ -1,187 +1,224 @@
-
 <div class="main-wrapper">
-  <gallery-slider [data]="headerGallerySlider"></gallery-slider>
-  <!-- Content -->
-  <div class="container">
-     <div class="content">
-        <div class="row sticky-wrapper">
-           <div class="col-lg-9 col-md-9">
-              <div class="">
-                 <div class="detail-tile mb-4">
-                    <h3>
-                       {{ show.title }} <span><i class="fa fa-heart-o"></i></span>
-                    </h3>
-                    <p class="text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{ show.theatre }}</a></p>
-                    <span class="badge badge-pill badge-info text-uppercase mr-2">{{ show.category }}</span>
-                 </div>
-                 <div class="nav-wrapper mb-4">
-                    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                       <li class="nav-item">
-                          <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab" href="#aboutShow" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-info-circle mr-2"></i>About</a>
-                       </li>
-                       <li class="nav-item">
-                          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#showLocation" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-map-marker mr-2"></i>Location</a>
-                       </li>
-                       <li class="nav-item">
-                          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#actors" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-users mr-2"></i>Actors</a>
-                       </li>
-                       <li class="nav-item">
-                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#repertoire" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="fa fa-users mr-2"></i>Repertoire</a>
-                     </li>
-                    </ul>
-                 </div>
-                 <div class="card shadow">
-                    <div class="card-body">
-                       <div class="tab-content" id="myTabContent">
-                          <div class="tab-pane fade active show" id="aboutShow" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                           <h4 class="mb-4">
-                              Details
-                           </h4>
-                           <div class="row mb-4">
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-book mr-2"></i><small class="text-uppercase font-weight-bold">Writer</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.writer }}</p>
+   <gallery-slider [data]="headerGallerySlider"></gallery-slider>
+   <!-- Content -->
+   <div class="container">
+      <div class="content">
+         <div class="row sticky-wrapper">
+            <div class="col-lg-9 col-md-9">
+               <div class="">
+                  <div class="detail-tile mb-4">
+                     <h3>
+                        {{ show.title }}
+                        <follow-show-button [showId]="showId"></follow-show-button>
+                     </h3>
+                     <p class="text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{
+                           show.theatre }}</a></p>
+                     <span class="badge badge-pill badge-info text-uppercase mr-2">{{ show.category }}</span>
+                  </div>
+                  <div class="nav-wrapper mb-4">
+                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab"
+                              href="#aboutShow" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i
+                                 class="fa fa-info-circle mr-2"></i>About</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                              href="#showLocation" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
+                                 class="fa fa-map-marker mr-2"></i>Location</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
+                              href="#actors" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i
+                                 class="fa fa-users mr-2"></i>Actors</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
+                              href="#repertoire" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i
+                                 class="fa fa-users mr-2"></i>Repertoire</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="card shadow">
+                     <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                           <div class="tab-pane fade active show" id="aboutShow" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-1-tab">
+                              <h4 class="mb-4">
+                                 Details
+                              </h4>
+                              <div class="row mb-4">
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-book mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Writer</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.writer }}</p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-file-movie-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Director</small></div>
+                                       <p class="m-0 text-small text-muted"><a
+                                             [routerLink]="['/directors/about-director', show.directorId ]"> {{
+                                             show.directorFirstName }} {{show.directorLastName}}</a></p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-certificate mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Category</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.category }}</p>
+                                    </div>
                                  </div>
                               </div>
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-file-movie-o mr-2"></i><small class="text-uppercase font-weight-bold">Director</small></div>
-                                    <p class="m-0 text-small text-muted"><a [routerLink]="['/directors/about-director', show.directorId ]"> {{ show.directorFirstName }} {{show.directorLastName}}</a></p>
+                              <div class="row mb-4">
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-clock-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Duration</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.duration }} min.</p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-calendar-times-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Premiere Date</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.premiereDate | date: 'd MMMM yyyy'
+                                          }} </p>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-heart-o mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Followers</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.followersNumber }}</p>
+                                    </div>
                                  </div>
                               </div>
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-certificate mr-2"></i><small class="text-uppercase font-weight-bold">Category</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.category }}</p>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><i aria-hidden="true"
+                                             class="fa fa-book mr-2"></i><small
+                                             class="text-uppercase font-weight-bold">Description</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.description }} </p>
+                                    </div>
                                  </div>
                               </div>
                            </div>
-                           <div class="row mb-4">
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-clock-o mr-2"></i><small class="text-uppercase font-weight-bold">Duration</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.duration }} min.</p>
+                           <div class="tab-pane fade" id="showLocation" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-2-tab">
+                              <h4 class="mb-4">
+                                 Location
+                              </h4>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><small
+                                             class="text-uppercase font-weight-bold">Scene:</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.scene }}</p>
+                                    </div>
                                  </div>
                               </div>
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-calendar-times-o mr-2"></i><small class="text-uppercase font-weight-bold">Premiere Date</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.premiereDate | date: 'd MMMM yyyy' }} </p>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><small
+                                             class="text-uppercase font-weight-bold">Theatre</small></div>
+                                       <p class="m-0 text-small text-muted"><a
+                                             [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{ show.theatre
+                                             }}</a></p>
+                                    </div>
                                  </div>
                               </div>
-                              <div class="col-lg-4">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-heart-o mr-2"></i><small class="text-uppercase font-weight-bold">Followers</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.followersNumber }}</p>
+                              <div class="row mb-4">
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1"><small
+                                             class="text-uppercase font-weight-bold">Address</small></div>
+                                       <p class="m-0 text-small text-muted">{{ show.address }}</p>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                           <div class="row mb-4">
-                              <div class="col-lg-12">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-book mr-2"></i><small class="text-uppercase font-weight-bold">Description</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.description }} </p>
-                                 </div>
-                              </div>
-                           </div>
-                          </div>
-                          <div class="tab-pane fade" id="showLocation" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-                           <h4 class="mb-4">
-                              Location
-                           </h4>
-                           <div class="row mb-4">
-                              <div class="col-lg-12">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Scene:</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.scene }}</p>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row mb-4">
-                              <div class="col-lg-12">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Theatre</small></div>
-                                    <p class="m-0 text-small text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{ show.theatre }}</a></p>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row mb-4">
-                              <div class="col-lg-12">
-                                 <div class="detail-list mb-2">
-                                    <div class="detail-list-label mb-1"><small class="text-uppercase font-weight-bold">Address</small></div>
-                                    <p class="m-0 text-small text-muted">{{ show.address }}</p>
-                                 </div>
-                              </div>
-                           </div>
-                           <div>
-                                <!-- <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
+                              <div>
+                                 <!-- <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
                                     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                                 </agm-map> -->
-                             </div>
-                          </div>
-                          <div class="tab-pane fade" id="actors" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
-                           <h4 class="mb-4">
-                              Actors
-                           </h4>  
-                           <div class="pricing-list-container">
-                                <ul>
-                                   <li *ngFor="let actor of show.actorShowDtos">
-                                      <h5><a [routerLink]="['/actors/about-actor', actor.actorId]">
-                                        {{ actor.actorFirstName }} {{ actor.actorLastName }}</a> 
-                                      </h5>
-                                      <p *ngIf="actor.actorRoleDescription; else noActorRoleDescription">
-                                         {{ actor.actorRoleName }} - {{ actor.actorRoleDescription }}
+                              </div>
+                           </div>
+                           <div class="tab-pane fade" id="actors" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-3-tab">
+                              <h4 class="mb-4">
+                                 Actors
+                              </h4>
+                              <div class="pricing-list-container">
+                                 <ul>
+                                    <li *ngFor="let actor of show.actorShowDtos">
+                                       <h5><a [routerLink]="['/actors/about-actor', actor.actorId]">
+                                             {{ actor.actorFirstName }} {{ actor.actorLastName }}</a>
+                                       </h5>
+                                       <p *ngIf="actor.actorRoleDescription; else noActorRoleDescription">
+                                          {{ actor.actorRoleName }} - {{ actor.actorRoleDescription }}
                                        </p>
                                        <ng-template #noActorRoleDescription>
                                           <p>{{ actor.actorRoleName }} </p>
                                        </ng-template>
-                                   </li>
-                                </ul>
-                             </div>
-                          </div>
-                              <div class="tab-pane fade" id="repertoire" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
-                                 <h4 class="mb-4">
-                                    Repertoire
-                                 </h4>
-                                 <div class="row mb-4" *ngIf="show.getRepertoireForShowDtos.length; else noShowOnRepertoire">
-                                    <div class="col-lg-12" *ngFor="let play of show.getRepertoireForShowDtos">
-                                       <div class="detail-list mb-2">
-                                          <div class="detail-list-label mb-1">
-                                             <p class="m-3">
-                                                <a [routerLink]="['/repertoires/about-play/', play.id]">
-                                                {{ play.showDate  | date: 'EEEE, d LLL yyy,  H:mm' }} </a> 
-                                                <span *ngIf="play.isPremiere" class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
-                                                <span>
-                                                   <a [routerLink]="['/repertoires/about-play', play.id]">
-                                                       <button class="btn btn-sm btn-primary" type="button">Ticket</button>
-                                                   </a>
-                                                 </span>
-                                             </p>
-                                          </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="tab-pane fade" id="repertoire" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-4-tab">
+                              <h4 class="mb-4">
+                                 Repertoire
+                              </h4>
+                              <div class="row mb-4"
+                                 *ngIf="show.getRepertoireForShowDtos.length; else noShowOnRepertoire">
+                                 <div class="col-lg-12" *ngFor="let play of show.getRepertoireForShowDtos">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1">
+                                          <p class="m-3">
+                                             <a [routerLink]="['/repertoires/about-play/', play.id]">
+                                                {{ play.showDate | date: 'EEEE, d LLL yyy, H:mm' }} </a>
+                                             <span *ngIf="play.isPremiere"
+                                                class="badge badge-pill badge-info text-uppercase mr-2">Premiere</span>
+                                             <span>
+                                                <a [routerLink]="['/repertoires/about-play', play.id]">
+                                                   <button class="btn btn-sm btn-primary" type="button">Ticket</button>
+                                                </a>
+                                             </span>
+                                          </p>
                                        </div>
                                     </div>
                                  </div>
-                                 <ng-template #noShowOnRepertoire>
-                                    <div class="col-lg-12">
-                                       <div class="detail-list mb-2">
-                                          <div class="detail-list-label mb-1">
-                                             <p class="m-3">
-                                               No show on repertoire this month.
-                                             </p>
-                                          </div>
+                              </div>
+                              <ng-template #noShowOnRepertoire>
+                                 <div class="col-lg-12">
+                                    <div class="detail-list mb-2">
+                                       <div class="detail-list-label mb-1">
+                                          <p class="m-3">
+                                             No show on repertoire this month.
+                                          </p>
                                        </div>
                                     </div>
-                                 </ng-template>
-                                <div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-           <div class="col-lg-3 col-md-3">
+                                 </div>
+                              </ng-template>
+                              <div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
                <div class="sidebar right">
                   <!-- Newsletter Widget -->
                   <newsletter></newsletter>
@@ -189,7 +226,7 @@
 
                   <!-- Popular Shows Vertical Widget -->
                   <div>
-                  <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
+                     <popular-shows-vertical [title]="popularShowsTitle" [data]="shows"></popular-shows-vertical>
                   </div>
                   <!-- Popular Shows Vertical Widget / End -->
 

@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ShowAllDetails } from '../ShowAllDetails.model';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsVerticalService } from '../../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'about-show',
@@ -18,21 +17,26 @@ export class AboutShowComponent implements OnInit {
 
    headerGallerySlider: any;
    show: ShowAllDetails;
-   showId: any;
+   showId: number;
 
    shows: PopularShows[] = [];
 	popularShowsTitle : string = 'Popular Shows';
 
    constructor(private activatedRoute: ActivatedRoute,
-      private popularShowVerticalService: PopularShowsVerticalService){}
+      private popularShowVerticalService: PopularShowsVerticalService){
+      }
 
    ngOnInit(){
+      this.activatedRoute.params.subscribe(params => {
+         this.showId = params['id'];
+         console.log('showId u parentu', this.showId);
+      })
+
       this.activatedRoute.data.subscribe((data: {show: ShowAllDetails}) => {
          this.show = data.show,
          this.headerGallerySlider = this.show.showImageDtos
       });
 
-      this.showId = this.activatedRoute.snapshot.params['id'];
       this.popularShowVerticalService.getPopularShowsFilteredById(this.showId)
 			.subscribe(data => {
             this.shows = data

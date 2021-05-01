@@ -16,6 +16,7 @@ import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { SeatsComponent} from '../globalFrontendComponents/seats/seats.component';
 import { AddReservationComponent } from '../reservations/add-reservation/add-reservation.component';
+import { FollowShowButtonComponent } from '../globalFrontendComponents/followShowButton/followShowButton.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { AddReservationComponent } from '../reservations/add-reservation/add-res
     TeamComponent,
     ProfileComponent,
     SeatsComponent,
-    AddReservationComponent
+    AddReservationComponent,
+    FollowShowButtonComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -51,7 +53,8 @@ import { AddReservationComponent } from '../reservations/add-reservation/add-res
     TeamComponent,
     ProfileComponent,
     SeatsComponent,
-    AddReservationComponent
+    AddReservationComponent,
+    FollowShowButtonComponent
   ] 
 })
 export class SharedModule { }
