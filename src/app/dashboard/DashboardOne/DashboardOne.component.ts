@@ -70,7 +70,7 @@ export class DashboardOneComponent implements OnInit{
 
 	servicesTitle : string = 'Plan Your Visit';
 	servicesDesc  : string = `Explore some of the best theatres in the world. 
-	 Discover the most popular shows on their repertoire and buy tickets.`;
+	 Discover the most popular shows on their repertoire and reserve tickets.`;
 	services   : any = [
 		{
 			icon : 'fa fa-search',
@@ -84,8 +84,8 @@ export class DashboardOneComponent implements OnInit{
 		},
 		{
 			icon : 'fa fa-user-plus',
-			title: 'Buy Tickets',
-			desc : `Check when some show is on the repertoire and buy ticket(s) for it.`
+			title: 'Reserve Tickets',
+			desc : `Check when some show is on the repertoire and reserve ticket(s) for it.`
 		}
 	];
 

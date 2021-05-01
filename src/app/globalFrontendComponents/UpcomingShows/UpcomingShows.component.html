@@ -1,46 +1,50 @@
 <div class="block-space">
-  <div class="container">
-      <div class="block-head text-center mb-5">
-          <h2 class="head-line display-3">
-              {{Title}}
-          </h2>
-          <p class="lead mt-2 head-desc text-primary">{{Desc}}</p>
-      </div>
-  </div>
-  <!-- Categories Carousel -->
-  <div class="fullwidth-carousel-container">
-      <div class="fullwidth-slick-carousel category-carousel">
-          <!-- Item -->
-          <ngx-slick-carousel class="carousel fullwidth-slick-carousel category-carousel"  #slickModal="slick-carousel" [config]="slideConfig">
-              <div ngxSlickItem *ngFor="let item of Data" class="slide fw-carousel-item slide">
-                  <div class="category-box-container text-center">
-                      <div  class="category-box">
-                          <div class="category-box-content">
-                              <div class="icon-title">
-                                  <span class="round-pill bg-primary"><i class="fa fa-heart-o"></i></span>
-                                  <span class="round-pill bg-primary"><i class="fa fa-shopping-cart"></i></span>
-                              </div>
-                              <a [routerLink]="['/repertoires/about-play', item.id ]">  <h3>{{item.title}}</h3></a>
-                              <span>{{ item.showDate | date: 'd LLL yyy,  H:mm'}} </span>
-                              <p>
-                                  <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small> {{item.theatreName}} </small></a> 
-                              </p>
-                              <span *ngIf="item.followersNumber == 1;else followersPlural" >
-                                  <small>{{ item.followersNumber}} follower </small>
-                              </span>
-                              <ng-template #followersPlural>
-                              <span>
-                                  <small>{{ item.followersNumber}} followers </small>
-                              </span>
-                              </ng-template>
-                          </div>
-                          <div class="category-box-background" *ngFor="let image of item.showImage" [ngStyle]="{'background-image': 'url(' + [imgBaseUrl] + image.path + ')'}">
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ngx-slick-carousel>
-      </div>
-  </div>
-  <!-- Categories Carousel / End -->
+    <div class="container">
+        <div class="block-head text-center mb-5">
+            <h2 class="head-line display-3">
+                {{Title}}
+            </h2>
+            <p class="lead mt-2 head-desc text-primary">{{Desc}}</p>
+        </div>
+    </div>
+    <!-- Categories Carousel -->
+    <div class="fullwidth-carousel-container">
+        <div class="fullwidth-slick-carousel category-carousel">
+            <!-- Item -->
+            <ngx-slick-carousel class="carousel fullwidth-slick-carousel category-carousel" #slickModal="slick-carousel"
+                [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let item of Data" class="slide fw-carousel-item slide">
+                    <div class="category-box-container text-center">
+                        <div class="category-box">
+                            <div class="category-box-content">
+                                <div class="icon-title">
+                                    <span class="round-pill bg-primary"><i class="fa fa-ticket"></i></span>
+                                </div>
+                                <a [routerLink]="['/repertoires/about-play', item.id ]">
+                                    <h3>{{item.title}}</h3>
+                                </a>
+                                <span>{{ item.showDate | date: 'd LLL yyy, H:mm'}} </span>
+                                <p>
+                                    <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small>
+                                            {{item.theatreName}} </small></a>
+                                </p>
+                                <span *ngIf="item.followersNumber == 1;else followersPlural">
+                                    <small>{{ item.followersNumber}} follower </small>
+                                </span>
+                                <ng-template #followersPlural>
+                                    <span>
+                                        <small>{{ item.followersNumber}} followers </small>
+                                    </span>
+                                </ng-template>
+                            </div>
+                            <div class="category-box-background" *ngFor="let image of item.showImage"
+                                [ngStyle]="{'background-image': 'url(' + [imgBaseUrl] + image.path + ')'}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+    <!-- Categories Carousel / End -->
 </div>

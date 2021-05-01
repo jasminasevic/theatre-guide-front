@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../authentication/tokenStorage.service';
 import { InteractionService } from '../shared/services/interaction.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class PartnershipsComponent implements OnInit {
 
   teamSectionTitle : string = 'The Amazing Team';
    teamSectionDesc  : string = `Our team is composed of many people who are working together 
-   to achieve one goal - to help you discover some of the greatest shows and buy tickets for them.`;
+   to achieve one goal - to help you discover some of the greatest shows and reserve tickets for them.`;
    teamMembers : any = [
                      {
                         name     : 'Jasmina Sevic',
@@ -37,14 +38,14 @@ export class PartnershipsComponent implements OnInit {
 
    isLoggedInStatus: boolean;
                   
-  constructor(private interactionService: InteractionService) { }
+  constructor(private interactionService: InteractionService,
+   private token: TokenStorageService) { }
+
+   isTheatre: boolean = false;
+   roleId: number;
 
   ngOnInit() {
-   this.interactionService.currentLoginStatus$
-   .subscribe(
-     message => {
-       this.isLoggedInStatus = message
-     });
+   this.roleId = this.token.getRoleId();
   }
 
 

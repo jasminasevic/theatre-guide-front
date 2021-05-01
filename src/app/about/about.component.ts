@@ -9,7 +9,7 @@ export class AboutComponent implements OnInit {
 
   teamSectionTitle : string = 'The Amazing Team';
    teamSectionDesc  : string = `Our team is composed of many people who are working together 
-   to achieve one goal - to help you discover some of the greatest shows and buy tickets for them.`;
+   to achieve one goal - to help you discover some of the greatest shows and reserve tickets for them.`;
    teamMembers : any = [
                      {
                         name     : 'Jasmina Sevic',

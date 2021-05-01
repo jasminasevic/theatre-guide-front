@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit{
           this.tokenStorage.saveUserId(userId);
           this.tokenStorage.saveFirstName(firstName);
           this.tokenStorage.saveTheatreId(theatreId);
+          this.tokenStorage.saveRoleId(roleId);
 
           if(roleId == 2)
           this.router.navigate(['/admin-theatre/dashboard']);

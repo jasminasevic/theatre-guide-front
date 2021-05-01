@@ -77,6 +77,19 @@ constructor(private router: Router,
     return JSON.parse(localStorage.getItem(THEATRE_ID_KEY));
   }
 
+  public getRoleId() {
+    const token = this.getToken()
+    this.saveToken(token);
+
+    const decodedToken = jwtDecode<JwtPayload>(token);
+        let userData = decodedToken[USER_KEY]
+        let storageData = JSON.parse(userData);
+        let keys = Object.keys(storageData);
+        let values = keys.map(k => storageData[k]);
+        let roleId = values[3];
+        return roleId;
+  }
+
   public getUserId(){
     const token = this.getToken()
     this.saveToken(token);
