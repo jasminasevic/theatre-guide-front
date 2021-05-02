@@ -29,7 +29,10 @@ export class AboutShowComponent implements OnInit {
    ngOnInit(){
       this.activatedRoute.params.subscribe(params => {
          this.showId = params['id'];
-         console.log('showId u parentu', this.showId);
+         this.popularShowVerticalService.getPopularShowsFilteredById(this.showId)
+            .subscribe(data => {
+               this.shows = data
+            })
       })
 
       this.activatedRoute.data.subscribe((data: {show: ShowAllDetails}) => {
@@ -37,10 +40,6 @@ export class AboutShowComponent implements OnInit {
          this.headerGallerySlider = this.show.showImageDtos
       });
 
-      this.popularShowVerticalService.getPopularShowsFilteredById(this.showId)
-			.subscribe(data => {
-            this.shows = data
-			})
    }
 
 }

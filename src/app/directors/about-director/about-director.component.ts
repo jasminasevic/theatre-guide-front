@@ -28,11 +28,14 @@ export class AboutDirectorComponent implements OnInit {
       this.director = data.director
     });
 
-    this.directorId = this.activatedRoute.snapshot.params['id'];
-    this.popularShowsService.getPopularShowsFilteredByDirector(this.directorId)
-    .subscribe(data => {
-      this.shows = data
-    });
+    this.activatedRoute.params.subscribe(params => {
+      this.directorId = params['id'];
+
+      this.popularShowsService.getPopularShowsFilteredByDirector(this.directorId)
+      .subscribe(data => {
+        this.shows = data
+      });
+    })
   }
   
 }

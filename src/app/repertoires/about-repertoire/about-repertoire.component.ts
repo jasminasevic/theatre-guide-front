@@ -44,7 +44,9 @@ export class AboutRepertoireComponent implements OnInit {
          this.theatreId = data.repertoire.theatreId,
          this.showId = data.repertoire.showId,
          this.repertoireId = data.repertoire.id
-         this.sectorsWithPrices = data.repertoire.getPriceDtos
+         this.sectorsWithPrices = data.repertoire.getPriceDtos,
+         console.log(this.theatreId),
+         console.log(this.showId)
       });
 
       this.popularShowVerticalService.getPopularShowsFilteredByIdAndTheatre(this.theatreId, this.showId)

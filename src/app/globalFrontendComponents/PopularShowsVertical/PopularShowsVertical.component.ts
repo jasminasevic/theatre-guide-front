@@ -23,7 +23,6 @@ export class PopularShowsVerticalComponent implements OnInit {
   
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

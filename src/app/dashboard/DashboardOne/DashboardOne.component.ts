@@ -39,7 +39,7 @@ export class DashboardOneComponent implements OnInit{
 	recentlyJoinedTheatresTitle : string = 'Recently Joined Theatres';
 	recentlyJoinedTheatresDesc : string = `Check theatres that recently joined our platform. 
 	Browse their shows, actors, directors and more. Follow shows, check repertoire and 
-	buy ticket for the upcoming plays.`;
+	reserve your ticket for the upcoming plays.`;
 
 	upcomingPremieres: UpcomingPremieres[];
 	upcomingPremieresTitle : string = 'Upcoming Premieres';

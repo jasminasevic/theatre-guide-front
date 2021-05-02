@@ -28,11 +28,14 @@ export class AboutActorComponent implements OnInit {
       this.actor = data.actor
     });
 
-    this.actorId = this.activatedRoute.snapshot.params['id'];
-    this.popularShowsService.getPopularShowsFilteredByActor(this.actorId)
+    this.activatedRoute.params.subscribe(params => {
+      this.actorId = params['id'];
+
+      this.popularShowsService.getPopularShowsFilteredByActor(this.actorId)
       .subscribe(data => {
         this.shows = data[0].getPopularShowsDtos
       });
+    })
   }
 
 }
