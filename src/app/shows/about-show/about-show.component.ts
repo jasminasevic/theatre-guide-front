@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShowAllDetails } from '../ShowAllDetails.model';
 import { PopularShows } from 'src/app/globalFrontendComponents/PopularShows/PopularShows.model';
 import { PopularShowsVerticalService } from '../../globalFrontendComponents/PopularShowsVertical/PopularShowsVertical.service';
+import { IShowFollowerChange } from 'src/app/shared/interfaces/IShowFollowerChange';
 
 @Component({
   selector: 'about-show',
@@ -18,6 +19,8 @@ export class AboutShowComponent implements OnInit {
    headerGallerySlider: any;
    show: ShowAllDetails;
    showId: number;
+   followersNumber: number;
+   follower: number = 0;
 
    shows: PopularShows[] = [];
 	popularShowsTitle : string = 'Popular Shows';
@@ -25,7 +28,7 @@ export class AboutShowComponent implements OnInit {
    constructor(private activatedRoute: ActivatedRoute,
       private popularShowVerticalService: PopularShowsVerticalService){
       }
-
+ 
    ngOnInit(){
       this.activatedRoute.params.subscribe(params => {
          this.showId = params['id'];
@@ -37,9 +40,14 @@ export class AboutShowComponent implements OnInit {
 
       this.activatedRoute.data.subscribe((data: {show: ShowAllDetails}) => {
          this.show = data.show,
-         this.headerGallerySlider = this.show.showImageDtos
+         this.headerGallerySlider = this.show.showImageDtos,
+         this.followersNumber = data.show.followersNumber
       });
+   }
 
+   updateFollowersNumber($event: IShowFollowerChange){
+      this.follower = $event.amount;
+      this.followersNumber += this.follower;
    }
 
 }

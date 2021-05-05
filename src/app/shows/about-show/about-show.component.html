@@ -9,7 +9,8 @@
                   <div class="detail-tile mb-4">
                      <h3>
                         {{ show.title }}
-                        <follow-show-button [showId]="showId"></follow-show-button>
+                        <follow-show-button [showId]="showId"
+                           (updateTotalFollowersNumber)="updateFollowersNumber($event)"></follow-show-button>
                      </h3>
                      <p class="text-muted"><a [routerLink]="['/theatres/about-theatre', show.theatreId ]">{{
                            show.theatre }}</a></p>
@@ -98,7 +99,8 @@
                                        <div class="detail-list-label mb-1"><i aria-hidden="true"
                                              class="fa fa-heart-o mr-2"></i><small
                                              class="text-uppercase font-weight-bold">Followers</small></div>
-                                       <p class="m-0 text-small text-muted">{{ show.followersNumber }}</p>
+                                       <p class="m-0 text-small text-muted">{{ followersNumber }}
+                                       </p>
                                     </div>
                                  </div>
                               </div>

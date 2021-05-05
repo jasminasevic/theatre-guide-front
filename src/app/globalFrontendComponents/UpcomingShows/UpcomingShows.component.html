@@ -28,14 +28,6 @@
                                     <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small>
                                             {{item.theatreName}} </small></a>
                                 </p>
-                                <span *ngIf="item.followersNumber == 1;else followersPlural">
-                                    <small>{{ item.followersNumber}} follower </small>
-                                </span>
-                                <ng-template #followersPlural>
-                                    <span>
-                                        <small>{{ item.followersNumber}} followers </small>
-                                    </span>
-                                </ng-template>
                             </div>
                             <div class="category-box-background" *ngFor="let image of item.showImage"
                                 [ngStyle]="{'background-image': 'url(' + [imgBaseUrl] + image.path + ')'}">

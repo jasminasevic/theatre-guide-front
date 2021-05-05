@@ -44,9 +44,7 @@ export class AboutRepertoireComponent implements OnInit {
          this.theatreId = data.repertoire.theatreId,
          this.showId = data.repertoire.showId,
          this.repertoireId = data.repertoire.id
-         this.sectorsWithPrices = data.repertoire.getPriceDtos,
-         console.log(this.theatreId),
-         console.log(this.showId)
+         this.sectorsWithPrices = data.repertoire.getPriceDtos
       });
 
       this.popularShowVerticalService.getPopularShowsFilteredByIdAndTheatre(this.theatreId, this.showId)
@@ -68,13 +66,11 @@ export class AboutRepertoireComponent implements OnInit {
 
    addSeat(lastSelectedSeat: string): void {
       this.lastSelectedSeat = lastSelectedSeat;
-      console.log('last selected ', this.lastSelectedSeat);
       this.selectedSeatsCounter += 1;
    }
 
    removeSeat(seatId: string): void {
       this.seatId = seatId;
-      console.log('seat id ', this.seatId)
       this.selectedSeatsCounter -= 1;
    }
 }

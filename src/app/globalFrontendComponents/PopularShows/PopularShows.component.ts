@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { IShowFollowerChange } from 'src/app/shared/interfaces/IShowFollowerChange';
 import { IMG_BASE_URL } from '../../app.constants';
+import { PopularShows } from '../PopularShows/PopularShows.model';
 
 @Component({
   selector: 'popular-shows',
@@ -7,10 +9,11 @@ import { IMG_BASE_URL } from '../../app.constants';
   styleUrls: ['./PopularShows.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PopularShowsComponent implements OnInit {
+export class PopularShowsComponent {
 
   imgBaseUrl: string = IMG_BASE_URL;
   readonly IMG_BASE_URL = IMG_BASE_URL;
+  data: PopularShows[];
   
   /** Title for baner **/
   @Input('title') Title: any = 'Dummy Title';
@@ -18,8 +21,20 @@ export class PopularShowsComponent implements OnInit {
   /** Description for baner **/
   @Input('desc') Desc: any = 'Description';
 
-  /** Background for baner **/
-  @Input('data') Data: any;
+  /** Data for body **/
+  @Input('data') 
+    set Data(Data: PopularShows[]){
+      this.data = Data;
+      console.log(this.data)
+    }
+
+  updateFollowersNumber($event: IShowFollowerChange){
+    this.data.forEach(element => {
+      if(element.id == $event.showId){
+        element.followersNumber += $event.amount
+      }
+    });
+  }
 
   slideConfig = {
        centerMode: true,
@@ -51,11 +66,5 @@ export class PopularShowsComponent implements OnInit {
         }
        ]
      };
-
-  ngOnInit(){
-  }
-
-  ngAfterViewInit()
-  { }
 
 }

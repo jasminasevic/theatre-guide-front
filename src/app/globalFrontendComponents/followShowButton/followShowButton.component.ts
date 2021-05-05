@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { concat } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { IFollower } from 'src/app/shared/interfaces/IFollower';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { FollowShowButtonService } from './followShowButton.service';
+import { IShowFollowerChange } from '../../shared/interfaces/IShowFollowerChange';
 
 @Component({
   selector: 'follow-show-button',
@@ -16,6 +16,7 @@ export class FollowShowButtonComponent {
   showIdentifier: number;
   isFollowed: boolean = false;
   title: string = 'Follow';
+  updateFollowersNumber: number = 0;
 
   constructor(private token: TokenStorageService,
     private followerService: FollowShowButtonService,
@@ -35,10 +36,11 @@ export class FollowShowButtonComponent {
     }
   }
 
+  @Output() updateTotalFollowersNumber = new EventEmitter<IShowFollowerChange>();
+  
   follow(){
     if(this.userId != null){
       if(this.isFollowed == false){
-        console.log(this.userId, this.showIdentifier);
         let follower: IFollower = {
           userId: null,
           showId: null
@@ -48,20 +50,21 @@ export class FollowShowButtonComponent {
 
         this.followerService.followShow(follower)
           .subscribe(() => {
-            this.isFollowed = true,
-            this.title = "Unfollow"
+            this.isFollowed = true;
+            this.title = "Unfollow";
+            this.updateTotalFollowersNumber.emit({ amount: 1, showId: this.showIdentifier});
           }, err => {
-            console.log(err)
+            this.alertify.error("Something went wrong. Please try again later.");
           })
       } 
       else {
-        console.log(this.userId, this.showIdentifier);
         this.followerService.unfollowShow(this.userId, this.showIdentifier)
           .subscribe(() => {
-            this.isFollowed = false,
-            this.title = "Follow"
+            this.isFollowed = false;
+            this.title = "Follow";
+            this.updateTotalFollowersNumber.emit({ amount: -1, showId: this.showIdentifier});
           }, err => {
-            console.log(err)
+            this.alertify.error("Something went wrong. Please try again later.");
           })
       }
     } else {

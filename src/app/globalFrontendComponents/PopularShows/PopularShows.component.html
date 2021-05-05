@@ -11,28 +11,37 @@
     <div class="fullwidth-carousel-container">
         <div class="fullwidth-slick-carousel category-carousel">
             <!-- Item -->
-            <ngx-slick-carousel class="carousel fullwidth-slick-carousel category-carousel"  #slickModal="slick-carousel" [config]="slideConfig">
-                <div ngxSlickItem *ngFor="let item of Data" class="slide fw-carousel-item slide">
+            <ngx-slick-carousel class="carousel fullwidth-slick-carousel category-carousel" #slickModal="slick-carousel"
+                [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let item of data" class="slide fw-carousel-item slide">
                     <div class="category-box-container text-center">
-                        <div  class="category-box">
+                        <div class="category-box">
                             <div class="category-box-content">
                                 <div class="icon-title">
-                                    <span class="round-pill bg-primary"><i class="fa fa-heart-o"></i></span>
+                                    <span class="round-pill bg-primary">
+                                        <follow-show-button [showId]="item.id"
+                                            (updateTotalFollowersNumber)="updateFollowersNumber($event)">
+                                        </follow-show-button>
+                                    </span>
                                 </div>
-                                <a [routerLink]="['/shows/about-show', item.id ]">  <h3>{{item.title}}</h3></a>
+                                <a [routerLink]="['/shows/about-show', item.id ]">
+                                    <h3>{{item.title}}</h3>
+                                </a>
                                 <p>
-                                    <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small> {{item.theatreName}} </small></a> 
+                                    <a [routerLink]="['/theatres/about-theatre', item.theatreId ]"><small>
+                                            {{item.theatreName}} </small></a>
                                 </p>
-                                <span *ngIf="item.followersNumber == 1;else followersPlural" >
+                                <span *ngIf="item.followersNumber == 1;else followersPlural">
                                     <small>{{ item.followersNumber}} follower </small>
                                 </span>
                                 <ng-template #followersPlural>
-                                <span>
-                                    <small>{{ item.followersNumber}} followers </small>
-                                </span>
+                                    <span>
+                                        <small>{{ item.followersNumber}} followers </small>
+                                    </span>
                                 </ng-template>
                             </div>
-                            <div class="category-box-background" *ngFor="let image of item.showImage" [ngStyle]="{'background-image': 'url(' + [imgBaseUrl] + image.path + ')'}">
+                            <div class="category-box-background" *ngFor="let image of item.showImage"
+                                [ngStyle]="{'background-image': 'url(' + [imgBaseUrl] + image.path + ')'}">
                             </div>
                         </div>
                     </div>
