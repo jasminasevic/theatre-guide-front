@@ -17,13 +17,6 @@
                     <div class="category-box-container text-center">
                         <div class="category-box">
                             <div class="category-box-content">
-                                <div class="icon-title">
-                                    <span class="round-pill bg-primary">
-                                        <follow-show-button [showId]="item.id"
-                                            (updateTotalFollowersNumber)="updateFollowersNumber($event)">
-                                        </follow-show-button>
-                                    </span>
-                                </div>
                                 <a [routerLink]="['/shows/about-show', item.id ]">
                                     <h3>{{item.title}}</h3>
                                 </a>
