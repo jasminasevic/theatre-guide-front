@@ -25,14 +25,11 @@ export class PopularShowsComponent {
   @Input('data') 
     set Data(Data: PopularShows[]){
       this.data = Data;
-      console.log('data u popular shows ', this.data)
     }
 
   updateFollowersNumber($event: IShowFollowerChange){
-    console.log('event ', $event);
     this.data.forEach(element => {
       if(element.id == $event.showId){
-        console.log('podaci su ', $event);
         element.followersNumber += $event.amount
       }
     });

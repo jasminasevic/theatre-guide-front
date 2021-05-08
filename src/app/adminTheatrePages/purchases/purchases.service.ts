@@ -16,22 +16,40 @@ constructor(private token: TokenStorageService,
 
 public API_URL = API_URL;
 public theatreId = this.token.getTheatreId();
+public userId = this.token.getUserId();
 
-getPurchasesFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
-  searchQuery: string = "", sortOrder: string = "") 
-: Observable<IPurchaseData>{
-  let params = new HttpParams();
-  params = params.append('perPage', String(perPage));
-  params = params.append('pageNumber', String(pageNumber));
-  params = params.append('searchQuery', String(searchQuery));
-  params = params.append('sortOrder', String(sortOrder));
-  params = params.append('Type', 'purchasesFilteredByTheatre');
-  params = params.append('TheatreId', this.theatreId);
+  getPurchasesFilteredByTheatre(perPage: number = 4, pageNumber: number = 1, 
+    searchQuery: string = "", sortOrder: string = "") 
+  : Observable<IPurchaseData>{
+    let params = new HttpParams();
+    params = params.append('perPage', String(perPage));
+    params = params.append('pageNumber', String(pageNumber));
+    params = params.append('searchQuery', String(searchQuery));
+    params = params.append('sortOrder', String(sortOrder));
+    params = params.append('Type', 'purchasesFilteredByTheatre');
+    params = params.append('TheatreId', this.theatreId);
 
-  return this.httpClient.get<IPurchaseData>(this.API_URL + '/purchases', { params })
-    .pipe(
-      map((purchase: IPurchaseData) => purchase)
-    )}
+    return this.httpClient.get<IPurchaseData>(this.API_URL + '/purchases', { params })
+      .pipe(
+        map((purchase: IPurchaseData) => purchase)
+      )}
+
+  getPurchasesFilteredByUser(perPage: number = 4, pageNumber: number = 1, 
+      searchQuery: string = "", sortOrder: string = "") 
+    : Observable<IPurchaseData>{
+    let params = new HttpParams();
+    params = params.append('perPage', String(perPage));
+    params = params.append('pageNumber', String(pageNumber));
+    params = params.append('searchQuery', String(searchQuery));
+    params = params.append('sortOrder', String(sortOrder));
+    params = params.append('Type', 'purchasesFilteredByUser');
+    params = params.append('UserId', this.userId);
+      
+    return this.httpClient.get<IPurchaseData>(this.API_URL + '/purchases', { params })
+      .pipe(
+        map((purchase: IPurchaseData) => purchase)
+      )}
+
 
 
   getPurchasesNumberFilteredByTheatre(theatreId) : Observable<number>{
