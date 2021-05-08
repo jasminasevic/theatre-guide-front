@@ -29,15 +29,18 @@
                   </a>
                   <div class="listing-item-content">
                     <h3>{{show.title}}</h3>
-                    <span> <small><a
-                          [routerLink]="['/theatres/about-theatre', show.theatreId]">{{show.theatre}}</a></small></span>
+                    <span>
+                      <small><a [routerLink]="['/theatres/about-theatre', show.theatreId]">{{show.theatre}}</a>
+                      </small>
+                    </span>
                     <p class="mt-2">
+                      <follow-show-button [showId]="show.id">
+                      </follow-show-button>
                       <a [routerLink]="['/shows/about-show', show.id]">
-                        <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                        <button class="btn btn-sm btn-primary ml-2" type="button">Find out more</button>
                       </a>
                     </p>
                   </div>
-                  <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
                 </div>
               </div>
             </div>

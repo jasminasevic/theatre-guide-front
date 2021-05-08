@@ -16,7 +16,7 @@ export const AdminTheatreRoutes: Routes = [
     component: EditProfileComponent
   },
   {
-    path: 'purchases',
+    path: 'reservations',
     component: AllPurchasesComponent,
     resolve: { purchaseList: AllPurchasesResolverService }
   },

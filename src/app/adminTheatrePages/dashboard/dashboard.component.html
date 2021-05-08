@@ -8,8 +8,8 @@
           <i class="i-Add-User"></i>
           <div class="py-4">
             <h2 class="text-primary mb-2">{{ soldTicketsNumber }}</h2>
-            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber != 1">Tickets Sold</p>
-            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber == 1">Ticket Sold</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber != 1">Tickets Reserved</p>
+            <p class="text-muted mt-2 mb-0" *ngIf="soldTicketsNumber == 1">Ticket Reserved</p>
           </div>
         </div>
       </div>
@@ -33,12 +33,13 @@
     <div class="col-lg-6 col-md-12 mb-4">
       <div class="card">
         <div class="db-tile">
-          <h4>Recent Purchases</h4>
+          <h4>Recent Reservations</h4>
         </div>
         <div class="db-activities">
           <div class="alert alert-dismissible fade show" role="alert" *ngFor="let purchase of recentPurchases">
             <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="50" height="50" alt="">
-            <span class="alert-inner--text mb-0 px-3">Ticket sold on {{ purchase.createdAt | date: 'd MMMM yyyy' }} for
+            <span class="alert-inner--text mb-0 px-3">Ticket reserved on {{ purchase.createdAt | date: 'd MMMM yyyy' }}
+              for
               <a [routerLink]="['/repertoires/about-play', purchase.repertoireId ]">{{ purchase.showName }}</a>
               show that will be on view {{ purchase.date | date: 'd MMMM yyyy' }} at {{ purchase.date | date: 'HH:mm'
               }}.
