@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { adminUserRoutes } from './adminUser.routing';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.component';
+import { FollowedShowsComponent } from './followed-shows/followed-shows.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AllPurchasesComponent } from './purchases/all-purchases/all-purchases.c
   ],
   declarations: [
     EditProfileComponent,
-    AllPurchasesComponent
+    AllPurchasesComponent,
+    FollowedShowsComponent
   ]
 })
 export class AdminUserModule { }

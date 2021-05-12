@@ -24,9 +24,7 @@ export class FollowShowButtonComponent {
 
 
   @Input() set showId(showId: any){
-    console.log('jcnsjnsj ', showId);
     this.showIdentifier = showId;
-    console.log('id je ', showId);
 
     if(this.token.getToken() != null){
       this.userId = this.token.getUserId();
@@ -34,7 +32,6 @@ export class FollowShowButtonComponent {
       this.followerService.checkIsFollowing(this.userId, this.showIdentifier)
         .subscribe(data => {
           this.isFollowed = data,
-          console.log(this.isFollowed);
           this.isFollowed ? this.title = "Unfollow" : this.title = "Follow"
         });
     }
@@ -43,7 +40,6 @@ export class FollowShowButtonComponent {
   @Output() updateTotalFollowersNumber = new EventEmitter<IShowFollowerChange>();
   
   follow(){
-    console.log('follow f-ja');
     if(this.userId != null){
       if(this.isFollowed == false){
         let follower: IFollower = {
@@ -52,7 +48,6 @@ export class FollowShowButtonComponent {
         };
         follower.showId = this.showIdentifier.toString();
         follower.userId = this.userId.toString();
-        console.log('omg');
         this.followerService.followShow(follower)
           .subscribe(() => {
             this.isFollowed = true;

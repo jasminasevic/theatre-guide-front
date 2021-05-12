@@ -40,7 +40,8 @@
                            account</a>
                         <a class="dropdown-item" *ngIf="theatreId"
                            [routerLink]="['/admin-theatre/settings']">Settings</a>
-                        <a class="dropdown-item" *ngIf="!theatreId" [routerLink]="['/admin/dashboard']">My account</a>
+                        <a class="dropdown-item" *ngIf="!theatreId" [routerLink]="['/user/my-followings']">Followed
+                           shows</a>
                         <a class="dropdown-item" *ngIf="!theatreId" [routerLink]="['/user/reservations']">My
                            reservations</a>
                         <a class="dropdown-item" *ngIf="!theatreId" [routerLink]="['/user/settings']">Settings</a>

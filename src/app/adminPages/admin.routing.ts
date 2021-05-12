@@ -9,35 +9,37 @@ import { ListComponent } from './List/List.component';
 import { AddListComponent } from './AddList/AddList.component';
 import { ProfileComponent } from './Profile/Profile.component';
 
-export const AdminRoutes: Routes = [{
-  path: 'dashboard',
-  component: AdminDashboardlComponent
-},
-{
-  path: 'messages',
-  component: MessagesComponent
-},
-{
-  path: 'bookings',
-  component: BookingsComponent
-},
-{
-  path: 'reviews',
-  component: ReviewsComponent
-},
-{
-  path: 'bookmarks',
-  component: BookmarksComponent
-},
-{
-  path: 'list',
-  component: ListComponent
-},
-{
-  path: 'add-list',
-  component: AddListComponent
-},
-{
-  path: 'profile',
-  component: ProfileComponent
-}];
+export const AdminRoutes: Routes = [
+//   {
+//   path: 'dashboard',
+//   component: AdminDashboardlComponent
+// },
+// {
+//   path: 'messages',
+//   component: MessagesComponent
+// },
+// {
+//   path: 'bookings',
+//   component: BookingsComponent
+// },
+// {
+//   path: 'reviews',
+//   component: ReviewsComponent
+// },
+// {
+//   path: 'bookmarks',
+//   component: BookmarksComponent
+// },
+// {
+//   path: 'list',
+//   component: ListComponent
+// },
+// {
+//   path: 'add-list',
+//   component: AddListComponent
+// },
+// {
+//   path: 'profile',
+//   component: ProfileComponent
+// }
+];
