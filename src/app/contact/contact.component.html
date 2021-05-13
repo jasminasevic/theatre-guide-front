@@ -12,78 +12,107 @@
                         soon as possible.</p>
                   </div>
                </div>
-               <div class="contact-form-wrapper">
-                  <div class="row">
-                     <div class="col-lg-6">
-                        <div class="form-group mb-4">
-                           <div class="input-group input-group-alternative">
-                              <div class="input-group-prepend">
-                                 <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+               <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                  <div class="contact-form-wrapper">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-group mb-4">
+                              <div class="input-group input-group-alternative">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                                 </div>
+                                 <input class="form-control" placeholder="First Name" type="text"
+                                    formControlName="firstName">
                               </div>
-                              <input class="form-control" placeholder="First Name" type="text">
+                              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmitted)"
+                                 class="text-warning small">
+                                 <span *ngIf="firstName.errors.required">
+                                    First name is required.
+                                 </span>
+                                 <span *ngIf="firstName.errors.pattern">
+                                    Wrong format.
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group mb-4">
+                              <div class="input-group input-group-alternative">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                                 </div>
+                                 <input class="form-control" placeholder="Last Name" type="text"
+                                    formControlName="lastName">
+                              </div>
+                              <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmitted)"
+                                 class="text-warning small">
+                                 <span *ngIf="lastName.errors.required">
+                                    Last name is required.
+                                 </span>
+                                 <span *ngIf="lastName.errors.pattern">
+                                    Wrong format.
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group mb-4">
+                              <div class="input-group input-group-alternative">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                 </div>
+                                 <input class="form-control" placeholder="Email address" type="email"
+                                    formControlName="email">
+                              </div>
+                              <div *ngIf="email.invalid && (email.dirty || email.touched || isSubmitted)"
+                                 class="text-warning small">
+                                 <span *ngIf="email.errors.required">
+                                    Email is required.
+                                 </span>
+                                 <span *ngIf="email.errors.email">
+                                    Wrong format.
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group mb-4">
+                              <div class="input-group input-group-alternative">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                                 </div>
+                                 <input class="form-control" placeholder="Subject" type="text"
+                                    formControlName="subject">
+                              </div>
+                              <div *ngIf="subject.invalid && (subject.dirty || subject.touched || isSubmitted)"
+                                 class="text-warning small">
+                                 <span *ngIf="subject.errors.required">
+                                    Subject is required.
+                                 </span>
+                              </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-6">
-                        <div class="form-group mb-4">
-                           <div class="input-group input-group-alternative">
-                              <div class="input-group-prepend">
-                                 <span class="input-group-text"><i class="ni ni-user-run"></i></span>
-                              </div>
-                              <input class="form-control" placeholder="Last Name" type="text">
-                           </div>
+                     <div class="form-group mb-4">
+                        <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80"
+                           placeholder="Type a message..." formControlName="message"></textarea>
+                        <div *ngIf="message.invalid && (message.dirty || message.touched || isSubmitted)"
+                           class="text-warning small">
+                           <span *ngIf="message.errors.required">
+                              Message is required.
+                           </span>
                         </div>
                      </div>
-                     <div class="col-lg-6">
-                        <div class="form-group mb-4">
-                           <div class="input-group input-group-alternative">
-                              <div class="input-group-prepend">
-                                 <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                              </div>
-                              <input class="form-control" placeholder="Email address" type="email">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-6">
-                        <div class="form-group mb-4">
-                           <div class="input-group input-group-alternative">
-                              <div class="input-group-prepend">
-                                 <span class="input-group-text"><i class="ni ni-user-run"></i></span>
-                              </div>
-                              <input class="form-control" placeholder="Subject" type="text">
-                           </div>
-                        </div>
+                     <div>
+                        <button type="submit" class="btn btn-primary btn-round btn-block btn-lg">Send Message</button>
                      </div>
                   </div>
-                  <div class="form-group mb-4">
-                     <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80"
-                        placeholder="Type a message..."></textarea>
-                  </div>
-                  <div>
-                     <button type="button" class="btn btn-primary btn-round btn-block btn-lg">Send Message</button>
-                  </div>
-               </div>
+               </form>
             </div>
          </div>
+         <ng-template #emailSent>
+            Thank you for your email! We'll get back to you soon.
+         </ng-template>
       </div>
-      <!-- <div class="bg-secondary">
-         <section class="block-space contact-info">
-            <div class="container">
-               <div class="row align-items-center">
-                  <div class="col-lg-4 col-md-6 mb-4">
-                     <div class="contact-media"> <i class="fa fa-envelope"></i><span>Email Address</span><a
-                           href="mailto: jasminasevic@yahoo.com">
-                           office@theatreguide.com</a>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 mb-4">
-                     <div class="contact-media"> <i class="fa fa-phone"></i><span>Phone Number</span><a href="#">(011)
-                           123-456</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-      </div> -->
    </div>
 </div>

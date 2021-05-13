@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 
-import { AdminDashboardlComponent } from './Dashboard/AdminDashboard.component';
-import { MessagesComponent } from './Messages/Messages.component';
-import { BookingsComponent } from './Bookings/Bookings.component';
-import { ReviewsComponent } from './Reviews/Reviews.component';
-import { BookmarksComponent } from './Bookmarks/Bookmarks.component';
-import { ListComponent } from './List/List.component';
-import { AddListComponent } from './AddList/AddList.component';
-import { ProfileComponent } from './Profile/Profile.component';
+// import { AdminDashboardlComponent } from './Dashboard/AdminDashboard.component';
+// import { MessagesComponent } from './Messages/Messages.component';
+// import { BookingsComponent } from './Bookings/Bookings.component';
+// import { ReviewsComponent } from './Reviews/Reviews.component';
+// import { BookmarksComponent } from './Bookmarks/Bookmarks.component';
+// import { ListComponent } from './List/List.component';
+// import { AddListComponent } from './AddList/AddList.component';
+// import { ProfileComponent } from './Profile/Profile.component';
 
 export const AdminRoutes: Routes = [
 //   {
