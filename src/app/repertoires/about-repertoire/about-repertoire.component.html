@@ -112,10 +112,13 @@
                                  </div>
                               </div>
                               <div class="row mb-4">
-                                 <div class="col-lg-12">
-                                    <button class="btn btn-lg btn-primary"
-                                       (click)="modalService.open('selectSeatModal');" type="button">Reserve
+                                 <div class="col-lg-12" *ngIf="!pastShow">
+                                    <button class="btn btn-lg btn-primary" (click)="onReserveTicket()"
+                                       type="button">Reserve
                                        tickets</button>
+                                 </div>
+                                 <div class="col-lg-12" *ngIf="pastShow">
+                                    <span class="text-danger">*Tickets for this show are no longer available.</span>
                                  </div>
                               </div>
                            </div>

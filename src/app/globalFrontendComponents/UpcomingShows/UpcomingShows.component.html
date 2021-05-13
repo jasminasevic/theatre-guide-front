@@ -18,7 +18,9 @@
                         <div class="category-box">
                             <div class="category-box-content">
                                 <div class="icon-title">
-                                    <span class="round-pill bg-primary"><i class="fa fa-ticket"></i></span>
+                                    <a [routerLink]="['/repertoires/about-play', item.id ]" title="Reserve ticket">
+                                        <span class="round-pill bg-primary"><i class="fa fa-ticket"></i></span>
+                                    </a>
                                 </div>
                                 <a [routerLink]="['/repertoires/about-play', item.id ]">
                                     <h3>{{item.title}}</h3>

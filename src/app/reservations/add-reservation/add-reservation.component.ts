@@ -47,7 +47,6 @@ export class AddReservationComponent {
     private router: Router){}
 
   addSeat(lastSelectedSeat: string): void {
-    console.log(lastSelectedSeat);
     this.setSelectedSectorDetails(lastSelectedSeat);
     this.selectedSeatsCounter += 1;
   }

@@ -7,6 +7,8 @@ import { RepertoireAllDetails } from '../RepertoireAllDetails.model';
 import { IPricePerSector } from '../../shared/interfaces/IPricePerSector';
 import { SectorsService } from '../../services/sectors.service';
 import { ISectorDetails } from '../../shared/interfaces/ISectorDetails';
+import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'about-repertoire',
@@ -26,6 +28,8 @@ export class AboutRepertoireComponent implements OnInit {
    repertoireId: number;
    lastSelectedSeat: string;
    seatId: string;
+   userId: number;
+   pastShow: boolean = false;
 
    shows: PopularShows[] = [];
 	popularShowsTitle : string = 'Related Shows';
@@ -36,7 +40,9 @@ export class AboutRepertoireComponent implements OnInit {
    constructor(private activatedRoute: ActivatedRoute,
       private popularShowVerticalService: PopularShowsVerticalService,
       public modalService: ModalService,
-      private sectorsService: SectorsService){}
+      private sectorsService: SectorsService,
+      private token: TokenStorageService,
+      private alertify: AlertifyService){}
 
    ngOnInit(){
       this.activatedRoute.data.subscribe((data: {repertoire: RepertoireAllDetails}) => {
@@ -51,6 +57,22 @@ export class AboutRepertoireComponent implements OnInit {
 			.subscribe(data => {
             this.shows = data
 			})
+    
+      let showDate = this.repertoire.showDate;
+      let convertedShowDate = new Date(showDate).getTime();
+      let dateNow = new Date().getTime();
+      if(convertedShowDate < dateNow){
+         this.pastShow = true;
+      }
+   }
+
+   onReserveTicket(){
+      if(this.token.getToken() != null){
+         this.modalService.open('selectSeatModal');
+      }
+      else {
+         this.alertify.warning('Please sign in to your account to proceed');
+      }
    }
 
    onChangeSector($event){
