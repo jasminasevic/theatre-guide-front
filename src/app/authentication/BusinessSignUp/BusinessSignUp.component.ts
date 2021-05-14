@@ -20,13 +20,14 @@ export class BusinessSignUpComponent implements OnInit {
     private alertify: AlertifyService) { }
 
   namePattern = "^[A-Z][a-zA-Z ]+$";
+  addressPattern = "^[A-Z][a-zA-Z0-9, ]+$";
 
   ngOnInit() {
     this.registerBusinessUserForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(this.namePattern)]],
       lastName: ['', [Validators.required, Validators.pattern(this.namePattern)]],
       theatre: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-      address: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+      address: ['', [Validators.required, Validators.pattern(this.addressPattern)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
