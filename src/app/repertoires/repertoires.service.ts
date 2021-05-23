@@ -24,7 +24,8 @@ export class RepertoiresService {
   }
 
 
-  getAllRepertoires(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "") 
+  getAllRepertoires(perPage: number = 4, pageNumber: number = 1, searchQuery: string = "", sortOrder: string = "",
+  searchLocation = "", searchDate = "") 
   : Observable<IRepertoireData> {
     let params = new HttpParams();
 
@@ -32,6 +33,9 @@ export class RepertoiresService {
     params = params.append('pageNumber', String(pageNumber));
     params = params.append('searchQuery', String(searchQuery));
     params = params.append('sortOrder', String(sortOrder));
+    params = params.append('location', String(searchLocation));
+    params = params.append('showDate', String(searchDate));
+
 
     return this.httpClient.get<IRepertoireData>(this.API_URL + '/repertoires', { params })
       .pipe(

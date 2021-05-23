@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IMG_BASE_URL } from 'src/app/app.constants';
-import { SidebarLayoutOneComponent } from 'src/app/listing/SidebarLayoutOne/SidebarLayoutOne.component';
 import { IRepertoireData } from 'src/app/shared/interfaces/IRepertoireData';
 import { RepertoireBaseDetails } from '../RepertoireBaseDetails.model';
 import { RepertoiresService } from '../repertoires.service';
@@ -22,11 +21,10 @@ export class AllRepertoiresComponent implements OnInit {
   totalItems: any;
   p: number = 1;
 
-  @ViewChild(SidebarLayoutOneComponent) searchItem;
-  @ViewChild(SidebarLayoutOneComponent) sortItems;
-
   searchRepertoire: string; 
   sortRepertoires: string;
+  searchLocation: string;
+  searchDate: string;
 
   size = 4;
   pageSizes = [4, 8, 12];
@@ -44,10 +42,10 @@ export class AllRepertoiresComponent implements OnInit {
   handlePageSizeChange(event) {
     this.size = event.target.value;
   
-    this.repertoireService.getAllRepertoires(this.size, this.p, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getAllRepertoires(this.size, this.p, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
     .subscribe(data => {
       if(data.data.length == 0){
-        this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+        this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
           .subscribe(data => {
             this.repertoires = data.data,
             this.totalCount = data.totalCount
@@ -60,7 +58,7 @@ export class AllRepertoiresComponent implements OnInit {
 
   handlePageChange(event) {
     this.p = event;
-    this.repertoireService.getAllRepertoires(this.size, this.p, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getAllRepertoires(this.size, this.p, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
@@ -70,17 +68,39 @@ export class AllRepertoiresComponent implements OnInit {
   onSearchItems(searchTerm: string) : void {
     this.searchRepertoire = searchTerm;
 
-    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
     })
   }
 
+  onSearchLocation(searchTerm: string) : void {
+    this.searchLocation = searchTerm;
+
+    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
+    .subscribe(data => {
+      this.repertoires = data.data,
+      this.totalCount = data.totalCount
+    })
+  }
+
+  onSearchDate(searchTerm: Date) : void {
+    if(searchTerm != null)
+      this.searchDate = searchTerm.toString();
+
+    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
+    .subscribe(data => {
+      this.repertoires = data.data,
+      this.totalCount = data.totalCount
+    })
+    
+  }
+
   onSortItems(sortOrder: string) : void{
     this.sortRepertoires = sortOrder;
 
-    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires)
+    this.repertoireService.getAllRepertoires(this.size, this.p = 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
     .subscribe(data => {
       this.repertoires = data.data,
       this.totalCount = data.totalCount
@@ -89,7 +109,7 @@ export class AllRepertoiresComponent implements OnInit {
 
   onResetItems(value){
     if(value == true){
-      this.repertoireService.getAllRepertoires(this.size, 1, '', '')
+      this.repertoireService.getAllRepertoires(this.size, 1, '', '', '', '')
       .subscribe(data => {
         this.repertoires = data.data,
         this.totalCount = data.totalCount

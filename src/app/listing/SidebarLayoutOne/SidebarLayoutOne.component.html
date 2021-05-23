@@ -2,15 +2,16 @@
 	<div class="row mb-5">
 		<div class="col-lg-12 col-sm-12">
 			<div class="form-group">
-				<input type="text" placeholder="Search" placeholder="Search"
-				#searchedItem class="form-control form-control-alternative">
+				<input type="text" placeholder="Search" placeholder="Search" #searchedItem
+					class="form-control form-control-alternative">
 			</div>
 		</div>
 		<div class="col-lg-12 col-sm-12">
 			<div class="form-group">
-				<select class="form-control form-control-alternative custom-select"
-				(change)="changeSortOrder($event)" #orderData id="orderData">
-					<option *ngFor="let order of orderValues" value="{{order.value}}">{{ order.name }}</option>
+				<select class="form-control form-control-alternative custom-select" (change)="changeSortOrder($event)"
+					#orderData id="orderData">
+					<option *ngFor="let order of orderValues" value="{{order.value}}">{{ order.name
+						}}</option>
 				</select>
 			</div>
 		</div>
@@ -19,4 +20,3 @@
 		</div>
 	</div>
 </div>
-

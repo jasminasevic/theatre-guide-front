@@ -7,8 +7,9 @@
       <div class="row">
         <!-- Sidebar -->
         <div class="col-lg-3 col-md-4">
-          <sidebar-layout-one (searchItem)="onSearchItems($event)" (sortItems)="onSortItems($event)"
-            (resetItems)="onResetItems($event)"></sidebar-layout-one>
+          <sidebar-layout-three (searchItem)="onSearchItems($event)" (sortItems)="onSortItems($event)"
+            (searchLocation)="onSearchLocation($event)" (searchDate)="onSearchDate($event)"
+            (resetItems)="onResetItems($event)"></sidebar-layout-three>
         </div>
         <!-- Sidebar / End -->
         <div class="col-lg-9 col-md-8" *ngIf="repertoires.length > 0; else noResults">

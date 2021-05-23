@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { SocialMediaIconsComponent } from '../globalFrontendComponents/socialMediaIcons/socialMediaIcons.component';
 import { SidebarLayoutOneComponent } from '../listing/SidebarLayoutOne/SidebarLayoutOne.component';
 import { SidebarLayoutTwoComponent } from '../listing/SidebarLayoutTwo/SidebarLayoutTwo.component';
+import { SidebarLayoutThreeComponent } from '../listing/SidebarLayoutThree/SidebarLayoutThree.component';
 import { PaginationComponent } from '../globalFrontendComponents/Pagination/Pagination.component';
 import { NewsletterComponent } from '../globalFrontendComponents/newsletter/newsletter.component';
 import { TeamComponent } from '../globalFrontendComponents/Team/Team.component';
@@ -39,7 +40,8 @@ import { FollowShowButtonComponent } from '../globalFrontendComponents/followSho
     ProfileComponent,
     SeatsComponent,
     AddReservationComponent,
-    FollowShowButtonComponent
+    FollowShowButtonComponent,
+    SidebarLayoutThreeComponent
   ],
   exports: [
     GallerySliderComponent,
@@ -54,7 +56,8 @@ import { FollowShowButtonComponent } from '../globalFrontendComponents/followSho
     ProfileComponent,
     SeatsComponent,
     AddReservationComponent,
-    FollowShowButtonComponent
+    FollowShowButtonComponent,
+    SidebarLayoutThreeComponent
   ] 
 })
 export class SharedModule { }

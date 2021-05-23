@@ -20,7 +20,6 @@ import { HalfScreenMapGridComponent } from './HalfScreenMapGrid/HalfScreenMapGri
 import { ListingDetailOneComponent } from './ListingDetailOne/ListingDetailOne.component';
 import { ListingDetailTwoComponent } from './ListingDetailTwo/ListingDetailTwo.component';
 import { SmallGallerySliderComponent } from '../globalFrontendComponents/SmallGallerySlider/SmallGallerySlider.component';
-import { SidebarLayoutThreeComponent } from './SidebarLayoutThree/SidebarLayoutThree.component';
 
 import { ListingRoutes } from './listing.routing';
 
@@ -49,8 +48,7 @@ import { SharedModule } from '../shared/shared.module';
      HalfScreenMapGridComponent,
      ListingDetailOneComponent,
      ListingDetailTwoComponent,
-     SmallGallerySliderComponent,
-     SidebarLayoutThreeComponent
+     SmallGallerySliderComponent
    ]
 })
 
