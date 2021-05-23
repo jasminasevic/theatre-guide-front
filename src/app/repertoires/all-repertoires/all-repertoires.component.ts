@@ -109,8 +109,9 @@ export class AllRepertoiresComponent implements OnInit {
 
   onResetItems(value){
     if(value == true){
-      this.repertoireService.getAllRepertoires(this.size, 1, '', '', '', '')
+      this.repertoireService.getAllRepertoires(this.size, 1, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate = '')
       .subscribe(data => {
+        console.log(data),
         this.repertoires = data.data,
         this.totalCount = data.totalCount
       })

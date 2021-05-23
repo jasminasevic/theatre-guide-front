@@ -28,7 +28,7 @@ export class SidebarLayoutThreeComponent implements OnInit{
 
    @Output() searchItem: EventEmitter<string> = new EventEmitter<string>();
    @Output() searchLocation: EventEmitter<string> = new EventEmitter<string>();
-   @Output() searchDate: EventEmitter<Date> = new EventEmitter<Date>();
+   @Output() searchDate: EventEmitter<string> = new EventEmitter<string>();
    @Output() sortItems: EventEmitter<string> = new EventEmitter<string>();
    @Output() resetItems: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -48,7 +48,7 @@ export class SidebarLayoutThreeComponent implements OnInit{
     this.orderData.nativeElement.value = '';
     this.searchItem.emit('');
     this.searchLocation.emit('');
-    this.searchDate.emit(null);
+    this.searchDate.emit('');
     this.sortItems.emit('');
     this.resetItems.emit(true);
    }
@@ -90,9 +90,5 @@ export class SidebarLayoutThreeComponent implements OnInit{
       ).subscribe(() => 
         this.searchDate.emit(this.searchedDate.nativeElement.value)
       )
-
-      
-
-
    }
 }
