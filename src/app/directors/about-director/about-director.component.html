@@ -1,82 +1,95 @@
 <div class="main-wrapper">
-    <title-bar title="{{ director.directorFirstName }} {{director.directorLastName }}" page="Directors" subtitle=""></title-bar>
- <!-- Content -->
- <div class="container">
-    <div class="content">
-       <div class="row sticky-wrapper">
-          <div class="col-lg-9 col-md-9">
-             <div class="">
-                <div class="detail-tile mb-4">
-                   <h3>{{ director.directorFirstName }} {{director.directorLastName }}</h3>
-                </div>
-                <div class="nav-wrapper">
-                   <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                      <li class="nav-item">
-                         <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab" href="#aboutDirector" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-info-circle mr-2"></i>About</a>
-                      </li>
-                      <li class="nav-item">
-                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#directorTheatres" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-institution mr-2"></i>Theatres</a>
-                      </li>
-                      <li class="nav-item">
-                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#directorShows" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-square-o  mr-2"></i>Shows</a>
-                      </li>
-                   </ul>
-                </div>
-                <div class="card shadow">
-                   <div class="card-body">
-                      <div class="tab-content" id="myTabContent">
-                         <div class="tab-pane fade active show" id="aboutDirector" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                           <h4 class="mb-4">
-                              About
-                           </h4>
-                           <p class="description">{{ director.directorBiography }}</p>
-                         </div>
-                         <div class="tab-pane fade" id="directorTheatres" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-                           <h4 class="mb-4">
-                              Theatres
-                           </h4>  
-                           <div class="pricing-list-container">
-                               <ul>
-                                  <li *ngFor="let theatre of director.theatreBasicDtos">
-                                     <h5><a [routerLink]="['/theatres/about-theatre', theatre.id ]">{{ theatre.theatreName }}</a></h5>
-                                  </li>
-                               </ul>
-                            </div>
-                         </div>
-                         <div class="tab-pane fade" id="directorShows" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
-                           <h4 class="mb-4">
-                              Shows
-                           </h4>  
-                           <div class="row mb-4 list-img-wrap" *ngFor="let show of director.showBaseInfoDtos">
-                               <div class="col-md-2 list-img">
-                                  <img class="img-fluid rounded-circle shadow-lg" src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}"> 
-                               </div>
-                               <div class="col-md-10">
-                                  <h5 class="text-primary"><a [routerLink]="['/shows/about-show', show.id ]">{{ show.title }}</a></h5>
-                                  <p class="text-muted">{{ show.categoryName }}</p>
-                                  <a [routerLink]="['/shows/about-show', show.id]">
-                                    <button class="btn btn-sm btn-primary" type="button">Find out more</button>
-                                  </a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          
-           <!-- <sidebar-layout-two></sidebar-layout-two> -->
-             <div class="col-lg-3 col-md-3">
-                <!-- <sidebar-layout-two></sidebar-layout-two> -->
-                 <!-- Widgets -->
+   <title-bar title="{{ director.directorFirstName }} {{director.directorLastName }}" page="Directors" subtitle="">
+   </title-bar>
+   <!-- Content -->
+   <div class="container">
+      <div class="content">
+         <div class="row sticky-wrapper">
+            <div class="col-lg-9 col-md-9">
+               <div class="">
+                  <div class="detail-tile mb-4">
+                     <h3>{{ director.directorFirstName }} {{director.directorLastName }}</h3>
+                  </div>
+                  <div class="nav-wrapper">
+                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-1-tab" data-toggle="tab"
+                              href="#aboutDirector" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i
+                                 class="fa fa-info-circle mr-2"></i>About</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                              href="#directorTheatres" role="tab" aria-controls="tabs-icons-text-2"
+                              aria-selected="false"><i class="fa fa-institution mr-2"></i>Theatres</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
+                              href="#directorShows" role="tab" aria-controls="tabs-icons-text-3"
+                              aria-selected="false"><i class="fa fa-square-o  mr-2"></i>Shows</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="card shadow">
+                     <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                           <div class="tab-pane fade active show" id="aboutDirector" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-1-tab">
+                              <h4 class="mb-4">
+                                 About
+                              </h4>
+                              <p class="description">{{ director.directorBiography }}</p>
+                           </div>
+                           <div class="tab-pane fade" id="directorTheatres" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-2-tab">
+                              <h4 class="mb-4">
+                                 Theatres
+                              </h4>
+                              <div class="pricing-list-container">
+                                 <ul>
+                                    <li *ngFor="let theatre of director.theatreBasicDtos">
+                                       <h5><a [routerLink]="['/theatres/about-theatre', theatre.id ]">{{
+                                             theatre.theatreName }}</a></h5>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="tab-pane fade" id="directorShows" role="tabpanel"
+                              aria-labelledby="tabs-icons-text-4-tab">
+                              <h4 class="mb-4">
+                                 Shows
+                              </h4>
+                              <div class="row mb-4 list-img-wrap" *ngFor="let show of director.showBaseInfoDtos">
+                                 <div class="col-md-2 list-img">
+                                    <img class="img-fluid rounded-circle shadow-lg"
+                                       src="{{IMG_BASE_URL}}{{show.showImageDtos[0].path}}">
+                                 </div>
+                                 <div class="col-md-10">
+                                    <h5 class="text-primary"><a [routerLink]="['/shows/about-show', show.id ]">{{
+                                          show.title }}</a></h5>
+                                    <p class="text-muted">{{ show.categoryName }}</p>
+                                    <a [routerLink]="['/shows/about-show', show.id]">
+                                       <button class="btn btn-sm btn-primary" type="button">Find out more</button>
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- <sidebar-layout-two></sidebar-layout-two> -->
+            <div class="col-lg-3 col-md-3">
+               <!-- <sidebar-layout-two></sidebar-layout-two> -->
+               <!-- Widgets -->
                <!-- <div class="col-lg-3 col-md-4"> -->
-              <div class="sidebar right">
+               <div class="sidebar right">
 
                   <!-- Newsletter Widget -->
-                  <newsletter></newsletter>
+                  <!-- <newsletter></newsletter> -->
                   <!-- Newsletter Widget / End -->
-  
+
                   <!-- Popular Shows Vertical Widget -->
                   <div *ngIf="shows">
                      <div *ngIf="shows.length > 0">
@@ -94,14 +107,11 @@
                   </div>
                   <!-- Social Media Icons Widget / End-->
 
-                 <div class="clearfix"></div>
-                 <div class="margin-bottom-40"></div>
-              </div>
-           </div>
-          </div>
-       </div>
-    </div>
- </div>
-                       
- 
- 
+                  <div class="clearfix"></div>
+                  <div class="margin-bottom-40"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

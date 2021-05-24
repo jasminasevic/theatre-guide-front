@@ -24,7 +24,7 @@ export class DashboardOneComponent implements OnInit{
 		private upcomingPremiereService: UpcomingPremieresService){}
 
 	bannerTitle: string = 'Expolore Theatres, Shows and More';
-	bannerDesc : string = 'What are you looking for?';
+	bannerDesc : string = 'Where and when would you like to watch some show?';
 	bannerImage: string = 'assets/images/main-search-background-01.jpg';
 
 	shows: PopularShows[];
