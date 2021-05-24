@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { AgmCoreModule } from '@agm/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NouisliderModule } from 'ng2-nouislider';
@@ -32,6 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     GlobalModule,
     SlickCarouselModule,
     FormsModule,
+    ReactiveFormsModule,
     NouisliderModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
     RouterModule.forChild(ListingRoutes),

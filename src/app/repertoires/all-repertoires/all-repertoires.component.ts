@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IMG_BASE_URL } from 'src/app/app.constants';
 import { IRepertoireData } from 'src/app/shared/interfaces/IRepertoireData';
+import { HomePageSearchService } from 'src/app/shared/services/homePageSearch.service';
 import { RepertoireBaseDetails } from '../RepertoireBaseDetails.model';
 import { RepertoiresService } from '../repertoires.service';
 
@@ -29,8 +32,23 @@ export class AllRepertoiresComponent implements OnInit {
   size = 4;
   pageSizes = [4, 8, 12];
 
+  subscription: Subscription;
+
   constructor(private repertoireService: RepertoiresService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private homePageSearchService: HomePageSearchService) {
+      this.subscription = this.homePageSearchService.currentSearchedData.subscribe(
+        dataFromHomePageSearch => {
+          this.searchLocation = dataFromHomePageSearch['location'],
+          this.searchDate = dataFromHomePageSearch['showDate']
+        })
+      this.repertoireService.getAllRepertoires(this.size, this.p, this.searchRepertoire, this.sortRepertoires, this.searchLocation, this.searchDate)
+        .subscribe(data => {
+          this.repertoires = data.data,
+          this.totalCount = data.totalCount
+        });
+    }
+  
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: { repertoireList: IRepertoireData}) => {

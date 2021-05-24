@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, ViewChild, ElementRef, Input } from '@angular/core';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { HomePageSearchService } from 'src/app/shared/services/homePageSearch.service';
 
 @Component({
   selector: 'sidebar-layout-three',
@@ -10,7 +11,9 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class SidebarLayoutThreeComponent implements OnInit{
 
-  constructor(){}
+
+  constructor(private homePageSearch: HomePageSearchService){
+  }
 
   orderValues = [
   {
@@ -26,6 +29,13 @@ export class SidebarLayoutThreeComponent implements OnInit{
     name: "Descending" 
   }]
 
+   //search from home page
+   subscription: Subscription;
+   locationFromHomePage: string;
+   foundLocation: string;
+   foundDate: string;
+
+   //sidebar search
    @Output() searchItem: EventEmitter<string> = new EventEmitter<string>();
    @Output() searchLocation: EventEmitter<string> = new EventEmitter<string>();
    @Output() searchDate: EventEmitter<string> = new EventEmitter<string>();
@@ -53,7 +63,18 @@ export class SidebarLayoutThreeComponent implements OnInit{
     this.resetItems.emit(true);
    }
 
+   ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
    ngOnInit(){
+    this.subscription = this.homePageSearch.currentSearchedData.subscribe(
+      dataFromHomePageSearch => {
+        this.foundLocation = dataFromHomePageSearch['location'],
+        this.foundDate = dataFromHomePageSearch['showDate']
+      }
+    ) 
+
      fromEvent(this.searchedItem.nativeElement, 'keyup')
       .pipe(
         // get value
@@ -74,7 +95,7 @@ export class SidebarLayoutThreeComponent implements OnInit{
         map((event: any) => {
           return event.target.value;
         })
-        , debounceTime(1500)
+        , debounceTime(1000)
         , distinctUntilChanged()
       ).subscribe(() => 
         this.searchLocation.emit(this.searchedLocation.nativeElement.value)
@@ -92,3 +113,4 @@ export class SidebarLayoutThreeComponent implements OnInit{
       )
    }
 }
+

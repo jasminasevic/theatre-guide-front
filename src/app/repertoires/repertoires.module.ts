@@ -16,6 +16,7 @@ import { AllRepertoiresComponent } from './all-repertoires/all-repertoires.compo
 import { SharedModule } from '../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from '../_modal';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
    // Change this to your upload POST address:
@@ -33,7 +34,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     RouterModule.forChild(RepertoiresRoutes),
     SharedModule,
     NgxPaginationModule,
-    ModalModule
+    ModalModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [ 
     AboutRepertoireComponent,

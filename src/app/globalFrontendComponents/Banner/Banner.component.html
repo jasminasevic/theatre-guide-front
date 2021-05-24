@@ -20,33 +20,28 @@
             <h2 class="text-white display-2">{{Title}}</h2>
             <h4 class="text-white">{{Desc}}</h4>
             <div class="main-search-input">
-               <div class="main-search-input-item">
-                  <select data-placeholder="All Categories" class="chosen-select custom-select">
-                     <option value="0">Category</option>
-                     <option *ngFor="let category of categories" [value]="category.id">{{ category.categoryName }}</option>
-                  </select>
-               </div>
                <div class="main-search-input-item location">
                   <div id="autocomplete-container">
-                     <input id="autocomplete-input" type="text" placeholder="Location">
+                     <input id="autocomplete-input" type="text" placeholder="Location" #searchedLocation>
+                     <i class="fa fa-map-marker"></i>
                   </div>
-                  <a href="#"><i class="fa fa-map-marker"></i></a>
                </div>
                <div class="main-search-input-item">
-                  <input type="date" placeholder="Date" value="" />
+                  <input type="date" placeholder="Date" value="" #searchedDate />
                </div>
-               <a href="#" class="btn main-search-btn btn-radius btn-lg btn-white" [routerLink]="['/listing/list/with-sidebar']">
-               <span class="btn-inner--text">Search</span>
-               </a>
+               <button class="btn main-search-btn btn-radius btn-lg btn-white"
+                  (click)="searchRepertoire(searchedLocation.value, searchedDate.value)">
+                  <span class="btn-inner--text">Search</span>
+               </button>
             </div>
          </div>
       </div>
       <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew zindex-100">
-         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
             <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
          </svg>
       </div>
    </section>
 </div>
-
