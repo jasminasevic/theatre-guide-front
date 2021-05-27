@@ -89,7 +89,7 @@ export function tokenGetter(){
       FormsModule,
       BrowserAnimationsModule,
       DropzoneModule,
-      RouterModule.forRoot(AppRoutes, {scrollPositionRestoration: 'enabled'}),
+      RouterModule.forRoot(AppRoutes, { scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy' }),
       HttpClientModule,
       NgxPaginationModule,
       ShowsModule,
