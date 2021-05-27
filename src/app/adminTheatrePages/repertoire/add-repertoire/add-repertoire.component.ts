@@ -39,7 +39,7 @@ export class AddRepertoireComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private checkIsTheatreDataAddeedService: CheckIsTheatreDataAddeedService) {
-      this.minDate = this.convertDateService.getMinDate();
+      this.minDate = this.convertDateService.getMinDateTime();
     }
 
   ngOnInit() {

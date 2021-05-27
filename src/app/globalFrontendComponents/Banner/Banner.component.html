@@ -27,7 +27,7 @@
                   </div>
                </div>
                <div class="main-search-input-item">
-                  <input type="date" placeholder="Date" value="" #searchedDate />
+                  <input type="date" placeholder="Date" value="" #searchedDate min="{{ minDate }}" />
                </div>
                <button class="btn main-search-btn btn-radius btn-lg btn-white"
                   (click)="searchRepertoire(searchedLocation.value, searchedDate.value)">

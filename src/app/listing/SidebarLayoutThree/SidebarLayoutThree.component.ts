@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, ViewChild, ElementRef, Input } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { ConvertDateService } from 'src/app/shared/services/convert-date.service';
 import { HomePageSearchService } from 'src/app/shared/services/homePageSearch.service';
 
 @Component({
@@ -12,7 +13,9 @@ import { HomePageSearchService } from 'src/app/shared/services/homePageSearch.se
 export class SidebarLayoutThreeComponent implements OnInit{
 
 
-  constructor(private homePageSearch: HomePageSearchService){
+  constructor(private homePageSearch: HomePageSearchService,
+    private convertDateService: ConvertDateService){
+      this.minDate = this.convertDateService.getMinDate();
   }
 
   orderValues = [
@@ -34,6 +37,7 @@ export class SidebarLayoutThreeComponent implements OnInit{
    locationFromHomePage: string;
    foundLocation: string;
    foundDate: string;
+   minDate: any;
 
    //sidebar search
    @Output() searchItem: EventEmitter<string> = new EventEmitter<string>();

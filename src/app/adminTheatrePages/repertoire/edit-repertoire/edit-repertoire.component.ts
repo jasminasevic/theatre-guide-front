@@ -40,7 +40,7 @@ export class EditRepertoireComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-      this.minDate = this.convertDateService.getMinDate();
+      this.minDate = this.convertDateService.getMinDateTime();
     }
 
     ngOnInit() {

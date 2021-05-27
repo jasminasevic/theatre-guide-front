@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { RepertoiresService } from 'src/app/repertoires/repertoires.service';
 import { HomePageSearchService } from '../../shared/services/homePageSearch.service';
 import { IHomePageSearchRepertoire } from '../../shared/interfaces/IHomePageSearchRepertoire';
+import { ConvertDateService } from 'src/app/shared/services/convert-date.service';
 
 @Component({
   selector: 'banner-version1',
@@ -22,15 +23,19 @@ export class BannerComponent {
    /** Background for baner **/
    @Input('bgImageUrl') BgImageUrl: any = 'assets/images/main-search-background-01.jpg';
 
-   constructor(private repertoireService: RepertoiresService,
-    private homePageSearch: HomePageSearchService,
-    private router: Router){}
-
    subscription: Subscription;
    searchedData: IHomePageSearchRepertoire = {
     location: '',
     showDate: ''
    };
+   minDate: any;
+
+   constructor(private repertoireService: RepertoiresService,
+    private homePageSearch: HomePageSearchService,
+    private router: Router,
+    private convertDateService: ConvertDateService){
+      this.minDate = this.convertDateService.getMinDate();
+    }
 
    searchRepertoire(location, date){
      this.searchedData['location'] = location;

@@ -26,7 +26,7 @@ getTwoDigitValue(number){
   return number < 10 ? '0' + number : '' + number;
 }
 
-getMinDate(){
+getMinDateTime(){
   var date = new Date(),
   mnth = ("0" + (date.getMonth() + 1)).slice(-2),
   day = ("0" + date.getDate()).slice(-2),
@@ -42,6 +42,17 @@ getMinDate(){
   var convertedTime = [twoDigitHours, twoDigitMins].join(":");
 
   return convertedDate + 'T' + convertedTime;
+}
+
+
+getMinDate(){
+  var date = new Date(),
+  mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+  day = ("0" + date.getDate()).slice(-2);
+
+  var convertedDate = [date.getFullYear(), mnth, day].join("-");
+
+  return convertedDate;
 }
 
 
