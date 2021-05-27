@@ -7,6 +7,7 @@ import { SceneBaseInfo } from '../sceneBaseInfo.model';
 import { ScenesService } from '../scenes.service';
 import { ISceneData } from '../../../shared/interfaces/ISceneData';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-all-scenes',
@@ -39,7 +40,8 @@ export class AllScenesComponent implements OnInit {
     private sceneService: ScenesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private alertify: AlertifyService) { }
+    private alertify: AlertifyService,
+    private checkIsTheatreDataAddedService: CheckIsTheatreDataAddeedService) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {sceneList: ISceneData}) => {
@@ -113,6 +115,9 @@ export class AllScenesComponent implements OnInit {
     .subscribe(() => {
       let index = this.scenes.findIndex(x => x.id === this.sceneId); //find index in array
       this.scenes.splice(index, 1);//remove element from array
+      if(this.scenes.length == 0){
+        this.checkIsTheatreDataAddedService.changeSceneAddedStatus(false);
+      }
       this.alertify.success("Successfully deleted")
     }, err => {
       this.alertify.error('Something went wrong');

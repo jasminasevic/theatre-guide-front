@@ -11,6 +11,7 @@ import { RepertoiresService } from '../repertoires.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { Router } from '@angular/router';
 import { IS_PREMIERE } from '../../../app.constants';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-add-repertoire',
@@ -36,7 +37,8 @@ export class AddRepertoireComponent implements OnInit {
     private convertDateService: ConvertDateService,
     private repertoireService: RepertoiresService,
     private alertify: AlertifyService,
-    private router: Router) {
+    private router: Router,
+    private checkIsTheatreDataAddeedService: CheckIsTheatreDataAddeedService) {
       this.minDate = this.convertDateService.getMinDate();
     }
 
@@ -120,8 +122,7 @@ export class AddRepertoireComponent implements OnInit {
     }
 
     let showId = this.repertoireForm.get('showId').value;
-    console.log(showId);
-
+    
     const formData = new FormData();
 
     var showDate = this.repertoireForm.get('showDate').value;
@@ -145,6 +146,7 @@ export class AddRepertoireComponent implements OnInit {
     this.repertoireService.addRepertoire(formData)
       .subscribe(() =>{
         this.alertify.success("Sucessfully added."),
+        this.checkIsTheatreDataAddeedService.changeRerertoireAddedStatus(true);
         this.router.navigate(['/admin-theatre/repertoire/all-repertoires'])
       },
       err => {

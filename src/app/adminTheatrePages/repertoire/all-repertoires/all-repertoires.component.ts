@@ -5,6 +5,7 @@ import { Repertoire } from '../repertoire.model';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { IRepertoireData } from 'src/app/shared/interfaces/IRepertoireData';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-all-repertoires',
@@ -34,7 +35,8 @@ export class AllRepertoiresComponent implements OnInit {
 
   constructor(private repertoireService: RepertoiresService,
     private activatedRoute: ActivatedRoute,
-    private alertify: AlertifyService) { }
+    private alertify: AlertifyService,
+    private checkIsTheatreDataAddeedService: CheckIsTheatreDataAddeedService) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {repertoireList: IRepertoireData}) => {
@@ -137,6 +139,9 @@ export class AllRepertoiresComponent implements OnInit {
     .subscribe(() =>{
       let index = this.repertoires.findIndex(x => x.id === this.repertoireId); //find index in array
       this.repertoires.splice(index, 1);//remove element from array
+      if(this.repertoires.length == 0){
+        this.checkIsTheatreDataAddeedService.changeRerertoireAddedStatus(false);
+      }
       this.alertify.success("Successfully deleted")
     }, err => {
         this.alertify.error('Something went wrong')

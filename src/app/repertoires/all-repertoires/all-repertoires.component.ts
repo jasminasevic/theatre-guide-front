@@ -32,13 +32,11 @@ export class AllRepertoiresComponent implements OnInit {
   size = 4;
   pageSizes = [4, 8, 12];
 
-  subscription: Subscription;
-
   constructor(private repertoireService: RepertoiresService,
     private activatedRoute: ActivatedRoute,
     private homePageSearchService: HomePageSearchService) {
-      this.subscription = this.homePageSearchService.currentSearchedData.subscribe(
-        dataFromHomePageSearch => {
+      this.homePageSearchService.currentSearchedData
+      .subscribe(dataFromHomePageSearch => {
           this.searchLocation = dataFromHomePageSearch['location'],
           this.searchDate = dataFromHomePageSearch['showDate']
         })

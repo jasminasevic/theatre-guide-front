@@ -13,6 +13,7 @@ import { TokenStorageService } from 'src/app/authentication/tokenStorage.service
 import { ShowsService } from '../shows.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-add-show',
@@ -43,7 +44,8 @@ export class AddShowComponent implements OnInit {
     private token: TokenStorageService,
     private showService: ShowsService,
     private router: Router,
-    private alertify: AlertifyService) {
+    private alertify: AlertifyService,
+    private checkIsTheatreDataAddedService: CheckIsTheatreDataAddeedService) {
       this.theatreId = this.token.getTheatreId();
     }
 
@@ -133,9 +135,13 @@ export class AddShowComponent implements OnInit {
   onSubmit(){
     this.isSubmitted = true;
     this.filesLength = this.files.length;
+    
+    if(this.filesLength == 0)
+      return false;
+
     if(this.filesLength > 0 && this.filesLength < 3){
       this.filesValidation = true;
-      return;
+      return false;
     }
 
     if (!this.showForm.valid) {
@@ -175,6 +181,7 @@ export class AddShowComponent implements OnInit {
     this.showService.addShow(formData)
       .subscribe(() =>{
         this.alertify.success("Sucessfully added."),
+        this.checkIsTheatreDataAddedService.changeShowAddedStatus(true);
         this.router.navigate(['/admin-theatre/shows/all-shows']);
       }, err => {
         this.alertify.error(err)

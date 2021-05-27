@@ -6,6 +6,7 @@ import { SidebarLayoutTwoComponent } from '../../../listing/SidebarLayoutTwo/Sid
 import { ActivatedRoute } from '@angular/router';
 import { IShowData } from 'src/app/shared/interfaces/IShowData';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-all-shows',
@@ -36,7 +37,8 @@ export class AllShowsComponent implements OnInit {
 
   constructor(private showService: ShowsService,
     private activatedRoute: ActivatedRoute,
-    private alertify: AlertifyService) { }
+    private alertify: AlertifyService,
+    private checkIsTheatreDataAddedService: CheckIsTheatreDataAddeedService) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data: {showList: IShowData}) => {
@@ -110,6 +112,9 @@ export class AllShowsComponent implements OnInit {
     .subscribe(() =>{
       let index = this.shows.findIndex(x => x.id === this.showId); //find index in array
       this.shows.splice(index, 1);//remove element from array
+      if(this.shows.length == 0){
+        this.checkIsTheatreDataAddedService.changeShowAddedStatus(false);
+      }
       this.alertify.success("Successfully deleted")
     }, err => {
         this.alertify.error('Something went wrong')

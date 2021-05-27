@@ -4,14 +4,30 @@
       <ul data-submenu-title="Main">
         <li class="active"><a [routerLink]="['/admin-theatre/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a>
         </li>
-        <li><a [routerLink]="['/admin-theatre/theatre']"><i class="fa fa-star"></i> Theatre</a></li>
-        <li><a [routerLink]="['/admin-theatre/reservations']"><i class=" fa fa-ticket"></i> Reservations</a></li>
+        <li *ngIf="isRepertoireAdded"><a [routerLink]="['/admin-theatre/reservations']"><i class=" fa fa-ticket"></i>
+            Reservations</a></li>
+        <li *ngIf="!isRepertoireAdded" title="Please add repertoire first"><a class="disabled"
+            [routerLink]="['/admin-theatre/reservations']"><i class=" fa fa-ticket"></i> Reservations</a></li>
+      </ul>
+      <ul data-submenu-title="Theatre">
+        <li><a [routerLink]="['/admin-theatre/theatre']"><i class="fa fa-star"></i> Theatre</a>
+        </li>
+        <li *ngIf="isVisible"><a [routerLink]="['/admin-theatre/scenes/all-scenes']"><i class="fa fa-star"></i>
+            Scenes</a></li>
+        <li *ngIf="!isVisible" title="Please add theatre info first"><a class="disabled"
+            [routerLink]="['/admin-theatre/scenes/all-scenes']"><i class="fa fa-star"></i> Scenes</a></li>
       </ul>
       <ul data-submenu-title="Listings">
-        <li><a [routerLink]="['/admin-theatre/repertoire/all-repertoires']"><i class=" fa fa-calendar"></i>
+        <li *ngIf="isSceneAdded"><a [routerLink]="['/admin-theatre/shows/all-shows']"><i class="fa fa-star"></i>
+            Shows</a></li>
+        <li *ngIf="!isSceneAdded" title="Please add scenes first"><a class="disabled"
+            [routerLink]="['/admin-theatre/shows/all-shows']"><i class="fa fa-star"></i> Shows</a></li>
+        <li *ngIf="isShowAdded"><a [routerLink]="['/admin-theatre/repertoire/all-repertoires']"><i
+              class=" fa fa-calendar"></i>
             Repertoire</a></li>
-        <li><a [routerLink]="['/admin-theatre/scenes/all-scenes']"><i class="fa fa-star"></i> Scenes</a></li>
-        <li><a [routerLink]="['/admin-theatre/shows/all-shows']"><i class="fa fa-star"></i> Shows</a></li>
+        <li *ngIf="!isShowAdded" title="Please add shows first"><a class="disabled"
+            [routerLink]="['/admin-theatre/repertoire/all-repertoires']"><i class=" fa fa-calendar"></i>
+            Repertoire</a></li>
       </ul>
       <ul data-submenu-title="Account">
         <li><a [routerLink]="['/admin-theatre/settings']"><i class="fa fa-user"></i> Settings</a></li>

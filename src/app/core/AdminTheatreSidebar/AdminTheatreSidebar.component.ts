@@ -1,5 +1,7 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
+import { TheatresService } from 'src/app/theatres/theatres.service';
+import { CheckIsTheatreDataAddeedService } from '../../shared/services/checkIsTheatreDataAddeed.service';
 declare var $ : any;
 
 @Component({
@@ -11,13 +13,49 @@ declare var $ : any;
 export class AdminTheatreSidebarComponent implements OnInit {
 
   // sidebarIn : boolean = false;
-  constructor(private token: TokenStorageService){}
+  constructor(private token: TokenStorageService,
+   private theatreService: TheatresService,
+   private checkIsTheatreDataAddeedService: CheckIsTheatreDataAddeedService){
+      this.checkIsTheatreDataAddeedService.currentTheatreVisibilityStatus$.subscribe(
+         data => {
+            this.isVisible = data;
+         }
+      )
+      this.checkIsTheatreDataAddeedService.currentSceneAddedStatus$.subscribe(
+         data => {
+            this.isSceneAdded = data;
+         }
+      )
+      this.checkIsTheatreDataAddeedService.currentShowAddedStatus$.subscribe(
+         data => {
+            this.isShowAdded = data;
+         }
+      )
+      this.checkIsTheatreDataAddeedService.currentRepertoireStatus$.subscribe(
+         data => {
+            this.isRepertoireAdded = data;
+         }
+      )
+   }
 
-  ngOnInit(){}
+   isVisible: boolean = false;
+   isSceneAdded: boolean = false;
+   isShowAdded: boolean = false;
+   isRepertoireAdded: boolean = false;
 
-  ngAfterViewInit()
-  {
+  ngOnInit(){
+     let theatreId = this.token.getTheatreId();
 
+     this.theatreService.getTheatre(theatreId)
+      .subscribe(data => {
+         this.isVisible = data.isVisible;
+         if(Object.keys(data.getSceneWithSectorsDtos).length != 0)
+            this.isSceneAdded = true;
+         if(Object.keys(data.showBaseInfoDtos).length != 0)
+            this.isShowAdded = true;
+         if(Object.keys(data.getRepertoireForTheatreDtos).length != 0)
+            this.isRepertoireAdded = true;
+      })
   }
 
   logOut(){

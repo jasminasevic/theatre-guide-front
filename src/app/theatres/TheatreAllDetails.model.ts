@@ -11,6 +11,7 @@ export class TheatreAllDetails {
   workingHours: string;
   telephone: string;
   location: string;
+  isVisible: boolean;
   showImageDtos: IImage[];
   getSceneWithSectorsDtos: ISceneWithSectors[];
   showBaseInfoDtos: IShowBaseInfo[];
@@ -23,6 +24,7 @@ export class TheatreAllDetails {
     this.workingHours = theatre.workingHours || '';
     this.telephone = theatre.telephone || '';
     this.location = theatre.location || '';
+    this.isVisible = theatre.isVisible || '';
     this.showImageDtos = theatre.theatreImage || '';
     this.getSceneWithSectorsDtos = theatre.getSceneWithSectorsDtos || '';
     this.showBaseInfoDtos = theatre.showBaseInfoDtos || '';

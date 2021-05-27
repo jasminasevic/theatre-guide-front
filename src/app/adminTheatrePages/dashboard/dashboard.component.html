@@ -1,4 +1,4 @@
-<div class="dashboard-content">
+<div class="dashboard-content" *ngIf="isRepertoireAdded">
   <!-- Content -->
   <div class="row">
     <!-- Item -->
@@ -67,6 +67,49 @@
                 <span *ngIf="popularShow.followersNumber != 1"> {{popularShow.followersNumber}} followers</span>
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="dashboard-content" *ngIf="!isRepertoireAdded">
+  <!-- Content -->
+  <div class="row">
+    <!-- Item -->
+    <div class="col-lg-12 col-md-12">
+      <div class="card mb-4">
+        <div class="card-body">
+          <i class="i-Add-User"></i>
+          <div class="py-4">
+            <h4 class="text-primary mb-2">In order to fully activate your profile please complete the following steps:
+            </h4>
+            <ol class="text-muted mb-0">
+              <li class="mt-4">Add your theatre info
+                <span *ngIf="isTheatreVisible">
+                  <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="35" height="35"
+                    alt="">
+                </span>
+              </li>
+              <li class="mt-4">Add scenes with sector details
+                <span *ngIf="isSceneAdded">
+                  <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="35" height="35"
+                    alt="">
+                </span>
+              </li>
+              <li class="mt-4">Add shows
+                <span *ngIf="isShowAdded">
+                  <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="35" height="35"
+                    alt="">
+                </span>
+              </li>
+              <li class="mt-4">Add repertoire
+                <span *ngIf="isRepertoireAdded">
+                  <img src="assets/images/tick.png" class="img-fluid rounded-circle shadow-lg" width="35" height="35"
+                    alt="">
+                </span>
+              </li>
+            </ol>
           </div>
         </div>
       </div>

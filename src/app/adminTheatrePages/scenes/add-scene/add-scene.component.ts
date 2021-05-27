@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { CheckIsTheatreDataAddeedService } from 'src/app/shared/services/checkIsTheatreDataAddeed.service';
 import { ScenesService } from '../scenes.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class AddSceneComponent implements OnInit {
     private fb: FormBuilder,
     private token: TokenStorageService,
     private alertify: AlertifyService,
-    private router: Router) { }
+    private router: Router,
+    private checkIsTheatreDataAddedService: CheckIsTheatreDataAddeedService) { }
 
   namePattern = "^[A-Z0-9][a-zA-Z0-9 ]+$";
   seatsPatters = "^[1-9][0-9]*$";
@@ -87,6 +89,7 @@ export class AddSceneComponent implements OnInit {
     this.sceneService.addScene(formData)
       .subscribe(() => {
         this.alertify.success("Sucessfully added."),
+        this.checkIsTheatreDataAddedService.changeSceneAddedStatus(true);
         this.router.navigate(['/admin-theatre/scenes/all-scenes'])
       },
       err => {

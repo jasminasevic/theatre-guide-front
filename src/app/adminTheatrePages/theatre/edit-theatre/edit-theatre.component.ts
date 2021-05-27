@@ -5,6 +5,7 @@ import { TokenStorageService } from 'src/app/authentication/tokenStorage.service
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { TheatreBaseDetails } from 'src/app/theatres/TheatreBaseDetails.model';
 import { TheatreService } from '../theatre.service';
+import { CheckIsTheatreDataAddeedService } from '../../../shared/services/checkIsTheatreDataAddeed.service';
 
 @Component({
   selector: 'app-edit-theatre',
@@ -26,7 +27,8 @@ export class EditTheatreComponent implements OnInit {
     private token: TokenStorageService,
     private theatreService: TheatreService,
     private router: Router,
-    private alertify: AlertifyService) { 
+    private alertify: AlertifyService,
+    private checkIsTheatreDataAddedService: CheckIsTheatreDataAddeedService) { 
       this.theatreId = this.token.getTheatreId();
     }
 
@@ -107,6 +109,7 @@ export class EditTheatreComponent implements OnInit {
     this.theatreService.editTheatre(this.theatreId, formData)
       .subscribe(() => {
         this.alertify.success('Succesfully edited');
+        this.checkIsTheatreDataAddedService.changeTheatreVisibilityStatus(true);
         this.router.navigate(['/admin-theatre/dashboard']);
       },
       err => {
