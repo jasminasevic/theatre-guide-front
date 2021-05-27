@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InteractionService {
+export class LoginStatusService {
 
 constructor() { }
 
@@ -16,5 +16,4 @@ constructor() { }
   changeLoginStatus(loginStatus: boolean) {
     this.loginStatusSource.next(loginStatus);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
-import { InteractionService } from 'src/app/shared/services/interaction.service';
+import { LoginStatusService } from 'src/app/shared/services/loginStatus.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,10 +11,10 @@ export class FooterComponent implements OnInit {
     
     isLoggedInStatus: boolean;
     
-    constructor(private interactionService: InteractionService){}
+    constructor(private loginStatusService: LoginStatusService){}
 
   ngOnInit(){
-    this.interactionService.currentLoginStatus$
+    this.loginStatusService.currentLoginStatus$
       .subscribe(
         message => {
           this.isLoggedInStatus = message

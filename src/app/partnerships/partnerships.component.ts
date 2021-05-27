@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../authentication/tokenStorage.service';
-import { InteractionService } from '../shared/services/interaction.service';
+import { LoginStatusService } from '../shared/services/loginStatus.service';
 
 @Component({
   selector: 'partnerships',
@@ -38,7 +38,7 @@ export class PartnershipsComponent implements OnInit {
 
    isLoggedInStatus: boolean;
                   
-  constructor(private interactionService: InteractionService,
+  constructor(private loginStatusService: LoginStatusService,
    private token: TokenStorageService) { }
 
    isTheatre: boolean = false;

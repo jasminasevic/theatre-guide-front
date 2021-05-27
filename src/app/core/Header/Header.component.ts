@@ -1,9 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { TokenStorageService } from 'src/app/authentication/tokenStorage.service';
-import { InteractionService } from 'src/app/shared/services/interaction.service';
+import { LoginStatusService } from 'src/app/shared/services/loginStatus.service';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
    constructor(private router: Router, 
       private token: TokenStorageService,
-      private interactionService: InteractionService){}
+      private loginStatusService: LoginStatusService){}
 
    ngOnInit(){
       this.isLoggedIn = !!this.token.getUser();
@@ -33,7 +32,7 @@ export class HeaderComponent implements OnInit {
          this.isLoginFailed = false;
          this.firstName = this.token.getFirstName();
          this.theatreId = this.token.getTheatreId();
-         this.interactionService.changeLoginStatus(true);
+         this.loginStatusService.changeLoginStatus(true);
       }
    }
 
@@ -49,7 +48,7 @@ export class HeaderComponent implements OnInit {
    logOut() : void {
       this.token.logOut();
       this.isLoginFailed = true;
-      this.interactionService.changeLoginStatus(false);
+      this.loginStatusService.changeLoginStatus(false);
    }
 
    ngAfterViewInit()
